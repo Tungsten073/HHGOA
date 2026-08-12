@@ -3,8 +3,173 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { TropicalLeaf } from '../background/TropicalLeaf';
 
+/** 🌅 Scene 1: Sunrise & Lively Morning Beach (0% – 25% Scroll) */
+const Scene1Sunrise: React.FC<{ opacity: number; px: number; py: number; isMobile: boolean }> = ({
+  opacity,
+  px,
+  py,
+  isMobile,
+}) => {
+  if (opacity <= 0.01) return null;
+
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none select-none transition-opacity duration-500"
+      style={{ opacity }}
+    >
+      {/* Sky & Ocean Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FDF9F0] via-[#F8E2C4] to-[#F5F1E8]" />
+
+      {/* Sun Disc & Morning Rays */}
+      <svg className="absolute top-10 left-1/2 -translate-x-1/2 w-full max-w-4xl h-96 opacity-40" viewBox="0 0 1000 400" fill="none">
+        <circle cx="500" cy="180" r="130" fill="url(#sun-glow-s1)" />
+        <path d="M500 0 L500 400 M0 180 L1000 180 M150 40 L850 320" stroke="#FFF2D6" strokeWidth="1" strokeDasharray="6 6" strokeOpacity="0.4" />
+        <defs>
+          <radialGradient id="sun-glow-s1" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(500 180) rotate(90) scale(130)">
+            <stop stopColor="#FFF2D6" stopOpacity="0.9" />
+            <stop offset="0.6" stopColor="#FF9E4A" stopOpacity="0.5" />
+            <stop offset="1" stopColor="#F8E2C4" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+
+      {/* Primary Background Artwork */}
+      <div
+        className="absolute inset-0 bg-no-repeat bg-cover bg-top w-full h-full opacity-85 mix-blend-multiply"
+        style={{
+          backgroundImage: "url('/goa-journey-bg.jpg')",
+          transform: isMobile ? 'none' : `translate3d(${px * -4}px, ${py * -4}px, 0)`,
+        }}
+      />
+    </div>
+  );
+};
+
+/** ☀️ Scene 2: Daytime & Focused Builder Workspace (25% – 50% Scroll) */
+const Scene2Daytime: React.FC<{ opacity: number; px: number; py: number; isMobile: boolean }> = ({
+  opacity,
+  px,
+  py,
+  isMobile,
+}) => {
+  if (opacity <= 0.01) return null;
+
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none select-none transition-opacity duration-500"
+      style={{ opacity }}
+    >
+      {/* Clean Daylight Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FDF9F0] via-[#F5F1E8] to-[#FAF6ED]" />
+
+      {/* Distant Coastline & Ocean Waves Line Art */}
+      <svg className="absolute top-1/3 left-0 w-full h-64 opacity-15" viewBox="0 0 1200 200" fill="none" preserveAspectRatio="none">
+        <path d="M0 100 Q300 60 600 100 T1200 100" stroke="#315746" strokeWidth="1.5" />
+        <path d="M0 140 Q400 110 800 140 T1200 140" stroke="#9F452D" strokeWidth="1" strokeDasharray="6 4" />
+      </svg>
+
+      {/* Gentle Palm Leaf Shadows */}
+      <TropicalLeaf
+        variant="palm-frond-right"
+        className="absolute top-12 right-0 w-80 opacity-15"
+        color="#315746"
+      />
+    </div>
+  );
+};
+
+/** 🌅 Scene 3: Golden Hour & Calm Empty Beach (50% – 75% Scroll) */
+const Scene3GoldenHour: React.FC<{ opacity: number; px: number; py: number; isMobile: boolean }> = ({
+  opacity,
+  px,
+  py,
+  isMobile,
+}) => {
+  if (opacity <= 0.01) return null;
+
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none select-none transition-opacity duration-500"
+      style={{ opacity }}
+    >
+      {/* Golden Hour Sky */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#FAF6ED] via-[#F6E2C6] to-[#E06A42]" />
+
+      {/* Setting Sun Glow */}
+      <div className="absolute top-1/4 right-1/3 w-80 h-80 rounded-full bg-[#FFE3B3] blur-3xl opacity-30" />
+
+      {/* Lifeguard Tower & Empty Sand Line Art */}
+      <svg className="absolute bottom-12 left-8 w-44 h-60 opacity-20" viewBox="0 0 200 240" fill="none">
+        <line x1="40" y1="240" x2="60" y2="100" stroke="#3D1D16" strokeWidth="3" />
+        <line x1="160" y1="240" x2="140" y2="100" stroke="#3D1D16" strokeWidth="3" />
+        <rect x="50" y="60" width="100" height="40" fill="#3D1D16" />
+        <polygon points="40,60 100,20 160,60" fill="#3D1D16" />
+      </svg>
+    </div>
+  );
+};
+
+/** 🌆 Scene 4: Completely Empty Goa Beach at Sunset (75% – 100% Scroll) */
+const Scene4Sunset: React.FC<{ opacity: number; px: number; py: number; isMobile: boolean }> = ({
+  opacity,
+  px,
+  py,
+  isMobile,
+}) => {
+  if (opacity <= 0.01) return null;
+
+  return (
+    <div
+      className="absolute inset-0 pointer-events-none select-none transition-opacity duration-500"
+      style={{ opacity }}
+    >
+      {/* Deep Sunset Sky: Coral -> Magenta -> Deep Navy Dusk */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#E06A42] via-[#9F452D] via-[#2B1D38] to-[#0A111E]" />
+
+      {/* Large Setting Sun Horizon Circle */}
+      <svg className="absolute bottom-36 left-1/2 -translate-x-1/2 w-64 h-64 opacity-50" viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="100" r="80" fill="url(#setting-sun)" />
+        <defs>
+          <radialGradient id="setting-sun" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(100 100) rotate(90) scale(80)">
+            <stop stopColor="#FFC72C" stopOpacity="0.9" />
+            <stop offset="0.6" stopColor="#FF5A36" stopOpacity="0.6" />
+            <stop offset="1" stopColor="#9F452D" stopOpacity="0" />
+          </radialGradient>
+        </defs>
+      </svg>
+
+      {/* Deserted Ocean Horizon & Palm Tree Silhouettes */}
+      <svg className="absolute bottom-0 left-0 w-full h-48 opacity-45" viewBox="0 0 1200 180" fill="none" preserveAspectRatio="none">
+        {/* Ocean Wave Layers */}
+        <path d="M0 100 Q300 70 600 100 T1200 100 V180 H0 Z" fill="#151B2B" />
+        <path d="M0 130 Q400 110 800 130 T1200 130 V180 H0 Z" fill="#0A111E" />
+      </svg>
+
+      {/* Palm Tree Silhouettes Left & Right */}
+      <TropicalLeaf
+        variant="palm-frond-left"
+        className="absolute bottom-0 -left-12 w-96 opacity-40"
+        color="#0A111E"
+      />
+      <TropicalLeaf
+        variant="palm-frond-right"
+        className="absolute bottom-0 -right-12 w-96 opacity-40"
+        color="#0A111E"
+      />
+
+      {/* Distant Warm Light Dots */}
+      {!isMobile && (
+        <>
+          <div className="absolute bottom-24 left-1/4 w-2 h-2 rounded-full bg-[#FFC72C]/60 blur-[1px] animate-pulse" />
+          <div className="absolute bottom-28 right-1/3 w-1.5 h-1.5 rounded-full bg-[#FF5A36]/60 blur-[1px] animate-pulse" />
+        </>
+      )}
+    </div>
+  );
+};
+
 export const GoaEnvironment: React.FC = () => {
-  const [scrollProgress, setScrollProgress] = useState(0); // 0 (Top/Sunrise) to 1 (Bottom/Night)
+  const [scrollProgress, setScrollProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const parallaxOffset = useRef({ x: 0, y: 0 });
@@ -53,110 +218,66 @@ export const GoaEnvironment: React.FC = () => {
     };
   }, []);
 
+  // Compute smooth crossfade opacities for the 4 narrative scenes
+  const p = scrollProgress;
+  let op1 = 0, op2 = 0, op3 = 0, op4 = 0;
+
+  if (p <= 0.25) {
+    op1 = 1 - p / 0.25;
+    op2 = p / 0.25;
+  } else if (p <= 0.55) {
+    const t = (p - 0.25) / 0.30;
+    op1 = 0;
+    op2 = 1 - t;
+    op3 = t;
+  } else if (p <= 0.80) {
+    const t = (p - 0.55) / 0.25;
+    op1 = 0;
+    op2 = 0;
+    op3 = 1 - t;
+    op4 = t;
+  } else {
+    op1 = 0;
+    op2 = 0;
+    op3 = 0;
+    op4 = 1;
+  }
+
+  // Ensure top of page displays Scene 1 at 100% opacity
+  if (p === 0) {
+    op1 = 1;
+    op2 = 0;
+    op3 = 0;
+    op4 = 0;
+  }
+
   const px = parallaxState.x;
   const py = parallaxState.y;
 
   return (
     <div className="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-      {/* ── LAYER 1: SKY & ATMOSPHERIC GRADIENT STREAM ── */}
-      {/* Smoothly interpolates from Sunrise -> Daylight -> Golden Hour -> Sunset -> Beach Night */}
-      <div
-        className="absolute inset-0 transition-colors duration-700 ease-out"
-        style={{
-          background:
-            scrollProgress < 0.22
-              ? 'linear-gradient(180deg, #FDF9F0 0%, #F8E2C4 50%, #F5F1E8 100%)' // Sunrise Sky
-              : scrollProgress < 0.55
-              ? 'linear-gradient(180deg, #FDF9F0 0%, #F5F1E8 50%, #FAF6ED 100%)' // Bright Day
-              : scrollProgress < 0.78
-              ? 'linear-gradient(180deg, #FAF6ED 0%, #F6E2C6 40%, #E06A42 100%)' // Golden Hour
-              : scrollProgress < 0.9
-              ? 'linear-gradient(180deg, #E06A42 0%, #9F452D 35%, #2B1D38 80%, #0A111E 100%)' // Sunset
-              : 'linear-gradient(180deg, #2B1D38 0%, #151B2B 50%, #0A111E 100%)', // Beach Night
-        }}
-      />
+      {/* Scene 1: Sunrise & Lively Morning Beach (0% – 25% Scroll) */}
+      <Scene1Sunrise opacity={op1} px={px} py={py} isMobile={isMobile} />
 
-      {/* ── LAYER 2: HIGH-RES GOA BEACH ENVIRONMENTAL ARTWORK ── */}
-      {/* Tall cinematic Goa beach artwork with multi-tier scroll & mouse parallax */}
-      <div
-        className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full opacity-90 transition-transform duration-500 ease-out"
-        style={{
-          backgroundImage: "url('/goa-journey-bg.jpg')",
-          transform: reducedMotion || isMobile
-            ? 'none'
-            : `translate3d(${px * -6}px, ${py * -6 + scrollProgress * -40}px, 0) scale(1.02)`,
-        }}
-      />
+      {/* Scene 2: Bright Daytime Workspace (25% – 50% Scroll) */}
+      <Scene2Daytime opacity={op2} px={px} py={py} isMobile={isMobile} />
 
-      {/* ── LAYER 3: ADAPTIVE VIGNETTE & READABILITY OVERLAY ── */}
+      {/* Scene 3: Golden Hour Calm Beach (50% – 75% Scroll) */}
+      <Scene3GoldenHour opacity={op3} px={px} py={py} isMobile={isMobile} />
+
+      {/* Scene 4: Completely Empty Goa Beach at Sunset (75% – 100% Scroll) */}
+      <Scene4Sunset opacity={op4} px={px} py={py} isMobile={isMobile} />
+
+      {/* Adaptive Vignette for Readability */}
       <div
-        className="absolute inset-0 transition-opacity duration-500 pointer-events-none"
+        className="absolute inset-0 transition-opacity duration-500"
         style={{
           background:
             scrollProgress > 0.8
-              ? 'radial-gradient(circle at 50% 50%, transparent 20%, rgba(10, 17, 30, 0.4) 100%)'
-              : 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(253, 249, 240, 0.25) 100%)',
+              ? 'radial-gradient(circle at 50% 50%, transparent 30%, rgba(10, 17, 30, 0.4) 100%)'
+              : 'radial-gradient(circle at 50% 50%, transparent 50%, rgba(253, 249, 240, 0.2) 100%)',
         }}
       />
-
-      {/* ── LAYER 4: FLOATING PARTICLES & CAMPFIRE EMBERS ── */}
-      {!isMobile && (
-        <div
-          className="absolute inset-0 transition-transform duration-700 ease-out"
-          style={{
-            transform: reducedMotion
-              ? 'none'
-              : `translate3d(${px * -10}px, ${py * -10}px, 0)`,
-          }}
-        >
-          {/* Top Morning Sun Rays / Golden Pollen */}
-          {scrollProgress < 0.4 && (
-            <>
-              <div className={`absolute top-1/6 left-1/5 w-2 h-2 rounded-full bg-[#D8A928]/40 ${reducedMotion ? '' : 'animate-float-slow'}`} />
-              <div className={`absolute top-1/4 right-1/4 w-1.5 h-1.5 rounded-full bg-[#FF8F72]/50 ${reducedMotion ? '' : 'animate-float-slow-reverse'}`} />
-            </>
-          )}
-
-          {/* Bottom Sunset Campfire Embers */}
-          {scrollProgress > 0.65 && (
-            <>
-              <div className={`absolute bottom-1/4 left-1/3 w-2.5 h-2.5 rounded-full bg-[#FF5A36]/60 blur-[1px] ${reducedMotion ? '' : 'animate-float-slow'}`} />
-              <div className={`absolute bottom-1/6 right-1/3 w-2 h-2 rounded-full bg-[#FFC72C]/70 ${reducedMotion ? '' : 'animate-float-slow-reverse'}`} />
-              <div className={`absolute bottom-1/12 left-1/2 w-1.5 h-1.5 rounded-full bg-[#FFE3B3]/80 ${reducedMotion ? '' : 'animate-float-slow'}`} />
-            </>
-          )}
-        </div>
-      )}
-
-      {/* ── LAYER 5: FOREGROUND SWAYING PALM LEAF SILHOUETTES ── */}
-      <div
-        className="absolute inset-0 transition-transform duration-300 ease-out"
-        style={{
-          transform: reducedMotion || isMobile
-            ? 'none'
-            : `translate3d(${px * -12}px, ${py * -12}px, 0)`,
-        }}
-      >
-        {/* Top-Right Palm Shadow */}
-        <div className={reducedMotion ? '' : 'animate-goa-breeze'}>
-          <TropicalLeaf
-            variant="palm-frond-right"
-            className="absolute -top-12 -right-12 w-72 sm:w-96"
-            color={scrollProgress > 0.75 ? '#F5F1E8' : '#315746'}
-            opacity={isMobile ? 0.08 : 0.14}
-          />
-        </div>
-
-        {/* Bottom-Left Palm Frond */}
-        <div className={reducedMotion ? '' : 'animate-goa-breeze-reverse'}>
-          <TropicalLeaf
-            variant="palm-frond-left"
-            className="absolute -bottom-16 -left-16 w-80 sm:w-[420px]"
-            color={scrollProgress > 0.75 ? '#0A111E' : '#315746'}
-            opacity={isMobile ? 0.08 : 0.16}
-          />
-        </div>
-      </div>
     </div>
   );
 };
