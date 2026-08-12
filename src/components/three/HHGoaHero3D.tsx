@@ -158,6 +158,8 @@ const HeroCardMesh: React.FC = () => {
     return [sideMat, sideMat, sideMat, sideMat, frontMat, backMat];
   }, [frontTexture, backTexture]);
 
+  const timeRef = useRef(0);
+
   useFrame((state, delta) => {
     if (!meshRef.current) return;
 
@@ -168,7 +170,8 @@ const HeroCardMesh: React.FC = () => {
       return;
     }
 
-    const time = state.clock.getElapsedTime();
+    timeRef.current += delta;
+    const time = timeRef.current;
     const floatY = Math.sin(time * 1.5) * 0.08;
     meshRef.current.position.y = floatY;
 

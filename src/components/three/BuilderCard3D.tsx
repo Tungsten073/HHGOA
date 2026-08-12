@@ -102,6 +102,8 @@ const CardMesh: React.FC<{ imageUrl: string }> = ({ imageUrl }) => {
     return [sideMat, sideMat, sideMat, sideMat, frontMat, backMat];
   }, [texture, backTexture]);
 
+  const timeRef = useRef(0);
+
   useFrame((state, delta) => {
     if (!meshRef.current) return;
 
@@ -112,7 +114,8 @@ const CardMesh: React.FC<{ imageUrl: string }> = ({ imageUrl }) => {
       return;
     }
 
-    const time = state.clock.getElapsedTime();
+    timeRef.current += delta;
+    const time = timeRef.current;
     meshRef.current.position.y = Math.sin(time * 1.8) * 0.06;
 
     meshRef.current.rotation.x = THREE.MathUtils.lerp(
