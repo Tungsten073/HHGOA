@@ -10,6 +10,7 @@ import { BuilderForm } from '@/components/BuilderForm';
 import { AdjustmentControls } from '@/components/AdjustmentControls';
 import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
+import { SocialEdition } from '@/components/social/SocialEdition';
 import { Sparkles, Box, Image as ImageIcon, CheckCircle2, Terminal } from 'lucide-react';
 
 const HHGoaHero3D = dynamic(
@@ -58,14 +59,14 @@ export default function Home() {
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const generatorRef = useRef<HTMLDivElement | null>(null);
-  const galleryRef = useRef<HTMLDivElement | null>(null);
+  const socialRef = useRef<HTMLDivElement | null>(null);
 
   const handleTabChange = (tab: NavTab) => {
     setActiveTab(tab);
     if (tab === 'builder-id' && generatorRef.current) {
       generatorRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (tab === 'gallery' && galleryRef.current) {
-      galleryRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (tab === 'gallery' && socialRef.current) {
+      socialRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -252,66 +253,12 @@ export default function Home() {
           </div>
         </div>
 
-        {/* ── ARCHIVE ACCESS Separator ── */}
-        <div className="w-full h-px bg-[#151B2B] my-16 relative">
-          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FDF9F0] px-4 font-mono text-xs font-bold text-[#151B2B] border-2 border-[#151B2B] uppercase tracking-widest shadow-brutal">
-            ARCHIVE ACCESS
-          </div>
+        {/* ── SOCIAL EDITION / 05 — THE BUILDERS OF GOA ── */}
+        <div ref={socialRef} id="social-edition" className="scroll-mt-24">
+          <SocialEdition
+            onNavigateToGenerator={() => handleTabChange('builder-id')}
+          />
         </div>
-
-        {/* ── THE BUILDERS OF GOA Gallery ── */}
-        <section ref={galleryRef} id="gallery" className="mb-16 scroll-mt-24">
-          <div className="mb-8 flex justify-between items-end">
-            <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold uppercase text-[#151B2B] tracking-tight font-syne">
-                THE BUILDERS OF GOA
-              </h3>
-              <p className="font-mono text-xs text-[#9F452D] tracking-widest uppercase mt-1">
-                BATCH 247 // DECENTRALIZED DIRECTORY
-              </p>
-            </div>
-            <a
-              href="https://github.com/Tungsten073/HHGOA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-mono text-xs font-bold text-[#9F452D] hover:text-[#151B2B] transition-colors flex items-center gap-1 uppercase tracking-widest"
-            >
-              VIEW REPOSITORY →
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { id: '001', name: 'DAVID T.', role: 'DESIGNER', stack: 'UI/UX' },
-              { id: '002', name: 'SARAH K.', role: 'ENGINEER', stack: 'SOLANA' },
-              { id: '003', name: 'MICHAEL R.', role: 'PRODUCT', stack: 'AI / ML' },
-              { id: '004', name: 'ELENA V.', role: 'FOUNDER', stack: 'FULLSTACK' },
-            ].map((builder) => (
-              <div
-                key={builder.id}
-                onClick={() => {
-                  setBuilderData((prev) => ({
-                    ...prev,
-                    name: builder.name,
-                    title: `${builder.role} (${builder.stack})`,
-                  }));
-                  handleTabChange('builder-id');
-                }}
-                className="border-2 border-[#151B2B] bg-[#F5F1E8] p-5 shadow-brutal hover:bg-[#FDF9F0] hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between aspect-square"
-              >
-                <div className="font-mono text-xs text-[#151B2B]/50 font-bold">{builder.id}</div>
-                <div>
-                  <div className="font-syne text-lg font-extrabold text-[#151B2B] uppercase group-hover:text-[#9F452D] transition-colors">
-                    {builder.name}
-                  </div>
-                  <div className="font-mono text-[10px] font-bold text-[#9F452D] tracking-widest uppercase mt-1">
-                    {builder.role} // {builder.stack}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
 
         {/* ── Footer ── */}
         <footer className="pt-8 border-t-2 border-[#151B2B] flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-[#151B2B]">
