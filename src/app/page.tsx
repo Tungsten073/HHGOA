@@ -12,7 +12,6 @@ import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { TropicalBackground } from '@/components/background/TropicalBackground';
-import { HeroSunriseBackground, GoldenHourBackground, EveningDuskBackground } from '@/components/background/GoaCoastalBackgrounds';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -104,7 +103,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid font-syne">
-      {/* Dynamic Animated Background System */}
+      {/* 🌴 Full-Height Continuous Goa Background Image Component */}
       <TropicalBackground />
 
       {/* Background Topographic Overlay */}
@@ -115,9 +114,6 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
       <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden">
-        {/* Visual Hero Sunrise Background Image Layer */}
-        <HeroSunriseBackground />
-
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
           <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
@@ -330,11 +326,8 @@ export default function Home() {
 
       {/* ── SECTION 3: RESULT STATE — GOLDEN HOUR (Middle Bottom) ── */}
       <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10 overflow-hidden">
-        {/* Lifeguard Tower Golden Hour Background */}
-        <GoldenHourBackground />
-
         <div className="max-w-6xl mx-auto relative z-10">
-          <div className="bg-[#F5F1E8] border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div className="bg-[#F5F1E8]/90 backdrop-blur-sm border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Result Context */}
             <div className="lg:col-span-7 space-y-5 text-left">
               <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
@@ -407,10 +400,7 @@ export default function Home() {
       </div>
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
-      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-12 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden">
-        {/* Evening Bonfire Dusk Background Layer */}
-        <EveningDuskBackground />
-
+      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-12 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 text-[#F5F1E8]">
           {/* Left Footer Branding */}
           <div className="flex flex-col space-y-2 text-center md:text-left">
