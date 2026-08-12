@@ -97,3 +97,74 @@ body {
 .hh-tracking-wide {
   letter-spacing: 0.34em;
 }
+
+/* Gentle Goa Breeze Background Animations */
+@keyframes goa-breeze {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(8px, -6px, 0) rotate(1.5deg);
+  }
+  100% {
+    transform: translate3d(-6px, 4px, 0) rotate(-1deg);
+  }
+}
+
+@keyframes goa-breeze-reverse {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-10px, 8px, 0) rotate(-2deg);
+  }
+  100% {
+    transform: translate3d(6px, -4px, 0) rotate(1deg);
+  }
+}
+
+@keyframes float-slow {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(15px, -25px, 0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate3d(-10px, -50px, 0);
+    opacity: 0.1;
+  }
+}
+
+@keyframes float-slow-reverse {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate3d(-18px, 20px, 0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate3d(12px, 45px, 0);
+    opacity: 0.1;
+  }
+}
+
+.animate-goa-breeze {
+  animation: goa-breeze 16s ease-in-out infinite alternate;
+}
+
+.animate-goa-breeze-reverse {
+  animation: goa-breeze-reverse 20s ease-in-out infinite alternate;
+}
+
+.animate-float-slow {
+  animation: float-slow 14s ease-in-out infinite alternate;
+}
+
+.animate-float-slow-reverse {
+  animation: float-slow-reverse 18s ease-in-out infinite alternate;
+}

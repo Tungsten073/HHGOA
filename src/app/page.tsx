@@ -11,8 +11,8 @@ import { AdjustmentControls } from '@/components/AdjustmentControls';
 import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
+import { TropicalBackground } from '@/components/background/TropicalBackground';
 import { Sparkles, Box, Image as ImageIcon, CheckCircle2, Terminal } from 'lucide-react';
-
 
 const BuilderCard3D = dynamic(
   () => import('@/components/three/BuilderCard3D').then((mod) => mod.BuilderCard3D),
@@ -83,6 +83,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid">
+      {/* Subtle Animated Tropical Environment Background Layer */}
+      <TropicalBackground />
+
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
 
@@ -93,7 +96,6 @@ export default function Home() {
         activeTab={activeTab}
         onTabChange={handleTabChange}
       />
-
 
       <div className="max-w-6xl mx-auto px-4 z-10 relative">
         {/* Status Indicator Banner */}
