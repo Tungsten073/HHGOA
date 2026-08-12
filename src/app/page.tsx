@@ -4,7 +4,7 @@ import React, { useState, useRef, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { BuilderData, FormatType, FrameTheme, TransformState } from '@/types';
 import { getRandomTitle } from '@/constants/titles';
-import { Header } from '@/components/Header';
+import { Header, NavTab } from '@/components/Header';
 import { ImageUploader } from '@/components/ImageUploader';
 import { BuilderForm } from '@/components/BuilderForm';
 import { AdjustmentControls } from '@/components/AdjustmentControls';
@@ -37,6 +37,7 @@ const BuilderCard3D = dynamic(
 );
 
 export default function Home() {
+  const [activeTab, setActiveTab] = useState<NavTab>('event');
   const [format, setFormat] = useState<FormatType>('id-card');
   const [userImage, setUserImage] = useState<HTMLImageElement | null>(null);
   const [theme, setTheme] = useState<FrameTheme>('editorial');
@@ -56,6 +57,17 @@ export default function Home() {
   });
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const generatorRef = useRef<HTMLDivElement | null>(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
+
+  const handleTabChange = (tab: NavTab) => {
+    setActiveTab(tab);
+    if (tab === 'builder-id' && generatorRef.current) {
+      generatorRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (tab === 'gallery' && galleryRef.current) {
+      galleryRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleDataChange = (newData: Partial<BuilderData>) => {
     setBuilderData((prev) => ({ ...prev, ...newData }));
@@ -84,10 +96,15 @@ export default function Home() {
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
 
-      {/* ── Hero Navigation & Header ── */}
-      <Header format={format} onFormatChange={setFormat} />
+      {/* ── Navigation & Dynamic Hero Header ── */}
+      <Header
+        format={format}
+        onFormatChange={setFormat}
+        activeTab={activeTab}
+        onTabChange={handleTabChange}
+      />
 
-      {/* ── 3D Hero Artifact ── */}
+      {/* ── 3D Hero Artifact (Interactive 3D Layer) ── */}
       <div className="max-w-4xl mx-auto px-4 -mt-2 mb-6 relative z-10">
         <HHGoaHero3D />
       </div>
@@ -108,101 +125,78 @@ export default function Home() {
           </div>
         )}
 
-        {/* ── Two-column layout ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
-          {/* LEFT — Controls */}
-          <div className="flex flex-col gap-6">
-            {/* Step 1: Upload */}
-            <div className="space-y-2">
-              <SectionLabel index="01" text="UPLOAD PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
-              <ImageUploader
-                onImageLoaded={(img) => {
-                  setUserImage(img);
-                  handleResetTransform();
-                }}
-                currentImageLoaded={!!userImage}
-              />
+        {/* ── Generator Workspace Section ── */}
+        <div ref={generatorRef} id="generator" className="scroll-mt-24">
+          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
+            {/* LEFT — Controls */}
+            <div className="flex flex-col gap-6">
+              {/* Step 1: Upload */}
+              <div className="space-y-2">
+                <SectionLabel index="01" text="UPLOAD PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
+                <ImageUploader
+                  onImageLoaded={(img) => {
+                    setUserImage(img);
+                    handleResetTransform();
+                  }}
+                  currentImageLoaded={!!userImage}
+                />
+              </div>
+
+              {/* Step 2: Customize */}
+              <div className="space-y-2">
+                <SectionLabel index="02" text="CUSTOMIZE DETAILS" color="bg-[#9F452D] text-[#F5F1E8]" />
+                <BuilderForm
+                  format={format}
+                  builderData={builderData}
+                  theme={theme}
+                  onDataChange={handleDataChange}
+                  onThemeChange={setTheme}
+                />
+              </div>
             </div>
 
-            {/* Step 2: Customize */}
-            <div className="space-y-2">
-              <SectionLabel index="02" text="CUSTOMIZE DETAILS" color="bg-[#9F452D] text-[#F5F1E8]" />
-              <BuilderForm
-                format={format}
-                builderData={builderData}
-                theme={theme}
-                onDataChange={handleDataChange}
-                onThemeChange={setTheme}
-              />
-            </div>
-          </div>
-
-          {/* RIGHT — Canvas + Actions */}
-          <div className="flex flex-col gap-4 lg:sticky lg:top-24">
-            {/* Canvas label row + 2D/3D View Switcher */}
-            <div className="flex items-center justify-between px-1">
-              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#151B2B] flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
-                <span>
-                  CANVAS OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350 4:5'})
+            {/* RIGHT — Canvas + Actions */}
+            <div className="flex flex-col gap-4 lg:sticky lg:top-24">
+              {/* Canvas label row + 2D/3D View Switcher */}
+              <div className="flex items-center justify-between px-1">
+                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#151B2B] flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
+                  <span>
+                    CANVAS OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350 4:5'})
+                  </span>
                 </span>
-              </span>
 
-              {/* View Switcher */}
-              <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
-                <button
-                  type="button"
-                  onClick={() => setViewMode('2d')}
-                  className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
-                    viewMode === '2d'
-                      ? 'bg-[#151B2B] text-[#F5F1E8]'
-                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                  }`}
-                >
-                  <ImageIcon className="w-3 h-3" />
-                  <span>2D</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setViewMode('3d')}
-                  className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
-                    viewMode === '3d'
-                      ? 'bg-[#9F452D] text-[#F5F1E8]'
-                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                  }`}
-                >
-                  <Box className="w-3 h-3" />
-                  <span>3D</span>
-                </button>
-              </div>
-            </div>
-
-            {/* 2D Canvas — ALWAYS in DOM so canvasRef is available for downloads & shares */}
-            <div className={viewMode === '2d' ? 'block' : 'hidden'}>
-              <FrameCanvas
-                format={format}
-                userImage={userImage}
-                builderData={builderData}
-                theme={theme}
-                transform={transform}
-                onTransformChange={handleTransformChange}
-                onCanvasReady={handleCanvasReady}
-              />
-            </div>
-
-            {/* 3D Interactive Card Presentation */}
-            {viewMode === '3d' && (
-              <div className="w-full relative bg-[#151B2B] p-3 flex flex-col items-center justify-center border-2 border-[#151B2B] shadow-brutal-lg">
-                <div className="w-full text-center text-[10px] font-mono tracking-widest text-[#D8A928] font-bold mb-1 uppercase">
-                  INTERACTIVE 3D BUILDER MARK PREVIEW
+                {/* View Switcher */}
+                <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('2d')}
+                    className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
+                      viewMode === '2d'
+                        ? 'bg-[#151B2B] text-[#F5F1E8]'
+                        : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                    }`}
+                  >
+                    <ImageIcon className="w-3 h-3" />
+                    <span>2D</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setViewMode('3d')}
+                    className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
+                      viewMode === '3d'
+                        ? 'bg-[#9F452D] text-[#F5F1E8]'
+                        : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                    }`}
+                  >
+                    <Box className="w-3 h-3" />
+                    <span>3D</span>
+                  </button>
                 </div>
-                <BuilderCard3D imageUrl={canvasImageUrl} />
               </div>
-            )}
 
-            {/* Hidden FrameCanvas during 3D mode so canvasRef stays populated */}
-            {viewMode === '3d' && (
-              <div className="sr-only aria-hidden">
+              {/* 2D Canvas — ALWAYS in DOM so canvasRef is available for downloads & shares */}
+              <div className={viewMode === '2d' ? 'block' : 'hidden'}>
                 <FrameCanvas
                   format={format}
                   userImage={userImage}
@@ -213,23 +207,48 @@ export default function Home() {
                   onCanvasReady={handleCanvasReady}
                 />
               </div>
-            )}
 
-            {/* Zoom strip — appears below canvas once photo is loaded */}
-            {userImage && (
-              <AdjustmentControls
-                transform={transform}
-                onChange={handleTransformChange}
-                onReset={handleResetTransform}
+              {/* 3D Interactive Card Presentation */}
+              {viewMode === '3d' && (
+                <div className="w-full relative bg-[#151B2B] p-3 flex flex-col items-center justify-center border-2 border-[#151B2B] shadow-brutal-lg">
+                  <div className="w-full text-center text-[10px] font-mono tracking-widest text-[#D8A928] font-bold mb-1 uppercase">
+                    INTERACTIVE 3D BUILDER MARK PREVIEW
+                  </div>
+                  <BuilderCard3D imageUrl={canvasImageUrl} />
+                </div>
+              )}
+
+              {/* Hidden FrameCanvas during 3D mode so canvasRef stays populated */}
+              {viewMode === '3d' && (
+                <div className="sr-only aria-hidden">
+                  <FrameCanvas
+                    format={format}
+                    userImage={userImage}
+                    builderData={builderData}
+                    theme={theme}
+                    transform={transform}
+                    onTransformChange={handleTransformChange}
+                    onCanvasReady={handleCanvasReady}
+                  />
+                </div>
+              )}
+
+              {/* Zoom strip — appears below canvas once photo is loaded */}
+              {userImage && (
+                <AdjustmentControls
+                  transform={transform}
+                  onChange={handleTransformChange}
+                  onReset={handleResetTransform}
+                />
+              )}
+
+              {/* Download / Share */}
+              <DownloadShareActions
+                canvasRef={canvasRef}
+                format={format}
+                builderData={builderData}
               />
-            )}
-
-            {/* Download / Share */}
-            <DownloadShareActions
-              canvasRef={canvasRef}
-              format={format}
-              builderData={builderData}
-            />
+            </div>
           </div>
         </div>
 
@@ -241,10 +260,10 @@ export default function Home() {
         </div>
 
         {/* ── THE BUILDERS OF GOA Gallery ── */}
-        <section className="mb-16">
+        <section ref={galleryRef} id="gallery" className="mb-16 scroll-mt-24">
           <div className="mb-8 flex justify-between items-end">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-extrabold uppercase text-[#151B2B] tracking-tight">
+              <h3 className="text-2xl sm:text-3xl font-extrabold uppercase text-[#151B2B] tracking-tight font-syne">
                 THE BUILDERS OF GOA
               </h3>
               <p className="font-mono text-xs text-[#9F452D] tracking-widest uppercase mt-1">
@@ -270,6 +289,14 @@ export default function Home() {
             ].map((builder) => (
               <div
                 key={builder.id}
+                onClick={() => {
+                  setBuilderData((prev) => ({
+                    ...prev,
+                    name: builder.name,
+                    title: `${builder.role} (${builder.stack})`,
+                  }));
+                  handleTabChange('builder-id');
+                }}
                 className="border-2 border-[#151B2B] bg-[#F5F1E8] p-5 shadow-brutal hover:bg-[#FDF9F0] hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between aspect-square"
               >
                 <div className="font-mono text-xs text-[#151B2B]/50 font-bold">{builder.id}</div>
@@ -296,9 +323,9 @@ export default function Home() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-[11px] font-bold tracking-widest text-[#151B2B]/70 uppercase">
-            <a href="#" className="hover:text-[#9F452D] transition-colors">
+            <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors uppercase cursor-pointer">
               MANIFESTO
-            </a>
+            </button>
             <a
               href="https://github.com/Tungsten073/HHGOA"
               target="_blank"
@@ -307,10 +334,10 @@ export default function Home() {
             >
               REPOSITORY
             </a>
-            <a href="#" className="hover:text-[#9F452D] transition-colors">
+            <button type="button" onClick={() => handleTabChange('builder-id')} className="hover:text-[#9F452D] transition-colors uppercase cursor-pointer">
               SUPPORT
-            </a>
-            <a href="#" className="hover:text-[#9F452D] transition-colors">
+            </button>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
               X.COM
             </a>
           </div>
