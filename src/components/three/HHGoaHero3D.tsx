@@ -4,6 +4,7 @@ import React, { useRef, useMemo, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Scene } from './Scene';
+import { Landmark2473D } from './Landmark2473D';
 
 function createHeroFrontTexture(): THREE.CanvasTexture {
   const canvas = document.createElement('canvas');
@@ -160,19 +161,19 @@ const HeroCardMesh: React.FC = () => {
 
   const timeRef = useRef(0);
 
-  useFrame((state, delta) => {
+  useFrame((_, delta) => {
     if (!meshRef.current) return;
 
     if (reducedMotion) {
       meshRef.current.rotation.x = 0;
       meshRef.current.rotation.y = 0;
-      meshRef.current.position.y = 0;
+      meshRef.current.position.y = 0.4;
       return;
     }
 
     timeRef.current += delta;
     const time = timeRef.current;
-    const floatY = Math.sin(time * 1.5) * 0.08;
+    const floatY = 0.4 + Math.sin(time * 1.5) * 0.08;
     meshRef.current.position.y = floatY;
 
     meshRef.current.rotation.x = THREE.MathUtils.lerp(
@@ -188,20 +189,25 @@ const HeroCardMesh: React.FC = () => {
   });
 
   return (
-    <mesh ref={meshRef} material={materials} castShadow receiveShadow>
-      <boxGeometry args={[1.8, 2.4, 0.08]} />
+    <mesh ref={meshRef} material={materials} castShadow receiveShadow position={[0, 0.4, 0.5]}>
+      <boxGeometry args={[1.5, 2.0, 0.07]} />
     </mesh>
   );
 };
 
 export const HHGoaHero3D: React.FC = () => {
   return (
-    <div className="w-full h-[260px] sm:h-[320px] relative flex items-center justify-center">
-      <Scene cameraPosition={[0, 0, 4]} fov={42}>
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[3, 4, 5]} intensity={1.5} castShadow />
-        <directionalLight position={[-3, -2, -3]} intensity={0.5} color="#D8A928" />
-        <pointLight position={[0, 0, 3]} intensity={0.8} color="#9F452D" />
+    <div className="w-full h-[320px] sm:h-[400px] relative flex items-center justify-center">
+      <Scene cameraPosition={[0, 0.3, 4.5]} fov={45}>
+        <ambientLight intensity={1.1} />
+        <directionalLight position={[4, 5, 5]} intensity={1.6} castShadow />
+        <directionalLight position={[-4, -2, -3]} intensity={0.4} color="#D8A928" />
+        <pointLight position={[0, 1, 3]} intensity={0.9} color="#9F452D" />
+
+        {/* Signature Giant 3D "247" Coastal Sculpture Landmark */}
+        <Landmark2473D />
+
+        {/* Floating Interactive Hero Builder Pass */}
         <HeroCardMesh />
       </Scene>
     </div>

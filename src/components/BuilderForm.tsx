@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BuilderData, FrameTheme, TechStack, FormatType } from '@/types';
 import { STACK_OPTIONS } from '@/constants/titles';
 import { THEME_CONFIGS } from '@/constants/templates';
 import { TitleGeneratorButton } from './TitleGenerator';
-import { User, Code, Sparkles, Palette } from 'lucide-react';
+import { User, Code, Sparkles, Palette, ArrowRight, Check } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 interface Props {
   format: FormatType;
@@ -22,10 +23,31 @@ export const BuilderForm: React.FC<Props> = ({
   onDataChange,
   onThemeChange,
 }) => {
-  return (
-    <div className="w-full space-y-5 bg-[#F5F1E8] p-6 border-2 border-[#151B2B] shadow-brutal">
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [buildStep, setBuildStep] = useState(0); // 0 = Idle, 1..4 = Sequence
 
-      {/* Theme Color Palette — always visible */}
+  const handleGenerateSequence = () => {
+    setIsGenerating(true);
+    setBuildStep(1);
+
+    setTimeout(() => setBuildStep(2), 300);
+    setTimeout(() => setBuildStep(3), 600);
+    setTimeout(() => {
+      setBuildStep(4);
+      try { confetti({ particleCount: 70, spread: 60 }); } catch {}
+    }, 900);
+
+    setTimeout(() => {
+      setIsGenerating(false);
+      setBuildStep(0);
+      const resEl = document.getElementById('result-state');
+      if (resEl) resEl.scrollIntoView({ behavior: 'smooth' });
+    }, 1300);
+  };
+
+  return (
+    <div className="w-full space-y-5 bg-[#F5F1E8] p-6 border-2 border-[#151B2B] shadow-brutal font-syne">
+      {/* Theme Color Palette */}
       <div>
         <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5 mb-2.5">
           <Palette className="w-3.5 h-3.5 text-[#9F452D]" />
@@ -106,12 +128,7 @@ export const BuilderForm: React.FC<Props> = ({
             <div className="flex items-center justify-between mb-1.5">
               <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-[#D8A928]" />
-                <span>
-                  BUILDER TITLE{' '}
-                  <span className="text-[#151B2B]/50 font-normal normal-case">
-                    (optional)
-                  </span>
-                </span>
+                <span>BUILDER TITLE</span>
               </label>
               <TitleGeneratorButton
                 stack={builderData.stack}
@@ -129,6 +146,53 @@ export const BuilderForm: React.FC<Props> = ({
           </div>
         </>
       )}
+
+      {/* Cinematic Build Sequence Progress Indicator */}
+      {isGenerating && (
+        <div className="p-3 bg-[#151B2B] border-2 border-[#151B2B] text-[#F5F1E8] font-mono text-xs space-y-1.5 shadow-brutal animate-in fade-in duration-200">
+          <div className="flex justify-between items-center text-[#D8A928]">
+            <span>BUILDING ARTIFACT SEQUENCE…</span>
+            <span>[{buildStep}/4]</span>
+          </div>
+          <div className="text-[11px] space-y-1 pt-1">
+            <div className="flex justify-between">
+              <span>PHOTO INPUT</span>
+              <span className={buildStep >= 1 ? 'text-[#315746] font-bold' : 'text-[#F5F1E8]/40'}>
+                {buildStep >= 1 ? '✓ COMPLETE' : 'WAITING…'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span>STACK / ROLE</span>
+              <span className={buildStep >= 2 ? 'text-[#315746] font-bold' : 'text-[#F5F1E8]/40'}>
+                {buildStep >= 2 ? '✓ COMPLETE' : 'WAITING…'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span>BUILDER TITLE</span>
+              <span className={buildStep >= 3 ? 'text-[#315746] font-bold' : 'text-[#F5F1E8]/40'}>
+                {buildStep >= 3 ? '✓ COMPLETE' : 'WAITING…'}
+              </span>
+            </div>
+            <div className="flex justify-between">
+              <span>3D ARTIFACT REVEAL</span>
+              <span className={buildStep >= 4 ? 'text-[#D8A928] font-bold' : 'text-[#F5F1E8]/40'}>
+                {buildStep >= 4 ? '✓ READY!' : 'WAITING…'}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Primary Action Button — GENERATE MARK */}
+      <button
+        type="button"
+        onClick={handleGenerateSequence}
+        disabled={isGenerating}
+        className="w-full bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] py-3.5 px-6 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] transition-colors cursor-pointer flex items-center justify-center gap-2 active:scale-[0.99] disabled:opacity-50"
+      >
+        <span>[ GENERATE MARK ]</span>
+        <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+      </button>
     </div>
   );
 };
