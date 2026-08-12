@@ -400,25 +400,43 @@ export default function Home() {
       </div>
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
-      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-12 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 text-[#F5F1E8]">
+      <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md text-[#F5F1E8]">
+        <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
+          <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
+            GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
+          </div>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F5F1E8]">
+            THE DAY ENDS.<br />
+            <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
+          </h2>
+          <button
+            type="button"
+            onClick={() => handleTabChange('build')}
+            className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
+          >
+            <span>CREATE YOUR BUILDER MARK</span>
+            <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+          </button>
+        </div>
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
           {/* Left Footer Branding */}
-          <div className="flex flex-col space-y-2 text-center md:text-left">
-            <div className="font-syne text-2xl font-black uppercase text-[#F5F1E8]">
+          <div className="flex flex-col space-y-1 text-center md:text-left">
+            <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
               HACKER HOUSE GOA 2026
             </div>
-            <div className="text-[#9F452D] font-bold tracking-widest uppercase">
+            <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
               THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
             </div>
           </div>
 
-          {/* Center Coordinates & Event Dates Stamp */}
-          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase border-t md:border-t-0 border-[#F5F1E8]/20 pt-4 md:pt-0">
-            GOA, INDIA &nbsp;|&nbsp; 15.4909° N, 73.8278° E &nbsp;|&nbsp; 28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
+          {/* Center Stamp */}
+          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
+            28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
           </div>
 
           {/* Right Links */}
-          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase">
+          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
             <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
               MANIFESTO
             </button>
