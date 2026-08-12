@@ -12,14 +12,27 @@ import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { TropicalBackground } from '@/components/background/TropicalBackground';
-import { Sparkles, Box, Image as ImageIcon, CheckCircle2, Terminal } from 'lucide-react';
+import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
+import confetti from 'canvas-confetti';
+
+const HHGoaHero3D = dynamic(
+  () => import('@/components/three/HHGoaHero3D').then((mod) => mod.HHGoaHero3D),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[320px] sm:h-[420px] w-full max-w-sm mx-auto my-2 rounded-none bg-[#F5F1E8]/60 border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
+        LOADING 3D ARTIFACT…
+      </div>
+    ),
+  }
+);
 
 const BuilderCard3D = dynamic(
   () => import('@/components/three/BuilderCard3D').then((mod) => mod.BuilderCard3D),
   {
     ssr: false,
     loading: () => (
-      <div className="h-[300px] w-full rounded-none bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
+      <div className="h-[320px] sm:h-[420px] w-full rounded-none bg-[#F5F1E8]/60 border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
         LOADING 3D PASS PREVIEW…
       </div>
     ),
@@ -35,9 +48,9 @@ export default function Home() {
   const [canvasImageUrl, setCanvasImageUrl] = useState<string>('');
 
   const [builderData, setBuilderData] = useState<BuilderData>({
-    name: 'ALEX.DEV',
-    stack: 'AI / ML',
-    title: getRandomTitle('AI / ML'),
+    name: 'Aaditya Dolas',
+    stack: 'Infra / Security',
+    title: getRandomTitle('Infra / Security'),
   });
 
   const [transform, setTransform] = useState<TransformState>({
@@ -47,15 +60,22 @@ export default function Home() {
   });
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const heroRef = useRef<HTMLDivElement | null>(null);
   const generatorRef = useRef<HTMLDivElement | null>(null);
+  const resultRef = useRef<HTMLDivElement | null>(null);
   const socialRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement | null>(null);
 
   const handleTabChange = (tab: NavTab) => {
     setActiveTab(tab);
-    if (tab === 'builder-id' && generatorRef.current) {
+    if (tab === 'event' && heroRef.current) {
+      heroRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (tab === 'build' && generatorRef.current) {
       generatorRef.current.scrollIntoView({ behavior: 'smooth' });
-    } else if (tab === 'gallery' && socialRef.current) {
+    } else if (tab === 'social' && socialRef.current) {
       socialRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (tab === 'about' && footerRef.current) {
+      footerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -82,45 +102,111 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid">
-      {/* Subtle Animated Tropical Environment Background Layer */}
+    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid font-syne">
+      {/* Dynamic Animated Tropical Environment Background (Sunrise -> Day -> Golden Hour -> Sunset) */}
       <TropicalBackground />
 
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
 
-      {/* ── Navigation & Dynamic Hero Header ── */}
-      <Header
-        format={format}
-        onFormatChange={setFormat}
-        activeTab={activeTab}
-        onTabChange={handleTabChange}
-      />
+      {/* ── Fixed Navigation Bar ── */}
+      <Header activeTab={activeTab} onTabChange={handleTabChange} />
 
-      <div className="max-w-6xl mx-auto px-4 z-10 relative">
-        {/* Status Indicator Banner */}
-        {userImage && (
-          <div className="mb-6 bg-[#F5F1E8] border-2 border-[#151B2B] p-4 shadow-brutal flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-widest">
-            <div className="flex items-center gap-2 text-[#315746] font-bold">
-              <CheckCircle2 className="w-4 h-4 text-[#9F452D]" />
-              <span>YOUR BUILDER MARK IS READY</span>
-              <span className="text-[#151B2B]/40">// INIT SUCCESS</span>
+      {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
+      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-16 px-6 md:px-16 relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[540px]">
+          {/* Left Column: Hero Title & CTA */}
+          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#151B2B]/70 uppercase">
+              <span>GOA, INDIA</span>
+              <span className="text-[#9F452D] font-bold">15.4909° N, 73.8278° E</span>
+              <span className="text-[#151B2B]/40">BATCH 247</span>
             </div>
-            <div className="flex items-center gap-2 text-[#9F452D] font-bold text-[11px]">
-              <Terminal className="w-3.5 h-3.5" />
-              <span>REF: 15.4909° N, 73.8278° E</span>
+
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#151B2B] leading-[0.9] tracking-tight">
+              HACKER HOUSE<br />
+              <span className="text-[#9F452D]">GOA 2026</span>
+            </h1>
+
+            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#151B2B]/80 uppercase border-b-2 border-[#151B2B] pb-2">
+              THE ROAD TO 247
+            </p>
+
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => handleTabChange('build')}
+                className="inline-flex items-center gap-2 bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#9F452D] hover:border-[#9F452D] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+              >
+                <span>CREATE YOUR BUILDER MARK</span>
+                <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+              </button>
+            </div>
+
+            {/* Stamp Seal Metadata */}
+            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#151B2B]/60 tracking-widest uppercase">
+              <div className="border border-[#151B2B] px-3 py-1.5 rounded-full bg-[#F5F1E8]">
+                INDIA · 28—31 OCTOBER 2026
+              </div>
             </div>
           </div>
-        )}
 
-        {/* ── Generator Workspace Section ── */}
-        <div ref={generatorRef} id="generator" className="scroll-mt-24">
+          {/* Right Column: Floating 3D Hero Builder Mark Pass */}
+          <div className="lg:col-span-5 flex items-center justify-center">
+            <div className="w-full max-w-md relative">
+              <HHGoaHero3D />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: GENERATOR WORKSPACE — BRIGHT GOA DAYLIGHT (Middle) ── */}
+      <section ref={generatorRef} id="generator" className="w-full py-16 px-4 sm:px-6 relative z-10 scroll-mt-24">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <div className="mb-8 border-b-2 border-[#151B2B] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
+                BUILD YOUR MARK.
+              </h2>
+              <p className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase mt-1">
+                01 PHOTO → 02 STACK → 03 TITLE → 04 ARTIFACT
+              </p>
+            </div>
+            {/* Format Selector Pills */}
+            <div className="flex items-center gap-2 p-1 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal font-mono text-xs font-bold uppercase">
+              <button
+                type="button"
+                onClick={() => setFormat('frame')}
+                className={`px-3 py-1.5 transition-colors ${
+                  format === 'frame'
+                    ? 'bg-[#151B2B] text-[#F5F1E8]'
+                    : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                }`}
+              >
+                PFP FRAME (1080×1080)
+              </button>
+              <button
+                type="button"
+                onClick={() => setFormat('id-card')}
+                className={`px-3 py-1.5 transition-colors ${
+                  format === 'id-card'
+                    ? 'bg-[#9F452D] text-[#F5F1E8]'
+                    : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                }`}
+              >
+                BUILDER ID (1080×1350)
+              </button>
+            </div>
+          </div>
+
+          {/* Two-Column Bento Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
-            {/* LEFT — Controls */}
+            {/* LEFT — Controls & Forms */}
             <div className="flex flex-col gap-6">
               {/* Step 1: Upload */}
               <div className="space-y-2">
-                <SectionLabel index="01" text="UPLOAD PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
+                <SectionLabel index="01" text="PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
                 <ImageUploader
                   onImageLoaded={(img) => {
                     setUserImage(img);
@@ -130,9 +216,9 @@ export default function Home() {
                 />
               </div>
 
-              {/* Step 2: Customize */}
+              {/* Step 2 & 3: Customize Details */}
               <div className="space-y-2">
-                <SectionLabel index="02" text="CUSTOMIZE DETAILS" color="bg-[#9F452D] text-[#F5F1E8]" />
+                <SectionLabel index="02" text="STACK & TITLE" color="bg-[#9F452D] text-[#F5F1E8]" />
                 <BuilderForm
                   format={format}
                   builderData={builderData}
@@ -143,23 +229,20 @@ export default function Home() {
               </div>
             </div>
 
-            {/* RIGHT — Canvas + Actions */}
+            {/* RIGHT — Live Canvas Output & 3D Preview */}
             <div className="flex flex-col gap-4 lg:sticky lg:top-24">
-              {/* Canvas label row + 2D/3D View Switcher */}
-              <div className="flex items-center justify-between px-1">
-                <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#151B2B] flex items-center gap-1.5">
+              <div className="flex items-center justify-between px-1 font-mono text-xs font-bold uppercase tracking-widest text-[#151B2B]">
+                <span className="flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
-                  <span>
-                    CANVAS OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350 4:5'})
-                  </span>
+                  <span>OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350'})</span>
                 </span>
 
-                {/* View Switcher */}
+                {/* 2D / 3D Mode Toggle */}
                 <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
                   <button
                     type="button"
                     onClick={() => setViewMode('2d')}
-                    className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
+                    className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
                       viewMode === '2d'
                         ? 'bg-[#151B2B] text-[#F5F1E8]'
                         : 'text-[#151B2B] hover:bg-[#151B2B]/10'
@@ -171,7 +254,7 @@ export default function Home() {
                   <button
                     type="button"
                     onClick={() => setViewMode('3d')}
-                    className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
+                    className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
                       viewMode === '3d'
                         ? 'bg-[#9F452D] text-[#F5F1E8]'
                         : 'text-[#151B2B] hover:bg-[#151B2B]/10'
@@ -183,7 +266,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* 2D Canvas — ALWAYS in DOM so canvasRef is available for downloads & shares */}
+              {/* 2D Canvas */}
               <div className={viewMode === '2d' ? 'block' : 'hidden'}>
                 <FrameCanvas
                   format={format}
@@ -206,7 +289,7 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Hidden FrameCanvas during 3D mode so canvasRef stays populated */}
+              {/* Hidden 2D Canvas during 3D mode so canvasRef stays populated */}
               {viewMode === '3d' && (
                 <div className="sr-only aria-hidden">
                   <FrameCanvas
@@ -221,7 +304,7 @@ export default function Home() {
                 </div>
               )}
 
-              {/* Zoom strip — appears below canvas once photo is loaded */}
+              {/* Zoom Controls */}
               {userImage && (
                 <AdjustmentControls
                   transform={transform}
@@ -230,7 +313,7 @@ export default function Home() {
                 />
               )}
 
-              {/* Download / Share */}
+              {/* Download & Share Actions */}
               <DownloadShareActions
                 canvasRef={canvasRef}
                 format={format}
@@ -239,25 +322,104 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
 
-        {/* ── SOCIAL EDITION / 05 — THE BUILDERS OF GOA ── */}
-        <div ref={socialRef} id="social-edition" className="scroll-mt-24">
-          <SocialEdition
-            onNavigateToGenerator={() => handleTabChange('builder-id')}
-          />
+      {/* ── SECTION 3: RESULT STATE — GOLDEN HOUR (Middle Bottom) ── */}
+      <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-[#F5F1E8] border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            {/* Left Result Context */}
+            <div className="lg:col-span-7 space-y-5 text-left">
+              <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
+                04 / ARTIFACT
+              </div>
+              <h3 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
+                YOUR BUILDER MARK IS READY.
+              </h3>
+              <p className="font-mono text-xs font-bold text-[#151B2B]/75 uppercase tracking-widest">
+                BUILT IN GOA / BATCH 247 &nbsp;·&nbsp; #FrameInGoa
+              </p>
+
+              <div className="pt-2 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (canvasRef.current) {
+                      try { confetti({ particleCount: 80, spread: 70 }); } catch {}
+                      const link = document.createElement('a');
+                      link.download = 'HH_Goa_Builder_Mark.png';
+                      link.href = canvasRef.current.toDataURL('image/png');
+                      link.click();
+                    }
+                  }}
+                  className="bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#9F452D] transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>[ DOWNLOAD MARK ]</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const text = encodeURIComponent('I just generated my Builder Mark for Hacker House Goa 2026! 🚀🌴 #FrameInGoa');
+                    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+                  }}
+                  className="bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <Share2 className="w-4 h-4" />
+                  <span>[ SHARE TO X ]</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResetTransform}
+                  className="bg-[#FDF9F0] text-[#151B2B] border-2 border-[#151B2B] px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] hover:text-[#F5F1E8] transition-colors cursor-pointer flex items-center gap-2"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>[ RESET ]</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Pedestal 3D Pass Preview */}
+            <div className="lg:col-span-5 flex items-center justify-center">
+              <div className="w-full relative bg-[#151B2B] p-4 border-2 border-[#151B2B] shadow-brutal">
+                <div className="text-center font-mono text-[10px] text-[#D8A928] font-bold tracking-widest uppercase mb-2">
+                  / ARTIFACT / 04 · BATCH 247 · GOA, INDIA
+                </div>
+                <BuilderCard3D imageUrl={canvasImageUrl} />
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* ── Footer ── */}
-        <footer className="pt-8 border-t-2 border-[#151B2B] flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-[#151B2B]">
-          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-            <span className="font-bold tracking-wider uppercase">
-              © 2026 GOA HACKER HOUSE. POWERED BY 247.
-            </span>
-            <span className="text-[#9F452D] font-bold">#FrameInGoa</span>
+      {/* ── SECTION 4: SOCIAL EDITION — SUNSET AT GOA BEACH (Lower) ── */}
+      <div ref={socialRef} id="social-edition" className="scroll-mt-24 relative z-10">
+        <SocialEdition
+          onNavigateToGenerator={() => handleTabChange('build')}
+        />
+      </div>
+
+      {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
+      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-8 px-6 md:px-16 border-t-2 border-[#151B2B] bg-[#0A111E] text-[#F5F1E8] relative z-10">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs">
+          {/* Left Footer Branding */}
+          <div className="flex flex-col space-y-2 text-center md:text-left">
+            <div className="font-syne text-2xl font-black uppercase text-[#F5F1E8]">
+              HACKER HOUSE GOA 2026
+            </div>
+            <div className="text-[#9F452D] font-bold tracking-widest uppercase">
+              THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
+            </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-[11px] font-bold tracking-widest text-[#151B2B]/70 uppercase">
-            <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors uppercase cursor-pointer">
+          {/* Center Coordinates & Event Dates Stamp */}
+          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/70 tracking-widest uppercase border-t md:border-t-0 border-[#F5F1E8]/20 pt-4 md:pt-0">
+            GOA, INDIA &nbsp;|&nbsp; 15.4909° N, 73.8278° E &nbsp;|&nbsp; 28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
+          </div>
+
+          {/* Right Links */}
+          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8]/80 uppercase">
+            <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
               MANIFESTO
             </button>
             <a
@@ -268,20 +430,17 @@ export default function Home() {
             >
               REPOSITORY
             </a>
-            <button type="button" onClick={() => handleTabChange('builder-id')} className="hover:text-[#9F452D] transition-colors uppercase cursor-pointer">
-              SUPPORT
-            </button>
             <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
               X.COM
             </a>
           </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
     </main>
   );
 }
 
-/** Step section label badge — "01 • UPLOAD PHOTO" in monospace wide tracking */
+/** Step section label badge — "01 • PHOTO" in monospace wide tracking */
 function SectionLabel({
   index,
   text,
