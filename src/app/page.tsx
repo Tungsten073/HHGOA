@@ -11,7 +11,7 @@ import { AdjustmentControls } from '@/components/AdjustmentControls';
 import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
-import { TropicalBackground } from '@/components/background/TropicalBackground';
+import { GoaEnvironment } from '@/components/environment/GoaEnvironment';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -103,8 +103,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid font-syne">
-      {/* 🌴 Full-Height Continuous Goa Background Image Component */}
-      <TropicalBackground />
+      {/* 🌴 Full 5-Layer Master Goa Environment Background Controller */}
+      <GoaEnvironment />
 
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
