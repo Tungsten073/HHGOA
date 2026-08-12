@@ -12,6 +12,7 @@ import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { TropicalBackground } from '@/components/background/TropicalBackground';
+import { HeroSunriseBackground, GoldenHourBackground, EveningDuskBackground } from '@/components/background/GoaCoastalBackgrounds';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -103,32 +104,35 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid font-syne">
-      {/* Dynamic Animated Tropical Environment Background (Sunrise -> Day -> Golden Hour -> Sunset) */}
+      {/* Dynamic Animated Background System */}
       <TropicalBackground />
 
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
 
-      {/* ── Fixed Navigation Bar ── */}
+      {/* Fixed Navigation Bar */}
       <Header activeTab={activeTab} onTabChange={handleTabChange} />
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
-      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-16 px-6 md:px-16 relative z-10">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[540px]">
+      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden">
+        {/* Visual Hero Sunrise Background Image Layer */}
+        <HeroSunriseBackground />
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
           <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#151B2B]/70 uppercase">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#151B2B] uppercase font-bold">
               <span>GOA, INDIA</span>
-              <span className="text-[#9F452D] font-bold">15.4909° N, 73.8278° E</span>
-              <span className="text-[#151B2B]/40">BATCH 247</span>
+              <span className="text-[#9F452D]">15.4909° N, 73.8278° E</span>
+              <span className="text-[#151B2B]/60">BATCH 247</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#151B2B] leading-[0.9] tracking-tight">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#151B2B] leading-[0.9] tracking-tight drop-shadow-sm">
               HACKER HOUSE<br />
               <span className="text-[#9F452D]">GOA 2026</span>
             </h1>
 
-            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#151B2B]/80 uppercase border-b-2 border-[#151B2B] pb-2">
+            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#151B2B] uppercase border-b-2 border-[#151B2B] pb-2">
               THE ROAD TO 247
             </p>
 
@@ -144,8 +148,8 @@ export default function Home() {
             </div>
 
             {/* Stamp Seal Metadata */}
-            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#151B2B]/60 tracking-widest uppercase">
-              <div className="border border-[#151B2B] px-3 py-1.5 rounded-full bg-[#F5F1E8]">
+            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#151B2B] tracking-widest uppercase font-bold">
+              <div className="border border-[#151B2B] px-3 py-1.5 rounded-full bg-[#F5F1E8] shadow-sm">
                 INDIA · 28—31 OCTOBER 2026
               </div>
             </div>
@@ -325,8 +329,11 @@ export default function Home() {
       </section>
 
       {/* ── SECTION 3: RESULT STATE — GOLDEN HOUR (Middle Bottom) ── */}
-      <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10">
-        <div className="max-w-6xl mx-auto">
+      <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10 overflow-hidden">
+        {/* Lifeguard Tower Golden Hour Background */}
+        <GoldenHourBackground />
+
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="bg-[#F5F1E8] border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left Result Context */}
             <div className="lg:col-span-7 space-y-5 text-left">
@@ -400,8 +407,11 @@ export default function Home() {
       </div>
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
-      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-8 px-6 md:px-16 border-t-2 border-[#151B2B] bg-[#0A111E] text-[#F5F1E8] relative z-10">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs">
+      <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-12 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden">
+        {/* Evening Bonfire Dusk Background Layer */}
+        <EveningDuskBackground />
+
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 text-[#F5F1E8]">
           {/* Left Footer Branding */}
           <div className="flex flex-col space-y-2 text-center md:text-left">
             <div className="font-syne text-2xl font-black uppercase text-[#F5F1E8]">
@@ -413,12 +423,12 @@ export default function Home() {
           </div>
 
           {/* Center Coordinates & Event Dates Stamp */}
-          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/70 tracking-widest uppercase border-t md:border-t-0 border-[#F5F1E8]/20 pt-4 md:pt-0">
+          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase border-t md:border-t-0 border-[#F5F1E8]/20 pt-4 md:pt-0">
             GOA, INDIA &nbsp;|&nbsp; 15.4909° N, 73.8278° E &nbsp;|&nbsp; 28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
           </div>
 
           {/* Right Links */}
-          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8]/80 uppercase">
+          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase">
             <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
               MANIFESTO
             </button>
