@@ -10,7 +10,7 @@ import { BuilderForm } from '@/components/BuilderForm';
 import { AdjustmentControls } from '@/components/AdjustmentControls';
 import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
-import { Sparkles, Box, Image as ImageIcon } from 'lucide-react';
+import { Sparkles, Box, Image as ImageIcon, CheckCircle2, Terminal } from 'lucide-react';
 
 const HHGoaHero3D = dynamic(
   () => import('@/components/three/HHGoaHero3D').then((mod) => mod.HHGoaHero3D),
@@ -93,6 +93,21 @@ export default function Home() {
       </div>
 
       <div className="max-w-6xl mx-auto px-4 z-10 relative">
+        {/* Status Indicator Banner */}
+        {userImage && (
+          <div className="mb-6 bg-[#F5F1E8] border-2 border-[#151B2B] p-4 shadow-brutal flex flex-col sm:flex-row items-center justify-between gap-3 font-mono text-xs uppercase tracking-widest">
+            <div className="flex items-center gap-2 text-[#315746] font-bold">
+              <CheckCircle2 className="w-4 h-4 text-[#9F452D]" />
+              <span>YOUR BUILDER MARK IS READY</span>
+              <span className="text-[#151B2B]/40">// INIT SUCCESS</span>
+            </div>
+            <div className="flex items-center gap-2 text-[#9F452D] font-bold text-[11px]">
+              <Terminal className="w-3.5 h-3.5" />
+              <span>REF: 15.4909° N, 73.8278° E</span>
+            </div>
+          </div>
+        )}
+
         {/* ── Two-column layout ── */}
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
           {/* LEFT — Controls */}
@@ -218,8 +233,61 @@ export default function Home() {
           </div>
         </div>
 
+        {/* ── ARCHIVE ACCESS Separator ── */}
+        <div className="w-full h-px bg-[#151B2B] my-16 relative">
+          <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#FDF9F0] px-4 font-mono text-xs font-bold text-[#151B2B] border-2 border-[#151B2B] uppercase tracking-widest shadow-brutal">
+            ARCHIVE ACCESS
+          </div>
+        </div>
+
+        {/* ── THE BUILDERS OF GOA Gallery ── */}
+        <section className="mb-16">
+          <div className="mb-8 flex justify-between items-end">
+            <div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold uppercase text-[#151B2B] tracking-tight">
+                THE BUILDERS OF GOA
+              </h3>
+              <p className="font-mono text-xs text-[#9F452D] tracking-widest uppercase mt-1">
+                BATCH 247 // DECENTRALIZED DIRECTORY
+              </p>
+            </div>
+            <a
+              href="https://github.com/Tungsten073/HHGOA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs font-bold text-[#9F452D] hover:text-[#151B2B] transition-colors flex items-center gap-1 uppercase tracking-widest"
+            >
+              VIEW REPOSITORY →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { id: '001', name: 'DAVID T.', role: 'DESIGNER', stack: 'UI/UX' },
+              { id: '002', name: 'SARAH K.', role: 'ENGINEER', stack: 'SOLANA' },
+              { id: '003', name: 'MICHAEL R.', role: 'PRODUCT', stack: 'AI / ML' },
+              { id: '004', name: 'ELENA V.', role: 'FOUNDER', stack: 'FULLSTACK' },
+            ].map((builder) => (
+              <div
+                key={builder.id}
+                className="border-2 border-[#151B2B] bg-[#F5F1E8] p-5 shadow-brutal hover:bg-[#FDF9F0] hover:-translate-y-1 transition-all cursor-pointer group flex flex-col justify-between aspect-square"
+              >
+                <div className="font-mono text-xs text-[#151B2B]/50 font-bold">{builder.id}</div>
+                <div>
+                  <div className="font-syne text-lg font-extrabold text-[#151B2B] uppercase group-hover:text-[#9F452D] transition-colors">
+                    {builder.name}
+                  </div>
+                  <div className="font-mono text-[10px] font-bold text-[#9F452D] tracking-widest uppercase mt-1">
+                    {builder.role} // {builder.stack}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* ── Footer ── */}
-        <footer className="mt-20 pt-8 border-t-2 border-[#151B2B] flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-[#151B2B]">
+        <footer className="pt-8 border-t-2 border-[#151B2B] flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-[#151B2B]">
           <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
             <span className="font-bold tracking-wider uppercase">
               © 2026 GOA HACKER HOUSE. POWERED BY 247.
