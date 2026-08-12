@@ -40,9 +40,9 @@ export const TropicalBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-      {/* 🌴 Full-Height Continuous Goa Journey Visual Background Image */}
+      {/* 🌴 Crystal Clear Full-Height Continuous Goa Journey Background Image */}
       <div
-        className="absolute inset-0 bg-no-repeat bg-cover bg-top w-full h-full opacity-65 mix-blend-multiply transition-transform duration-700 ease-out"
+        className="absolute inset-0 bg-no-repeat bg-cover bg-top w-full h-full opacity-100 transition-transform duration-700 ease-out"
         style={{
           backgroundImage: "url('/goa-journey-bg.jpg')",
           transform: reducedMotion || isMobile
@@ -50,9 +50,6 @@ export const TropicalBackground: React.FC = () => {
             : `translate3d(${px * -5}px, ${py * -5}px, 0) scale(1.02)`,
         }}
       />
-
-      {/* Subtle Soft Gradient Overlay to Maintain Sharp UI Legibility */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#FDF9F0]/20 via-transparent to-[#0A111E]/30 pointer-events-none" />
     </div>
   );
 };
