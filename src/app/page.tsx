@@ -13,17 +13,6 @@ import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { Sparkles, Box, Image as ImageIcon, CheckCircle2, Terminal } from 'lucide-react';
 
-const HHGoaHero3D = dynamic(
-  () => import('@/components/three/HHGoaHero3D').then((mod) => mod.HHGoaHero3D),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="h-[220px] sm:h-[280px] w-full max-w-sm mx-auto my-2 rounded-none bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
-        LOADING 3D ARTIFACT…
-      </div>
-    ),
-  }
-);
 
 const BuilderCard3D = dynamic(
   () => import('@/components/three/BuilderCard3D').then((mod) => mod.BuilderCard3D),
@@ -105,10 +94,6 @@ export default function Home() {
         onTabChange={handleTabChange}
       />
 
-      {/* ── 3D Hero Artifact (Interactive 3D Layer) ── */}
-      <div className="max-w-4xl mx-auto px-4 -mt-2 mb-6 relative z-10">
-        <HHGoaHero3D />
-      </div>
 
       <div className="max-w-6xl mx-auto px-4 z-10 relative">
         {/* Status Indicator Banner */}
