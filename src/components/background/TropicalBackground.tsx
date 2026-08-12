@@ -40,9 +40,9 @@ export const TropicalBackground: React.FC = () => {
 
   return (
     <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-      {/* 🌴 Crystal Clear Full-Height Continuous Goa Journey Background Image */}
+      {/* 🌴 Universal Goa Journey Background Image (Desktop & Mobile Phone Compatible) */}
       <div
-        className="absolute inset-0 bg-no-repeat bg-cover bg-top w-full h-full opacity-100 transition-transform duration-700 ease-out"
+        className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full opacity-100 transition-transform duration-700 ease-out"
         style={{
           backgroundImage: "url('/goa-journey-bg.jpg')",
           transform: reducedMotion || isMobile
