@@ -1,94 +1,99 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0b1a15;
-  --foreground: #f5f2eb;
+  --background: #fdf9f0;
+  --foreground: #151b2b;
   
-  --hh-green: #0f382c;
-  --hh-cream: #f5f2eb;
-  --hh-coral: #ff5a36;
-  --hh-yellow: #ffc72c;
-  --hh-pink: #ff3366;
-  --hh-dark: #07120e;
+  --hh-cream: #f5f1e8;
+  --hh-ink: #151b2b;
+  --hh-orange: #9f452d;
+  --hh-green: #315746;
+  --hh-yellow: #d8a928;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-display: 'Outfit', system-ui, sans-serif;
-  --font-mono: 'Fira Code', monospace;
+  --font-sans: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-syne: 'Syne', sans-serif;
+  --font-display: 'Syne', 'Outfit', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background-color: #fdf9f0;
+  color: #151b2b;
+  font-family: 'Syne', 'Plus Jakarta Sans', system-ui, sans-serif;
   min-height: 100vh;
   overflow-x: hidden;
+  background-image: url('https://www.transparenttextures.com/patterns/natural-paper.png');
 }
 
-/* Background Texture */
-.bg-editorial-grid {
-  background-size: 34px 34px;
+/* Terminal Tropic & Technical Background Grid */
+.bg-technical-grid {
   background-image: 
-    linear-gradient(to right, rgba(245, 242, 235, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 242, 235, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(21, 27, 43, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(21, 27, 43, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.editorial-card {
-  background: rgba(15, 56, 44, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(245, 242, 235, 0.12);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+.bg-topographic {
+  background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,50 Q100,10 200,50 T400,50' fill='none' stroke='%239F452D' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,150 Q150,110 250,150 T500,150' fill='none' stroke='%239F452D' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,250 Q200,210 300,250 T600,250' fill='none' stroke='%239F452D' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,350 Q50,310 150,350 T700,350' fill='none' stroke='%239F452D' stroke-width='0.5' stroke-opacity='0.15'/%3E%3Cpath d='M0,450 Q250,410 350,450 T800,450' fill='none' stroke='%239F452D' stroke-width='0.5' stroke-opacity='0.15'/%3E%3C/svg%3E");
+  background-size: cover;
 }
 
-.editorial-input {
-  background: rgba(7, 18, 14, 0.7);
-  border: 1.5px solid rgba(245, 242, 235, 0.15);
-  color: #f5f2eb;
-  backdrop-filter: blur(8px);
-  transition: all 0.2s ease;
+.dot-pattern {
+  background-image: radial-gradient(#151B2B 1px, transparent 1px);
+  background-size: 20px 20px;
 }
-.editorial-input:focus {
+
+/* Brutalist Hard Shadows */
+.shadow-brutal {
+  box-shadow: 4px 4px 0px 0px #151B2B;
+}
+
+.shadow-brutalist {
+  box-shadow: 4px 4px 0px 0px #151B2B;
+}
+
+.shadow-brutal-lg {
+  box-shadow: 8px 8px 0px 0px #151B2B;
+}
+
+.shadow-brutal-orange {
+  box-shadow: 4px 4px 0px 0px #9F452D;
+}
+
+/* Terminal Input */
+.terminal-input {
+  border: none;
+  border-bottom: 2px solid #151B2B;
+  background: transparent;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  padding-left: 0;
+  border-radius: 0;
+  color: #151B2B;
+  transition: border-color 0.2s ease;
+}
+
+.terminal-input:focus {
   outline: none;
-  border-color: #ff5a36;
-  box-shadow: 0 0 0 3px rgba(255, 90, 54, 0.2);
-}
-
-.gradient-text-hh {
-  background: linear-gradient(135deg, #f5f2eb 0%, #ffc72c 50%, #ff5a36 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-btn-hh {
-  background: linear-gradient(135deg, #ff5a36 0%, #ff3366 100%);
-  color: #ffffff;
-  font-weight: 800;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 20px rgba(255, 90, 54, 0.3);
-}
-.gradient-btn-hh:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 26px rgba(255, 90, 54, 0.45);
-}
-.gradient-btn-hh:active {
-  transform: translateY(0);
+  box-shadow: none;
+  border-bottom-color: #9F452D;
 }
 
 .canvas-wrapper {
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
-  border-radius: 20px;
+  box-shadow: 8px 8px 0px 0px #151B2B;
+  border: 2px solid #151B2B;
+  border-radius: 4px;
   overflow: hidden;
-  border: 2px solid rgba(245, 242, 235, 0.15);
+  background-color: #151B2B;
 }
 
-/* Editorial tracking utilities (adopted from v0 reference) */
 .hh-tracking {
   letter-spacing: 0.22em;
 }
+
 .hh-tracking-wide {
   letter-spacing: 0.34em;
 }

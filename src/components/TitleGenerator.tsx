@@ -20,12 +20,12 @@ export const TitleGeneratorButton: React.FC<Props> = ({ stack, onGenerate }) => 
     <button
       type="button"
       onClick={handleClick}
-      className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg bg-amber-400/10 hover:bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-bold transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-sm"
+      className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] text-[10px] font-mono font-bold uppercase tracking-wider transition-colors hover:bg-[#151B2B] cursor-pointer shadow-brutal active:scale-95"
       title="Generate random builder title"
     >
-      <Dices className="w-3.5 h-3.5 text-amber-400" />
-      <span>Auto-Generate</span>
-      <Sparkles className="w-3 h-3 text-rose-400" />
+      <Dices className="w-3.5 h-3.5" />
+      <span>RANDOM TITLE</span>
+      <Sparkles className="w-3 h-3 text-[#D8A928]" />
     </button>
   );
 };

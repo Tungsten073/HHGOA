@@ -12,11 +12,11 @@ function createHeroFrontTexture(): THREE.CanvasTexture {
   const ctx = canvas.getContext('2d')!;
 
   // Background
-  ctx.fillStyle = '#0F382C';
+  ctx.fillStyle = '#151B2B';
   ctx.fillRect(0, 0, 600, 800);
 
-  // Subtle grid lines
-  ctx.strokeStyle = 'rgba(245, 242, 235, 0.06)';
+  // Grid lines
+  ctx.strokeStyle = 'rgba(245, 241, 232, 0.08)';
   ctx.lineWidth = 1;
   for (let x = 0; x < 600; x += 40) {
     ctx.beginPath();
@@ -32,42 +32,40 @@ function createHeroFrontTexture(): THREE.CanvasTexture {
   }
 
   // Border
-  ctx.strokeStyle = '#FF5A36';
+  ctx.strokeStyle = '#9F452D';
   ctx.lineWidth = 12;
   ctx.strokeRect(16, 16, 568, 768);
 
   // Corner accents
-  ctx.fillStyle = '#FFC72C';
+  ctx.fillStyle = '#D8A928';
   ctx.fillRect(24, 24, 16, 16);
   ctx.fillRect(560, 24, 16, 16);
   ctx.fillRect(24, 760, 16, 16);
   ctx.fillRect(560, 760, 16, 16);
 
   // Header pill
-  ctx.fillStyle = '#07120E';
-  ctx.beginPath();
-  ctx.roundRect(60, 60, 480, 50, 25);
-  ctx.fill();
+  ctx.fillStyle = '#F5F1E8';
+  ctx.fillRect(60, 60, 480, 50);
 
-  ctx.fillStyle = '#FFC72C';
-  ctx.font = 'bold 20px "Fira Code", monospace';
+  ctx.fillStyle = '#151B2B';
+  ctx.font = 'bold 20px "JetBrains Mono", monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('HACKER HOUSE GOA 2026', 300, 85);
 
   // Big 247
-  ctx.fillStyle = '#F5F2EB';
-  ctx.font = '900 160px "Outfit", sans-serif';
+  ctx.fillStyle = '#F5F1E8';
+  ctx.font = '900 160px "Syne", sans-serif';
   ctx.fillText('247', 300, 380);
 
   // Tagline
-  ctx.fillStyle = '#FF5A36';
-  ctx.font = '800 28px "Outfit", sans-serif';
+  ctx.fillStyle = '#9F452D';
+  ctx.font = '800 28px "Syne", sans-serif';
   ctx.fillText('THE ROAD TO 247', 300, 520);
 
   // Subtext
-  ctx.fillStyle = 'rgba(245, 242, 235, 0.6)';
-  ctx.font = 'bold 18px "Fira Code", monospace';
+  ctx.fillStyle = 'rgba(245, 241, 232, 0.7)';
+  ctx.font = 'bold 18px "JetBrains Mono", monospace';
   ctx.fillText('BUILDER MARK ARTIFACT', 300, 680);
 
   const texture = new THREE.CanvasTexture(canvas);
@@ -82,30 +80,30 @@ function createHeroBackTexture(): THREE.CanvasTexture {
   const ctx = canvas.getContext('2d')!;
 
   // Background
-  ctx.fillStyle = '#07120E';
+  ctx.fillStyle = '#151B2B';
   ctx.fillRect(0, 0, 600, 800);
 
   // Border
-  ctx.strokeStyle = '#F5F2EB';
+  ctx.strokeStyle = '#F5F1E8';
   ctx.lineWidth = 8;
   ctx.strokeRect(16, 16, 568, 768);
 
-  ctx.fillStyle = '#F5F2EB';
-  ctx.font = '900 42px "Outfit", sans-serif';
+  ctx.fillStyle = '#F5F1E8';
+  ctx.font = '900 42px "Syne", sans-serif';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText('GOA, INDIA', 300, 240);
 
-  ctx.fillStyle = '#FFC72C';
-  ctx.font = '700 28px "Fira Code", monospace';
+  ctx.fillStyle = '#D8A928';
+  ctx.font = '700 28px "JetBrains Mono", monospace';
   ctx.fillText('28–31 OCTOBER 2026', 300, 360);
 
-  ctx.fillStyle = '#FF5A36';
-  ctx.font = '800 32px "Fira Code", monospace';
+  ctx.fillStyle = '#9F452D';
+  ctx.font = '800 32px "JetBrains Mono", monospace';
   ctx.fillText('#FrameInGoa', 300, 500);
 
-  ctx.fillStyle = 'rgba(245, 242, 235, 0.4)';
-  ctx.font = '600 18px "Fira Code", monospace';
+  ctx.fillStyle = 'rgba(245, 241, 232, 0.5)';
+  ctx.font = '600 18px "JetBrains Mono", monospace';
   ctx.fillText('OFFICIAL EVENT PASS', 300, 680);
 
   const texture = new THREE.CanvasTexture(canvas);
@@ -126,10 +124,8 @@ const HeroCardMesh: React.FC = () => {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (mediaQuery.matches) return;
-      // Normalize pointer [-1, 1]
       const nx = (e.clientX / window.innerWidth) * 2 - 1;
       const ny = (e.clientY / window.innerHeight) * 2 - 1;
-      // Subtle tilt max ~8 deg (0.14 rad)
       targetRotation.current = {
         x: -ny * 0.14,
         y: nx * 0.14,
@@ -146,9 +142,8 @@ const HeroCardMesh: React.FC = () => {
   const frontTexture = useMemo(() => createHeroFrontTexture(), []);
   const backTexture = useMemo(() => createHeroBackTexture(), []);
 
-  // Box materials (right, left, top, bottom, front, back)
   const materials = useMemo(() => {
-    const sideMat = new THREE.MeshStandardMaterial({ color: 0x07120e, roughness: 0.3 });
+    const sideMat = new THREE.MeshStandardMaterial({ color: 0x151b2b, roughness: 0.3 });
     const frontMat = new THREE.MeshStandardMaterial({
       map: frontTexture,
       roughness: 0.2,
@@ -173,12 +168,10 @@ const HeroCardMesh: React.FC = () => {
       return;
     }
 
-    // Gentle floating
     const time = state.clock.getElapsedTime();
     const floatY = Math.sin(time * 1.5) * 0.08;
     meshRef.current.position.y = floatY;
 
-    // Smooth lerp to mouse tilt
     meshRef.current.rotation.x = THREE.MathUtils.lerp(
       meshRef.current.rotation.x,
       targetRotation.current.x,
@@ -204,8 +197,8 @@ export const HHGoaHero3D: React.FC = () => {
       <Scene cameraPosition={[0, 0, 4]} fov={42}>
         <ambientLight intensity={1.2} />
         <directionalLight position={[3, 4, 5]} intensity={1.5} castShadow />
-        <directionalLight position={[-3, -2, -3]} intensity={0.5} color="#FFC72C" />
-        <pointLight position={[0, 0, 3]} intensity={0.8} color="#FF5A36" />
+        <directionalLight position={[-3, -2, -3]} intensity={0.5} color="#D8A928" />
+        <pointLight position={[0, 0, 3]} intensity={0.8} color="#9F452D" />
         <HeroCardMesh />
       </Scene>
     </div>

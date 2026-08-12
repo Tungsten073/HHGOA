@@ -23,7 +23,7 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
         particleCount: 80,
         spread: 70,
         origin: { y: 0.6 },
-        colors: ['#ff5a36', '#ffc72c', '#0f382c', '#ea3546'],
+        colors: ['#9f452d', '#d8a928', '#315746', '#151b2b'],
       });
     } catch {
       // Ignore if confetti fails
@@ -101,10 +101,10 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
       <button
         type="button"
         onClick={handleDownload}
-        className="w-full sm:w-auto flex-1 flex items-center justify-center space-x-2 bg-emerald-100 hover:bg-white text-emerald-950 font-extrabold px-6 py-3.5 rounded-xl text-sm shadow-xl hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer"
+        className="w-full sm:w-auto flex-1 flex items-center justify-center space-x-2 bg-[#151B2B] text-[#F5F1E8] font-mono font-bold uppercase tracking-wider px-6 py-3.5 border-2 border-[#151B2B] shadow-brutal hover:bg-[#9F452D] hover:border-[#9F452D] active:scale-[0.98] transition-all cursor-pointer text-xs"
       >
-        <Download className="w-4 h-4 text-emerald-950" />
-        <span>Download High-Res PNG</span>
+        <Download className="w-4 h-4 text-[#F5F1E8]" />
+        <span>DOWNLOAD HIGH-RES PNG</span>
       </button>
 
       {/* Share to X */}
@@ -112,17 +112,17 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
         type="button"
         onClick={handleShareToX}
         disabled={isUploading}
-        className="w-full sm:w-auto flex-1 flex items-center justify-center space-x-2 gradient-btn-hh font-black px-6 py-3.5 rounded-xl text-sm shadow-xl shadow-rose-500/25 hover:scale-[1.02] active:scale-[0.98] transition-all cursor-pointer disabled:opacity-75"
+        className="w-full sm:w-auto flex-1 flex items-center justify-center space-x-2 bg-[#9F452D] text-[#F5F1E8] font-mono font-bold uppercase tracking-wider px-6 py-3.5 border-2 border-[#151B2B] shadow-brutal hover:bg-[#151B2B] active:scale-[0.98] transition-all cursor-pointer text-xs disabled:opacity-75"
       >
         {isUploading ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin text-white" />
-            <span>Preparing Share Card...</span>
+            <span>PREPARING SHARE CARD…</span>
           </>
         ) : (
           <>
             <Share2 className="w-4 h-4 fill-white" />
-            <span>Share to X (#FrameInGoa)</span>
+            <span>SHARE TO X (#FrameInGoa)</span>
           </>
         )}
       </button>
@@ -132,18 +132,18 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
         type="button"
         onClick={handleCopyLink}
         disabled={isUploading}
-        className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-emerald-950/80 hover:bg-emerald-900 text-emerald-200 hover:text-white font-bold px-4 py-3.5 rounded-xl text-sm border border-emerald-800 transition-all cursor-pointer"
+        className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-[#F5F1E8] text-[#151B2B] font-mono font-bold uppercase tracking-wider px-4 py-3.5 border-2 border-[#151B2B] shadow-brutal hover:bg-[#151B2B] hover:text-[#F5F1E8] transition-all cursor-pointer text-xs"
         title="Copy share link with OG card preview"
       >
         {copiedLink ? (
           <>
-            <Check className="w-4 h-4 text-amber-400" />
-            <span className="text-amber-400 text-xs font-bold">Link Copied!</span>
+            <Check className="w-4 h-4 text-[#9F452D]" />
+            <span className="text-[#9F452D] font-bold">COPIED!</span>
           </>
         ) : (
           <>
-            <LinkIcon className="w-4 h-4 text-amber-400" />
-            <span className="text-xs">Copy Link</span>
+            <LinkIcon className="w-4 h-4 text-[#151B2B]" />
+            <span>COPY LINK</span>
           </>
         )}
       </button>

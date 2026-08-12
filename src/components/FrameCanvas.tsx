@@ -78,14 +78,14 @@ export const FrameCanvas: React.FC<Props> = ({
 
   return (
     <div className="w-full flex flex-col items-center justify-center">
-      <div className="w-full canvas-wrapper relative bg-slate-950 p-1 flex items-center justify-center">
+      <div className="w-full relative bg-[#151B2B] p-2 border-2 border-[#151B2B] shadow-brutal-lg flex items-center justify-center">
         <canvas
           ref={canvasRef}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
           onPointerCancel={onPointerUp}
-          className={`w-full h-auto rounded-xl object-contain shadow-2xl transition-all ${
+          className={`w-full h-auto object-contain transition-all ${
             userImage ? 'cursor-grab active:cursor-grabbing touch-none' : ''
           }`}
           aria-label={`${format === 'frame' ? 'PFP overlay' : 'Builder ID'} preview`}

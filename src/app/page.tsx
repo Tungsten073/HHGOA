@@ -17,8 +17,8 @@ const HHGoaHero3D = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[220px] sm:h-[280px] w-full max-w-sm mx-auto my-2 rounded-2xl bg-emerald-950/20 border border-emerald-900/30 animate-pulse flex items-center justify-center text-xs font-mono text-emerald-400/40">
-        Loading 3D Hero…
+      <div className="h-[220px] sm:h-[280px] w-full max-w-sm mx-auto my-2 rounded-none bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
+        LOADING 3D ARTIFACT…
       </div>
     ),
   }
@@ -29,8 +29,8 @@ const BuilderCard3D = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[300px] w-full rounded-2xl bg-emerald-950/20 border border-emerald-900/30 animate-pulse flex items-center justify-center text-xs font-mono text-emerald-400/40">
-        Loading 3D Preview…
+      <div className="h-[300px] w-full rounded-none bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
+        LOADING 3D PASS PREVIEW…
       </div>
     ),
   }
@@ -44,7 +44,7 @@ export default function Home() {
   const [canvasImageUrl, setCanvasImageUrl] = useState<string>('');
 
   const [builderData, setBuilderData] = useState<BuilderData>({
-    name: '',
+    name: 'ALEX.DEV',
     stack: 'AI / ML',
     title: getRandomTitle('AI / ML'),
   });
@@ -80,27 +80,26 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#0b1a15] text-emerald-100 pb-16 relative overflow-hidden bg-editorial-grid">
+    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid">
+      {/* Background Topographic Overlay */}
+      <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
 
-      {/* ── Hero + Format Selector ── */}
+      {/* ── Hero Navigation & Header ── */}
       <Header format={format} onFormatChange={setFormat} />
 
       {/* ── 3D Hero Artifact ── */}
-      <div className="max-w-4xl mx-auto px-4 -mt-2 mb-4">
+      <div className="max-w-4xl mx-auto px-4 -mt-2 mb-6 relative z-10">
         <HHGoaHero3D />
       </div>
 
       <div className="max-w-6xl mx-auto px-4 z-10 relative">
-
         {/* ── Two-column layout ── */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-6 items-start">
-
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
           {/* LEFT — Controls */}
-          <div className="flex flex-col gap-5">
-
+          <div className="flex flex-col gap-6">
             {/* Step 1: Upload */}
             <div className="space-y-2">
-              <SectionLabel index="STEP 1" text="UPLOAD PHOTO" color="text-amber-400" />
+              <SectionLabel index="01" text="UPLOAD PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
               <ImageUploader
                 onImageLoaded={(img) => {
                   setUserImage(img);
@@ -112,7 +111,7 @@ export default function Home() {
 
             {/* Step 2: Customize */}
             <div className="space-y-2">
-              <SectionLabel index="STEP 2" text="CUSTOMIZE DETAILS" color="text-rose-400" />
+              <SectionLabel index="02" text="CUSTOMIZE DETAILS" color="bg-[#9F452D] text-[#F5F1E8]" />
               <BuilderForm
                 format={format}
                 builderData={builderData}
@@ -121,30 +120,28 @@ export default function Home() {
                 onThemeChange={setTheme}
               />
             </div>
-
           </div>
 
           {/* RIGHT — Canvas + Actions */}
-          <div className="flex flex-col gap-4 lg:sticky lg:top-6">
-
+          <div className="flex flex-col gap-4 lg:sticky lg:top-24">
             {/* Canvas label row + 2D/3D View Switcher */}
             <div className="flex items-center justify-between px-1">
-              <span className="text-[11px] font-black hh-tracking uppercase text-emerald-200 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#151B2B] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
                 <span>
-                  Canvas Output ({format === 'frame' ? '1080×1080' : '1080×1350 4:5'})
+                  CANVAS OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350 4:5'})
                 </span>
               </span>
 
               {/* View Switcher */}
-              <div className="flex items-center p-0.5 bg-emerald-950/80 border border-emerald-800/80 rounded-lg">
+              <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
                 <button
                   type="button"
                   onClick={() => setViewMode('2d')}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition-all ${
+                  className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
                     viewMode === '2d'
-                      ? 'bg-amber-400 text-emerald-950'
-                      : 'text-emerald-300/70 hover:text-emerald-100'
+                      ? 'bg-[#151B2B] text-[#F5F1E8]'
+                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
                   }`}
                 >
                   <ImageIcon className="w-3 h-3" />
@@ -153,10 +150,10 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setViewMode('3d')}
-                  className={`flex items-center gap-1 px-2.5 py-1 rounded-md text-[11px] font-mono font-bold transition-all ${
+                  className={`flex items-center gap-1 px-3 py-1 text-[10px] font-mono font-bold uppercase transition-all ${
                     viewMode === '3d'
-                      ? 'bg-rose-500 text-white'
-                      : 'text-emerald-300/70 hover:text-emerald-100'
+                      ? 'bg-[#9F452D] text-[#F5F1E8]'
+                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
                   }`}
                 >
                   <Box className="w-3 h-3" />
@@ -180,8 +177,8 @@ export default function Home() {
 
             {/* 3D Interactive Card Presentation */}
             {viewMode === '3d' && (
-              <div className="w-full canvas-wrapper relative bg-slate-950 p-2 flex flex-col items-center justify-center rounded-2xl border-2 border-emerald-800/60">
-                <div className="w-full text-center text-[10px] font-mono hh-tracking text-rose-400 font-bold mb-1">
+              <div className="w-full relative bg-[#151B2B] p-3 flex flex-col items-center justify-center border-2 border-[#151B2B] shadow-brutal-lg">
+                <div className="w-full text-center text-[10px] font-mono tracking-widest text-[#D8A928] font-bold mb-1 uppercase">
                   INTERACTIVE 3D BUILDER MARK PREVIEW
                 </div>
                 <BuilderCard3D imageUrl={canvasImageUrl} />
@@ -205,13 +202,11 @@ export default function Home() {
 
             {/* Zoom strip — appears below canvas once photo is loaded */}
             {userImage && (
-              <div className="bg-emerald-950/50 backdrop-blur-sm px-4 py-3 rounded-xl border border-emerald-800/60">
-                <AdjustmentControls
-                  transform={transform}
-                  onChange={handleTransformChange}
-                  onReset={handleResetTransform}
-                />
-              </div>
+              <AdjustmentControls
+                transform={transform}
+                onChange={handleTransformChange}
+                onReset={handleResetTransform}
+              />
             )}
 
             {/* Download / Share */}
@@ -220,23 +215,44 @@ export default function Home() {
               format={format}
               builderData={builderData}
             />
-
           </div>
         </div>
 
-        {/* ── Minimal footer strip ── */}
-        <footer className="mt-14 pt-6 border-t border-emerald-900/50 text-center">
-          <p className="font-mono text-[10px] hh-tracking uppercase text-emerald-200/25">
-            GOA, INDIA &nbsp;·&nbsp; 28–31 OCTOBER 2026 &nbsp;·&nbsp; 100% CLIENT-SIDE &nbsp;·&nbsp; #FrameInGoa
-          </p>
-        </footer>
+        {/* ── Footer ── */}
+        <footer className="mt-20 pt-8 border-t-2 border-[#151B2B] flex flex-col md:flex-row items-center justify-between gap-6 font-mono text-xs text-[#151B2B]">
+          <div className="flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
+            <span className="font-bold tracking-wider uppercase">
+              © 2026 GOA HACKER HOUSE. POWERED BY 247.
+            </span>
+            <span className="text-[#9F452D] font-bold">#FrameInGoa</span>
+          </div>
 
+          <div className="flex flex-wrap justify-center gap-6 text-[11px] font-bold tracking-widest text-[#151B2B]/70 uppercase">
+            <a href="#" className="hover:text-[#9F452D] transition-colors">
+              MANIFESTO
+            </a>
+            <a
+              href="https://github.com/Tungsten073/HHGOA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#9F452D] transition-colors"
+            >
+              REPOSITORY
+            </a>
+            <a href="#" className="hover:text-[#9F452D] transition-colors">
+              SUPPORT
+            </a>
+            <a href="#" className="hover:text-[#9F452D] transition-colors">
+              X.COM
+            </a>
+          </div>
+        </footer>
       </div>
     </main>
   );
 }
 
-/** Inline step label — "STEP 1 • UPLOAD PHOTO" in monospace wide tracking */
+/** Step section label badge — "01 • UPLOAD PHOTO" in monospace wide tracking */
 function SectionLabel({
   index,
   text,
@@ -247,10 +263,11 @@ function SectionLabel({
   color: string;
 }) {
   return (
-    <div className="flex items-center gap-2 font-mono text-[11px] font-black hh-tracking">
-      <span className={color}>{index}</span>
-      <span className="text-emerald-700" aria-hidden>•</span>
-      <span className={color}>{text}</span>
+    <div className="flex items-center gap-2 font-mono text-xs font-bold tracking-widest uppercase">
+      <span className={`w-6 h-6 rounded-full ${color} flex items-center justify-center text-[10px] shrink-0 border-2 border-[#151B2B]`}>
+        {index}
+      </span>
+      <span className="text-[#151B2B] font-extrabold">{text}</span>
     </div>
   );
 }

@@ -23,15 +23,15 @@ export const BuilderForm: React.FC<Props> = ({
   onThemeChange,
 }) => {
   return (
-    <div className="w-full space-y-4 bg-emerald-950/60 backdrop-blur-md p-5 rounded-2xl border border-emerald-800/80 shadow-xl">
+    <div className="w-full space-y-5 bg-[#F5F1E8] p-6 border-2 border-[#151B2B] shadow-brutal">
 
-      {/* Theme Color Palette — always visible (PFP ring changes per theme) */}
+      {/* Theme Color Palette — always visible */}
       <div>
-        <label className="text-[11px] font-bold hh-tracking uppercase text-emerald-200 flex items-center gap-1.5 mb-2">
-          <Palette className="w-3.5 h-3.5 text-amber-400" />
-          <span>Visual Theme</span>
+        <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5 mb-2.5">
+          <Palette className="w-3.5 h-3.5 text-[#9F452D]" />
+          <span>VISUAL THEME</span>
         </label>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           {(Object.keys(THEME_CONFIGS) as FrameTheme[]).map((themeKey) => {
             const cfg = THEME_CONFIGS[themeKey];
             const isSelected = theme === themeKey;
@@ -41,14 +41,14 @@ export const BuilderForm: React.FC<Props> = ({
                 type="button"
                 onClick={() => onThemeChange(themeKey)}
                 aria-pressed={isSelected}
-                className={`flex items-center gap-2 p-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer ${
+                className={`flex items-center justify-center gap-2 p-2.5 border-2 text-xs font-mono font-bold uppercase transition-all cursor-pointer ${
                   isSelected
-                    ? 'border-amber-400 bg-amber-400/15 text-white shadow-sm shadow-amber-400/20'
-                    : 'border-emerald-900 bg-emerald-950/40 text-emerald-300/70 hover:border-emerald-700 hover:text-emerald-100'
+                    ? 'border-[#151B2B] bg-[#151B2B] text-[#F5F1E8] shadow-brutal'
+                    : 'border-[#151B2B] bg-[#FDF9F0] text-[#151B2B] hover:bg-[#151B2B]/10'
                 }`}
               >
                 <div
-                  className="w-3.5 h-3.5 rounded-full border border-white/20 shrink-0"
+                  className="w-3.5 h-3.5 rounded-full border border-current shrink-0"
                   style={{
                     background: `linear-gradient(135deg, ${cfg.primaryColor}, ${cfg.secondaryColor})`,
                   }}
@@ -63,37 +63,37 @@ export const BuilderForm: React.FC<Props> = ({
       {/* Builder ID mode — Name, Stack/Role, Builder Title */}
       {format === 'id-card' && (
         <>
-          {/* Name + Stack row */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Name & Stack Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {/* Name */}
             <div>
-              <label className="text-[11px] font-bold hh-tracking uppercase text-emerald-200 flex items-center gap-1.5 mb-1.5">
-                <User className="w-3.5 h-3.5 text-amber-400" />
-                <span>Name <span className="text-rose-400">*</span></span>
+              <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5 mb-1.5">
+                <User className="w-3.5 h-3.5 text-[#9F452D]" />
+                <span>NAME <span className="text-[#9F452D]">*</span></span>
               </label>
               <input
                 type="text"
                 value={builderData.name}
                 onChange={(e) => onDataChange({ name: e.target.value })}
-                placeholder="Enter your name"
+                placeholder="Enter builder handle…"
                 maxLength={28}
-                className="w-full px-3.5 py-2.5 rounded-xl editorial-input text-sm font-semibold placeholder:text-emerald-400/40"
+                className="w-full terminal-input text-sm font-mono font-bold text-[#151B2B] placeholder-[#151B2B]/30 py-2"
               />
             </div>
 
             {/* Stack / Role */}
             <div>
-              <label className="text-[11px] font-bold hh-tracking uppercase text-emerald-200 flex items-center gap-1.5 mb-1.5">
-                <Code className="w-3.5 h-3.5 text-rose-400" />
-                <span>Stack / Role <span className="text-rose-400">*</span></span>
+              <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5 mb-1.5">
+                <Code className="w-3.5 h-3.5 text-[#315746]" />
+                <span>STACK / ROLE <span className="text-[#9F452D]">*</span></span>
               </label>
               <select
                 value={builderData.stack}
                 onChange={(e) => onDataChange({ stack: e.target.value as TechStack })}
-                className="w-full px-3 py-2.5 rounded-xl editorial-input text-sm font-bold text-emerald-100 bg-emerald-950 border-emerald-700"
+                className="w-full bg-[#FDF9F0] border-2 border-[#151B2B] p-2 text-xs font-mono font-bold uppercase text-[#151B2B] focus:outline-none focus:border-[#9F452D]"
               >
                 {STACK_OPTIONS.map((stk) => (
-                  <option key={stk} value={stk} className="bg-emerald-950 text-emerald-100">
+                  <option key={stk} value={stk} className="bg-[#F5F1E8] text-[#151B2B]">
                     {stk}
                   </option>
                 ))}
@@ -104,11 +104,11 @@ export const BuilderForm: React.FC<Props> = ({
           {/* Builder Title */}
           <div>
             <div className="flex items-center justify-between mb-1.5">
-              <label className="text-[11px] font-bold hh-tracking uppercase text-emerald-200 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              <label className="text-xs font-mono font-bold tracking-widest uppercase text-[#151B2B] flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-[#D8A928]" />
                 <span>
-                  Builder Title{' '}
-                  <span className="text-emerald-400/50 font-normal normal-case tracking-normal">
+                  BUILDER TITLE{' '}
+                  <span className="text-[#151B2B]/50 font-normal normal-case">
                     (optional)
                   </span>
                 </span>
@@ -122,9 +122,9 @@ export const BuilderForm: React.FC<Props> = ({
               type="text"
               value={builderData.title}
               onChange={(e) => onDataChange({ title: e.target.value })}
-              placeholder="e.g. Full-Stack Alchemist"
+              placeholder="e.g. SYSTEMS ARCHITECT"
               maxLength={26}
-              className="w-full px-3.5 py-2.5 rounded-xl editorial-input text-sm font-extrabold text-amber-300 placeholder:text-emerald-400/40"
+              className="w-full terminal-input text-sm font-mono font-bold text-[#9F452D] placeholder-[#151B2B]/30 py-2 uppercase"
             />
           </div>
         </>
