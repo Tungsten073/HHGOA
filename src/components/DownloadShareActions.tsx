@@ -91,10 +91,19 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
       ? `I just generated my Builder PFP Frame for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}Building in Goa this October! #FrameInGoa #HackerHouseGoa`
       : `I just generated my Builder Pass for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}${titleLine}${stackLine}\nSee you in Goa! #FrameInGoa #HackerHouseGoa`;
 
-    // Try Web Share API with actual PNG image file
+    // Try Web Share API with actual PNG image file & copy image to clipboard
     try {
       const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
       if (blob) {
+        // Attempt to copy image directly into clipboard for instant Cmd+V / Ctrl+V paste into X
+        if (navigator.clipboard && typeof ClipboardItem !== 'undefined') {
+          try {
+            await navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+          } catch {
+            // Clipboard image copy restriction fallback
+          }
+        }
+
         const file = new File([blob], 'HH_Goa_Builder_Pass.png', { type: 'image/png' });
         if (navigator.canShare && navigator.canShare({ files: [file] })) {
           await navigator.share({
@@ -106,7 +115,7 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
         }
       }
     } catch (e) {
-      console.log('Native file share skipped or cancelled:', e);
+      console.log('Native file share skipped:', e);
     }
 
     // Fallback: Twitter Intent API with Open Graph card preview link
