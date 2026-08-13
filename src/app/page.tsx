@@ -400,7 +400,7 @@ export default function Home() {
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>
-        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md text-[#F5F1E8]">
+        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-[#0B1020]/25 backdrop-blur-xl text-[#F5F1E8] shadow-2xl">
           <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
             <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
               GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
