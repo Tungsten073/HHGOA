@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { BuilderMarkCard } from './BuilderMarkCard';
 import { GalleryArtifactModal, IconCardData } from './GalleryArtifactModal';
 import { ChevronLeft, ChevronRight, Award, ShieldAlert } from 'lucide-react';
@@ -76,40 +76,9 @@ export const UPLOADED_ICON_CARDS: IconCardData[] = [
   },
 ];
 
-// 4x Duplicated Array for Seamless Infinite Circular Scroll Loop
-export const CIRCULAR_ICON_CARDS: (IconCardData & { uniqueKey: string })[] = [
-  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set1-${card.id}-${i}` })),
-  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set2-${card.id}-${i}` })),
-  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set3-${card.id}-${i}` })),
-  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set4-${card.id}-${i}` })),
-];
-
 export const SocialGallery: React.FC = () => {
   const [selectedBuilder, setSelectedBuilder] = useState<IconCardData | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
-
-  // Initialize scroll position to middle set
-  useEffect(() => {
-    if (carouselRef.current) {
-      const singleSetWidth = carouselRef.current.scrollWidth / 4;
-      carouselRef.current.scrollLeft = singleSetWidth;
-    }
-  }, []);
-
-  const handleScroll = () => {
-    if (!carouselRef.current) return;
-    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-    const singleSetWidth = scrollWidth / 4;
-
-    // Reset when scrolling near right end
-    if (scrollLeft >= singleSetWidth * 3 - clientWidth) {
-      carouselRef.current.scrollLeft = singleSetWidth;
-    }
-    // Reset when scrolling near left end
-    else if (scrollLeft <= singleSetWidth / 2) {
-      carouselRef.current.scrollLeft = singleSetWidth * 2;
-    }
-  };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -139,43 +108,41 @@ export const SocialGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Full-Screen Edge-to-Edge Circular Carousel Track & Controls ── */}
-      <div className="relative w-screen left-1/2 -translate-x-1/2 px-4 sm:px-8 lg:px-12">
-        {/* Navigation Arrow Controls & Track Indicator */}
-        <div className="max-w-7xl mx-auto flex items-center justify-between mb-4 px-2">
-          <div className="font-mono text-xs font-bold text-[#F5F0E6] uppercase tracking-widest flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#E2B93B] animate-pulse" />
-            <span>CIRCULAR ICON ARCHIVE · INFINITE CONTINUOUS REPEAT</span>
+      {/* ── Horizontal Snap Carousel Track & Controls ── */}
+      <div className="relative w-full">
+        {/* Navigation Arrow Controls */}
+        <div className="flex items-center justify-between mb-4">
+          <div className="font-mono text-xs font-bold text-[#111827] uppercase tracking-widest">
+            COLLECTIBLE ARCHIVE (01 / 06)
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={scrollLeft}
-              className="p-2.5 bg-[#111827] text-[#F5F0E6] border-2 border-[#F5F0E6]/30 shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
+              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
               aria-label="Scroll left"
             >
-              <ChevronLeft className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={scrollRight}
-              className="p-2.5 bg-[#111827] text-[#F5F0E6] border-2 border-[#F5F0E6]/30 shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
+              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
               aria-label="Scroll right"
             >
-              <ChevronRight className="w-5 h-5" />
+              <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
 
-        {/* Scrollable Track - Circular Infinite Continuous Loop */}
+        {/* Scrollable Track with Snap-to-Card behavior */}
         <div
           ref={carouselRef}
-          onScroll={handleScroll}
-          className="flex items-center gap-6 sm:gap-8 overflow-x-auto pb-8 pt-4 px-4 sm:px-8 lg:px-16 snap-x snap-mandatory scrollbar-none w-full scroll-smooth"
+          className="flex items-center gap-6 overflow-x-auto pb-6 pt-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[#111827] scrollbar-track-[#F5F0E6]"
         >
-          {CIRCULAR_ICON_CARDS.map((card, idx) => (
-            <div key={card.uniqueKey} className="snap-center shrink-0">
+          {UPLOADED_ICON_CARDS.map((card, idx) => (
+            <div key={card.id} className="snap-center shrink-0">
               <BuilderMarkCard
                 builder={card}
-                isFeatured={idx % UPLOADED_ICON_CARDS.length === 2}
+                isFeatured={idx === 2} // Center card featured elevation
                 onClick={() => setSelectedBuilder(card)}
               />
             </div>
