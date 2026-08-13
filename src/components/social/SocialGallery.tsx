@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BuilderMarkCard } from './BuilderMarkCard';
 import { GalleryArtifactModal, IconCardData } from './GalleryArtifactModal';
 import { ChevronLeft, ChevronRight, Award, ShieldAlert } from 'lucide-react';
@@ -76,9 +76,40 @@ export const UPLOADED_ICON_CARDS: IconCardData[] = [
   },
 ];
 
+// 4x Duplicated Array for Seamless Infinite Circular Scroll Loop
+export const CIRCULAR_ICON_CARDS: (IconCardData & { uniqueKey: string })[] = [
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set1-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set2-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set3-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set4-${card.id}-${i}` })),
+];
+
 export const SocialGallery: React.FC = () => {
   const [selectedBuilder, setSelectedBuilder] = useState<IconCardData | null>(null);
   const carouselRef = useRef<HTMLDivElement>(null);
+
+  // Initialize scroll position to middle set
+  useEffect(() => {
+    if (carouselRef.current) {
+      const singleSetWidth = carouselRef.current.scrollWidth / 4;
+      carouselRef.current.scrollLeft = singleSetWidth;
+    }
+  }, []);
+
+  const handleScroll = () => {
+    if (!carouselRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+    const singleSetWidth = scrollWidth / 4;
+
+    // Reset when scrolling near right end
+    if (scrollLeft >= singleSetWidth * 3 - clientWidth) {
+      carouselRef.current.scrollLeft = singleSetWidth;
+    }
+    // Reset when scrolling near left end
+    else if (scrollLeft <= singleSetWidth / 2) {
+      carouselRef.current.scrollLeft = singleSetWidth * 2;
+    }
+  };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
@@ -108,13 +139,13 @@ export const SocialGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Full-Screen Edge-to-Edge Horizontal Carousel Track & Controls ── */}
+      {/* ── Full-Screen Edge-to-Edge Circular Carousel Track & Controls ── */}
       <div className="relative w-screen left-1/2 -translate-x-1/2 px-4 sm:px-8 lg:px-12">
         {/* Navigation Arrow Controls & Track Indicator */}
         <div className="max-w-7xl mx-auto flex items-center justify-between mb-4 px-2">
           <div className="font-mono text-xs font-bold text-[#F5F0E6] uppercase tracking-widest flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-[#E2B93B] animate-pulse" />
-            <span>COLLECTIBLE ARCHIVE (01 / 06) · EDGE-TO-EDGE GALLERY</span>
+            <span>CIRCULAR ICON ARCHIVE · INFINITE CONTINUOUS REPEAT</span>
           </div>
           <div className="flex items-center gap-2">
             <button
@@ -134,16 +165,17 @@ export const SocialGallery: React.FC = () => {
           </div>
         </div>
 
-        {/* Scrollable Track - Spans from one end of screen to another end */}
+        {/* Scrollable Track - Circular Infinite Continuous Loop */}
         <div
           ref={carouselRef}
+          onScroll={handleScroll}
           className="flex items-center gap-6 sm:gap-8 overflow-x-auto pb-8 pt-4 px-4 sm:px-8 lg:px-16 snap-x snap-mandatory scrollbar-none w-full scroll-smooth"
         >
-          {UPLOADED_ICON_CARDS.map((card, idx) => (
-            <div key={card.id} className="snap-center shrink-0">
+          {CIRCULAR_ICON_CARDS.map((card, idx) => (
+            <div key={card.uniqueKey} className="snap-center shrink-0">
               <BuilderMarkCard
                 builder={card}
-                isFeatured={idx === 2} // Center card featured elevation
+                isFeatured={idx % UPLOADED_ICON_CARDS.length === 2}
                 onClick={() => setSelectedBuilder(card)}
               />
             </div>
