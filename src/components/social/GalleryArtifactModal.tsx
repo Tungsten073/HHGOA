@@ -50,8 +50,8 @@ export const GalleryArtifactModal: React.FC<Props> = ({ builder, onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#111827]/85 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="relative w-full max-w-2xl bg-[#F5F0E6] border-2 border-[#111827] p-6 sm:p-8 shadow-brutal-lg max-h-[90vh] overflow-y-auto font-syne">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-[#111827]/85 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="relative w-full max-w-2xl bg-[#F5F0E6] border-2 border-[#111827] p-4 sm:p-8 shadow-brutal-lg max-h-[92vh] overflow-y-auto font-syne">
         {/* Close Button */}
         <button
           onClick={onClose}

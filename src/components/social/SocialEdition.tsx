@@ -60,7 +60,7 @@ export const SocialEdition: React.FC<Props> = ({ onNavigateToGenerator }) => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
               <div className="lg:col-span-8 p-4 sm:p-6 rounded-lg bg-[#111827]/85 backdrop-blur-md border-l-4 border-[#E2B93B] shadow-brutal text-[#F5F1E8]">
                 {/* Large Heading */}
-                <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-[#F5F1E8] leading-[0.95]">
+                <h2 className="text-3xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-[#F5F1E8] leading-[0.95]">
                   SOCIAL EDITION<br />
                   <span className="text-[#E2B93B]">ICON ARCHIVE.</span>
                 </h2>

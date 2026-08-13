@@ -104,33 +104,33 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
       <OhhMyDesignSectionReveal>
-        <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
+        <section ref={heroRef} id="hero-sunrise" className="w-full pt-20 sm:pt-28 pb-14 sm:pb-20 px-4 sm:px-6 md:px-16 relative z-10 overflow-hidden min-h-[85vh] sm:min-h-[90vh] flex items-center">
           {/* Localized Left-Side Text Contrast Overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
 
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[480px] sm:min-h-[560px] relative z-10 w-full">
             {/* Left Column: Hero Title & CTA */}
-            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/45 backdrop-blur-md border-2 border-[#F5F1E8]/30 shadow-brutal-lg">
-              <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
+            <div className="lg:col-span-8 flex flex-col items-start space-y-5 sm:space-y-6 text-left p-4 sm:p-8 rounded-lg bg-[#0B1020]/45 backdrop-blur-md border-2 border-[#F5F1E8]/30 shadow-brutal-lg w-full">
+              <div className="flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-[10px] sm:text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
                 <span className="text-[#F5F1E8]">GOA, INDIA</span>
                 <span className="text-[#E2B93B]">15.4909° N, 73.8278° E</span>
                 <span className="text-[#F5F1E8]/90">BATCH 247</span>
               </div>
 
-              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-lg">
+              <h1 className="text-4xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.95] sm:leading-[0.9] tracking-tight drop-shadow-lg">
                 HACKER HOUSE<br />
                 <span className="text-[#E2B93B]">GOA 2026</span>
               </h1>
 
-              <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
+              <p className="font-mono text-xs sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
                 THE ROAD TO 247
               </p>
 
-              <div className="pt-2">
+              <div className="pt-2 w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => handleTabChange('build')}
-                  className="inline-flex items-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/30 px-6 py-3.5 hover:bg-[#E2B93B] hover:text-[#111827] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/30 px-5 sm:px-6 py-3.5 hover:bg-[#E2B93B] hover:text-[#111827] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer min-h-[48px]"
                 >
                   <span>CREATE YOUR BUILDER MARK</span>
                   <ArrowRight className="w-4 h-4 text-[#E2B93B]" />
@@ -138,7 +138,7 @@ export default function Home() {
               </div>
 
               {/* Stamp Seal Metadata */}
-              <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
+              <div className="pt-2 sm:pt-4 flex items-center gap-4 font-mono text-[10px] sm:text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
                 <div className="border border-[#F5F1E8]/40 px-3 py-1.5 rounded-full bg-[#111827]/85 shadow-sm text-[#F5F1E8]">
                   INDIA · 28—31 OCTOBER 2026
                 </div>
@@ -168,11 +168,11 @@ export default function Home() {
                 </p>
               </div>
               {/* Format Selector Pills */}
-              <div className="flex items-center gap-2 p-1 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal font-mono text-xs font-bold uppercase">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 p-1 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal font-mono text-xs font-bold uppercase w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setFormat('frame')}
-                  className={`px-3 py-1.5 transition-colors ${
+                  className={`px-3 py-2 text-center transition-colors ${
                     format === 'frame'
                       ? 'bg-[#151B2B] text-[#F5F1E8]'
                       : 'text-[#151B2B] hover:bg-[#151B2B]/10'
@@ -183,7 +183,7 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => setFormat('id-card')}
-                  className={`px-3 py-1.5 transition-colors ${
+                  className={`px-3 py-2 text-center transition-colors ${
                     format === 'id-card'
                       ? 'bg-[#9F452D] text-[#F5F1E8]'
                       : 'text-[#151B2B] hover:bg-[#151B2B]/10'
