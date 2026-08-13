@@ -12,6 +12,7 @@ import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { GoaRealisticBeachEnvironment } from '@/components/environment/GoaRealisticBeachEnvironment';
+import { OhhMyDesignSectionReveal } from '@/components/transitions/OhhMyDesignSectionReveal';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -101,181 +102,160 @@ export default function Home() {
       <Header activeTab={activeTab} onTabChange={handleTabChange} />
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
-      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Localized Left-Side Text Contrast Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
+      <OhhMyDesignSectionReveal>
+        <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
+          {/* Localized Left-Side Text Contrast Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
-          {/* Left Column: Hero Title & CTA */}
-          <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
-              <span>GOA, INDIA</span>
-              <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
-              <span className="text-[#F5F1E8]/70">BATCH 247</span>
-            </div>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
+            {/* Left Column: Hero Title & CTA */}
+            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
+              <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
+                <span>GOA, INDIA</span>
+                <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
+                <span className="text-[#F5F1E8]/70">BATCH 247</span>
+              </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-md">
-              HACKER HOUSE<br />
-              <span className="text-[#9F452D]">GOA 2026</span>
-            </h1>
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-md">
+                HACKER HOUSE<br />
+                <span className="text-[#9F452D]">GOA 2026</span>
+              </h1>
 
-            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
-              THE ROAD TO 247
-            </p>
+              <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
+                THE ROAD TO 247
+              </p>
 
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={() => handleTabChange('build')}
-                className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
-              >
-                <span>CREATE YOUR BUILDER MARK</span>
-                <ArrowRight className="w-4 h-4 text-[#D8A928]" />
-              </button>
-            </div>
+              <div className="pt-2">
+                <button
+                  type="button"
+                  onClick={() => handleTabChange('build')}
+                  className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+                >
+                  <span>CREATE YOUR BUILDER MARK</span>
+                  <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+                </button>
+              </div>
 
-            {/* Stamp Seal Metadata */}
-            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
-              <div className="border border-[#F5F1E8]/30 px-3 py-1.5 rounded-full bg-[#151B2B]/70 shadow-sm">
-                INDIA · 28—31 OCTOBER 2026
+              {/* Stamp Seal Metadata */}
+              <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
+                <div className="border border-[#F5F1E8]/30 px-3 py-1.5 rounded-full bg-[#151B2B]/70 shadow-sm">
+                  INDIA · 28—31 OCTOBER 2026
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </OhhMyDesignSectionReveal>
 
       {/* ── SECTION 2: GENERATOR WORKSPACE — BRIGHT GOA DAYLIGHT (Middle) ── */}
-      <section ref={generatorRef} id="generator" className="w-full py-16 px-4 sm:px-6 relative z-10 scroll-mt-24">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header with Localized Readability Zone */}
-          <div className="mb-8 border-b-2 border-[#151B2B] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-[#FDF9F0]/95 via-[#FDF9F0]/80 to-transparent w-full max-w-xl border-l-4 border-[#9F452D] shadow-sm">
-              <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
-                BUILD YOUR MARK.
-              </h2>
-              <p className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase mt-1">
-                01 PHOTO → 02 STACK → 03 TITLE → 04 ARTIFACT
-              </p>
-            </div>
-            {/* Format Selector Pills */}
-            <div className="flex items-center gap-2 p-1 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal font-mono text-xs font-bold uppercase">
-              <button
-                type="button"
-                onClick={() => setFormat('frame')}
-                className={`px-3 py-1.5 transition-colors ${
-                  format === 'frame'
-                    ? 'bg-[#151B2B] text-[#F5F1E8]'
-                    : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                }`}
-              >
-                PFP FRAME (1080×1080)
-              </button>
-              <button
-                type="button"
-                onClick={() => setFormat('id-card')}
-                className={`px-3 py-1.5 transition-colors ${
-                  format === 'id-card'
-                    ? 'bg-[#9F452D] text-[#F5F1E8]'
-                    : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                }`}
-              >
-                BUILDER ID (1080×1350)
-              </button>
-            </div>
-          </div>
-
-          {/* Two-Column Bento Layout */}
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
-            {/* LEFT — Controls & Forms */}
-            <div className="flex flex-col gap-6">
-              {/* Step 1: Upload */}
-              <div className="space-y-2">
-                <SectionLabel index="01" text="PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
-                <ImageUploader
-                  onImageLoaded={(img) => {
-                    setUserImage(img);
-                    handleResetTransform();
-                  }}
-                  currentImageLoaded={!!userImage}
-                />
+      <OhhMyDesignSectionReveal delayMs={100}>
+        <section ref={generatorRef} id="generator" className="w-full py-16 px-4 sm:px-6 relative z-10 scroll-mt-24">
+          <div className="max-w-6xl mx-auto">
+            {/* Section Header with Localized Readability Zone */}
+            <div className="mb-8 border-b-2 border-[#151B2B] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-[#FDF9F0]/95 via-[#FDF9F0]/80 to-transparent w-full max-w-xl border-l-4 border-[#9F452D] shadow-sm">
+                <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
+                  BUILD YOUR MARK.
+                </h2>
+                <p className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase mt-1">
+                  01 PHOTO → 02 STACK → 03 TITLE → 04 ARTIFACT
+                </p>
               </div>
-
-              {/* Step 2 & 3: Customize Details */}
-              <div className="space-y-2">
-                <SectionLabel index="02" text="STACK & TITLE" color="bg-[#9F452D] text-[#F5F1E8]" />
-                <BuilderForm
-                  format={format}
-                  builderData={builderData}
-                  theme={theme}
-                  onDataChange={handleDataChange}
-                  onThemeChange={setTheme}
-                />
+              {/* Format Selector Pills */}
+              <div className="flex items-center gap-2 p-1 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal font-mono text-xs font-bold uppercase">
+                <button
+                  type="button"
+                  onClick={() => setFormat('frame')}
+                  className={`px-3 py-1.5 transition-colors ${
+                    format === 'frame'
+                      ? 'bg-[#151B2B] text-[#F5F1E8]'
+                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                  }`}
+                >
+                  PFP FRAME (1080×1080)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFormat('id-card')}
+                  className={`px-3 py-1.5 transition-colors ${
+                    format === 'id-card'
+                      ? 'bg-[#9F452D] text-[#F5F1E8]'
+                      : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                  }`}
+                >
+                  BUILDER ID (1080×1350)
+                </button>
               </div>
             </div>
 
-            {/* RIGHT — Live Canvas Output & 3D Preview */}
-            <div className="flex flex-col gap-4 lg:sticky lg:top-24">
-              <div className="flex items-center justify-between px-1 font-mono text-xs font-bold uppercase tracking-widest text-[#151B2B]">
-                <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
-                  <span>OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350'})</span>
-                </span>
+            {/* Two-Column Bento Layout */}
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8 items-start">
+              {/* LEFT — Controls & Forms */}
+              <div className="flex flex-col gap-6">
+                {/* Step 1: Upload */}
+                <div className="space-y-2">
+                  <SectionLabel index="01" text="PHOTO" color="bg-[#151B2B] text-[#F5F1E8]" />
+                  <ImageUploader
+                    onImageLoaded={(img) => {
+                      setUserImage(img);
+                      handleResetTransform();
+                    }}
+                    currentImageLoaded={!!userImage}
+                  />
+                </div>
 
-                {/* 2D / 3D Mode Toggle */}
-                <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
-                  <button
-                    type="button"
-                    onClick={() => setViewMode('2d')}
-                    className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
-                      viewMode === '2d'
-                        ? 'bg-[#151B2B] text-[#F5F1E8]'
-                        : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                    }`}
-                  >
-                    <ImageIcon className="w-3 h-3" />
-                    <span>2D</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setViewMode('3d')}
-                    className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
-                      viewMode === '3d'
-                        ? 'bg-[#9F452D] text-[#F5F1E8]'
-                        : 'text-[#151B2B] hover:bg-[#151B2B]/10'
-                    }`}
-                  >
-                    <Box className="w-3 h-3" />
-                    <span>3D</span>
-                  </button>
+                {/* Step 2 & 3: Customize Details */}
+                <div className="space-y-2">
+                  <SectionLabel index="02" text="STACK & TITLE" color="bg-[#9F452D] text-[#F5F1E8]" />
+                  <BuilderForm
+                    format={format}
+                    builderData={builderData}
+                    theme={theme}
+                    onDataChange={handleDataChange}
+                    onThemeChange={setTheme}
+                  />
                 </div>
               </div>
 
-              {/* 2D Canvas */}
-              <div className={viewMode === '2d' ? 'block' : 'hidden'}>
-                <FrameCanvas
-                  format={format}
-                  userImage={userImage}
-                  builderData={builderData}
-                  theme={theme}
-                  transform={transform}
-                  onTransformChange={handleTransformChange}
-                  onCanvasReady={handleCanvasReady}
-                />
-              </div>
+              {/* RIGHT — Live Canvas Output & 3D Preview */}
+              <div className="flex flex-col gap-4 lg:sticky lg:top-24">
+                <div className="flex items-center justify-between px-1 font-mono text-xs font-bold uppercase tracking-widest text-[#151B2B]">
+                  <span className="flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#9F452D]" />
+                    <span>OUTPUT ({format === 'frame' ? '1080×1080' : '1080×1350'})</span>
+                  </span>
 
-              {/* 3D Interactive Card Presentation */}
-              {viewMode === '3d' && (
-                <div className="w-full relative bg-[#151B2B] p-3 flex flex-col items-center justify-center border-2 border-[#151B2B] shadow-brutal-lg">
-                  <div className="w-full text-center text-[10px] font-mono tracking-widest text-[#D8A928] font-bold mb-1 uppercase">
-                    INTERACTIVE 3D BUILDER MARK PREVIEW
+                  {/* 2D / 3D Mode Toggle */}
+                  <div className="flex items-center p-0.5 bg-[#F5F1E8] border-2 border-[#151B2B] shadow-brutal">
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('2d')}
+                      className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
+                        viewMode === '2d'
+                          ? 'bg-[#151B2B] text-[#F5F1E8]'
+                          : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                      }`}
+                    >
+                      <ImageIcon className="w-3 h-3" />
+                      <span>2D</span>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setViewMode('3d')}
+                      className={`flex items-center gap-1 px-3 py-1 text-[10px] transition-all ${
+                        viewMode === '3d'
+                          ? 'bg-[#9F452D] text-[#F5F1E8]'
+                          : 'text-[#151B2B] hover:bg-[#151B2B]/10'
+                      }`}
+                    >
+                      <Box className="w-3 h-3" />
+                      <span>3D</span>
+                    </button>
                   </div>
-                  <BuilderCard3D imageUrl={canvasImageUrl} />
                 </div>
-              )}
 
-              {/* Hidden 2D Canvas during 3D mode so canvasRef stays populated */}
-              {viewMode === '3d' && (
-                <div className="sr-only aria-hidden">
+                {/* 2D Canvas */}
+                <div className={viewMode === '2d' ? 'block' : 'hidden'}>
                   <FrameCanvas
                     format={format}
                     userImage={userImage}
@@ -286,158 +266,189 @@ export default function Home() {
                     onCanvasReady={handleCanvasReady}
                   />
                 </div>
-              )}
 
-              {/* Zoom Controls */}
-              {userImage && (
-                <AdjustmentControls
-                  transform={transform}
-                  onChange={handleTransformChange}
-                  onReset={handleResetTransform}
+                {/* 3D Interactive Card Presentation */}
+                {viewMode === '3d' && (
+                  <div className="w-full relative bg-[#151B2B] p-3 flex flex-col items-center justify-center border-2 border-[#151B2B] shadow-brutal-lg">
+                    <div className="w-full text-center text-[10px] font-mono tracking-widest text-[#D8A928] font-bold mb-1 uppercase">
+                      INTERACTIVE 3D BUILDER MARK PREVIEW
+                    </div>
+                    <BuilderCard3D imageUrl={canvasImageUrl} />
+                  </div>
+                )}
+
+                {/* Hidden 2D Canvas during 3D mode so canvasRef stays populated */}
+                {viewMode === '3d' && (
+                  <div className="sr-only aria-hidden">
+                    <FrameCanvas
+                      format={format}
+                      userImage={userImage}
+                      builderData={builderData}
+                      theme={theme}
+                      transform={transform}
+                      onTransformChange={handleTransformChange}
+                      onCanvasReady={handleCanvasReady}
+                    />
+                  </div>
+                )}
+
+                {/* Zoom Controls */}
+                {userImage && (
+                  <AdjustmentControls
+                    transform={transform}
+                    onChange={handleTransformChange}
+                    onReset={handleResetTransform}
+                  />
+                )}
+
+                {/* Download & Share Actions */}
+                <DownloadShareActions
+                  canvasRef={canvasRef}
+                  format={format}
+                  builderData={builderData}
                 />
-              )}
-
-              {/* Download & Share Actions */}
-              <DownloadShareActions
-                canvasRef={canvasRef}
-                format={format}
-                builderData={builderData}
-              />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </OhhMyDesignSectionReveal>
 
       {/* ── SECTION 3: RESULT STATE — GOLDEN HOUR (Middle Bottom) ── */}
-      <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10 overflow-hidden">
-        <div className="max-w-6xl mx-auto relative z-10">
-          <div className="bg-[#F5F1E8]/90 backdrop-blur-sm border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            {/* Left Result Context */}
-            <div className="lg:col-span-7 space-y-5 text-left">
-              <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
-                04 / ARTIFACT
-              </div>
-              <h3 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
-                YOUR BUILDER MARK IS READY.
-              </h3>
-              <p className="font-mono text-xs font-bold text-[#151B2B]/75 uppercase tracking-widest">
-                BUILT IN GOA / BATCH 247 &nbsp;·&nbsp; #FrameInGoa
-              </p>
-
-              <div className="pt-2 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={() => {
-                    if (canvasRef.current) {
-                      try { confetti({ particleCount: 80, spread: 70 }); } catch {}
-                      const link = document.createElement('a');
-                      link.download = 'HH_Goa_Builder_Mark.png';
-                      link.href = canvasRef.current.toDataURL('image/png');
-                      link.click();
-                    }
-                  }}
-                  className="bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#9F452D] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <Download className="w-4 h-4" />
-                  <span>[ DOWNLOAD MARK ]</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    const text = encodeURIComponent('I just generated my Builder Mark for Hacker House Goa 2026! 🚀🌴 #FrameInGoa');
-                    window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
-                  }}
-                  className="bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <Share2 className="w-4 h-4" />
-                  <span>[ SHARE TO X ]</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleResetTransform}
-                  className="bg-[#FDF9F0] text-[#151B2B] border-2 border-[#151B2B] px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] hover:text-[#F5F1E8] transition-colors cursor-pointer flex items-center gap-2"
-                >
-                  <RefreshCw className="w-3.5 h-3.5" />
-                  <span>[ RESET ]</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Right Pedestal 3D Pass Preview */}
-            <div className="lg:col-span-5 flex items-center justify-center">
-              <div className="w-full relative bg-[#151B2B] p-4 border-2 border-[#151B2B] shadow-brutal">
-                <div className="text-center font-mono text-[10px] text-[#D8A928] font-bold tracking-widest uppercase mb-2">
-                  / ARTIFACT / 04 · BATCH 247 · GOA, INDIA
+      <OhhMyDesignSectionReveal delayMs={100}>
+        <section ref={resultRef} id="result-state" className="w-full py-16 px-4 sm:px-6 relative z-10 overflow-hidden">
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="bg-[#F5F1E8]/90 backdrop-blur-sm border-2 border-[#151B2B] p-8 sm:p-12 shadow-brutal-lg grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              {/* Left Result Context */}
+              <div className="lg:col-span-7 space-y-5 text-left">
+                <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
+                  04 / ARTIFACT
                 </div>
-                <BuilderCard3D imageUrl={canvasImageUrl} />
+                <h3 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
+                  YOUR BUILDER MARK IS READY.
+                </h3>
+                <p className="font-mono text-xs font-bold text-[#151B2B]/75 uppercase tracking-widest">
+                  BUILT IN GOA / BATCH 247 &nbsp;·&nbsp; #FrameInGoa
+                </p>
+
+                <div className="pt-2 flex flex-wrap gap-3">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (canvasRef.current) {
+                        try { confetti({ particleCount: 80, spread: 70 }); } catch {}
+                        const link = document.createElement('a');
+                        link.download = 'HH_Goa_Builder_Mark.png';
+                        link.href = canvasRef.current.toDataURL('image/png');
+                        link.click();
+                      }
+                    }}
+                    className="bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#9F452D] transition-colors cursor-pointer flex items-center gap-2"
+                  >
+                    <Download className="w-4 h-4" />
+                    <span>[ DOWNLOAD MARK ]</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const text = encodeURIComponent('I just generated my Builder Mark for Hacker House Goa 2026! 🚀🌴 #FrameInGoa');
+                      window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+                    }}
+                    className="bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] transition-colors cursor-pointer flex items-center gap-2"
+                  >
+                    <Share2 className="w-4 h-4" />
+                    <span>[ SHARE TO X ]</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleResetTransform}
+                    className="bg-[#FDF9F0] text-[#151B2B] border-2 border-[#151B2B] px-4 py-3 font-mono text-xs font-bold uppercase tracking-wider shadow-brutal hover:bg-[#151B2B] hover:text-[#F5F1E8] transition-colors cursor-pointer flex items-center gap-2"
+                  >
+                    <RefreshCw className="w-3.5 h-3.5" />
+                    <span>[ RESET ]</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Right Pedestal 3D Pass Preview */}
+              <div className="lg:col-span-5 flex items-center justify-center">
+                <div className="w-full relative bg-[#151B2B] p-4 border-2 border-[#151B2B] shadow-brutal">
+                  <div className="text-center font-mono text-[10px] text-[#D8A928] font-bold tracking-widest uppercase mb-2">
+                    / ARTIFACT / 04 · BATCH 247 · GOA, INDIA
+                  </div>
+                  <BuilderCard3D imageUrl={canvasImageUrl} />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </OhhMyDesignSectionReveal>
 
       {/* ── SECTION 4: SOCIAL EDITION — SUNSET AT GOA BEACH (Lower) ── */}
-      <div ref={socialRef} id="social-edition" className="scroll-mt-24 relative z-10">
-        <SocialEdition
-          onNavigateToGenerator={() => handleTabChange('build')}
-        />
-      </div>
+      <OhhMyDesignSectionReveal delayMs={100}>
+        <div ref={socialRef} id="social-edition" className="scroll-mt-24 relative z-10">
+          <SocialEdition
+            onNavigateToGenerator={() => handleTabChange('build')}
+          />
+        </div>
+      </OhhMyDesignSectionReveal>
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
-      <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md text-[#F5F1E8]">
-        <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
-          <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
-            GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
-          </div>
-          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F5F1E8]">
-            THE DAY ENDS.<br />
-            <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
-          </h2>
-          <button
-            type="button"
-            onClick={() => handleTabChange('build')}
-            className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
-          >
-            <span>CREATE YOUR BUILDER MARK</span>
-            <ArrowRight className="w-4 h-4 text-[#D8A928]" />
-          </button>
-        </div>
-
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
-          {/* Left Footer Branding */}
-          <div className="flex flex-col space-y-1 text-center md:text-left">
-            <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
-              HACKER HOUSE GOA 2026
+      <OhhMyDesignSectionReveal delayMs={100}>
+        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#151B2B] relative z-10 overflow-hidden bg-[#0A111E]/90 backdrop-blur-md text-[#F5F1E8]">
+          <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
+            <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
+              GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
             </div>
-            <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
-              THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
-            </div>
-          </div>
-
-          {/* Center Stamp */}
-          <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
-            28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
-          </div>
-
-          {/* Right Links */}
-          <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
-            <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
-              MANIFESTO
-            </button>
-            <a
-              href="https://github.com/Tungsten073/HHGOA"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#9F452D] transition-colors"
+            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F5F1E8]">
+              THE DAY ENDS.<br />
+              <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
+            </h2>
+            <button
+              type="button"
+              onClick={() => handleTabChange('build')}
+              className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
             >
-              REPOSITORY
-            </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
-              X.COM
-            </a>
+              <span>CREATE YOUR BUILDER MARK</span>
+              <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+            </button>
           </div>
-        </div>
-      </footer>
+
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
+            {/* Left Footer Branding */}
+            <div className="flex flex-col space-y-1 text-center md:text-left">
+              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
+                HACKER HOUSE GOA 2026
+              </div>
+              <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
+                THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
+              </div>
+            </div>
+
+            {/* Center Stamp */}
+            <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
+              28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
+            </div>
+
+            {/* Right Links */}
+            <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
+              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
+                MANIFESTO
+              </button>
+              <a
+                href="https://github.com/Tungsten073/HHGOA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-[#9F452D] transition-colors"
+              >
+                REPOSITORY
+              </a>
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
+                X.COM
+              </a>
+            </div>
+          </div>
+        </footer>
+      </OhhMyDesignSectionReveal>
     </main>
   );
 }
