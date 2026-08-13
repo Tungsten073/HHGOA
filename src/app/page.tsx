@@ -110,7 +110,7 @@ export default function Home() {
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
             {/* Left Column: Hero Title & CTA */}
-            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/45 backdrop-blur-md border-2 border-[#F5F1E8]/30 shadow-brutal-lg">
+            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-xl liquid-glass animate-liquid-shimmer">
               <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
                 <span className="text-[#F5F1E8]">GOA, INDIA</span>
                 <span className="text-[#E2B93B]">15.4909° N, 73.8278° E</span>
@@ -159,7 +159,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             {/* Section Header with Localized Readability Zone */}
             <div className="mb-8 border-b-2 border-[#111827] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-              <div className="p-4 sm:p-6 rounded-lg bg-[#111827]/85 backdrop-blur-md w-full max-w-xl border-l-4 border-[#E2B93B] shadow-brutal text-[#F5F1E8]">
+              <div className="p-4 sm:p-6 rounded-xl liquid-glass animate-liquid-shimmer w-full max-w-xl border-l-4 border-[#E2B93B] text-[#F5F1E8]">
                 <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F5F1E8] tracking-tight">
                   BUILD YOUR MARK.
                 </h2>
