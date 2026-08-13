@@ -85,7 +85,8 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
           ref={imageRef}
           src={builder.imagePath}
           alt={builder.name}
-          className="w-full h-full object-cover object-center transition-transform duration-500 ease-out filter contrast-[1.05] brightness-[0.98]"
+          className="w-full h-full object-cover transition-transform duration-500 ease-out filter contrast-[1.05] brightness-[0.98]"
+          style={{ objectPosition: builder.objectPosition || 'center center' }}
           loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-50 pointer-events-none" />

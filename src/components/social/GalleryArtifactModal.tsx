@@ -12,6 +12,7 @@ export interface IconCardData {
   description: string;
   disclaimer: string;
   imagePath: string;
+  objectPosition?: string;
   accent: string;
   themeBg: string;
 }
@@ -94,7 +95,8 @@ export const GalleryArtifactModal: React.FC<Props> = ({ builder, onClose }) => {
             <img
               src={builder.imagePath}
               alt={builder.name}
-              className="w-full h-full object-cover object-center filter contrast-[1.05] brightness-[0.98]"
+              className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.98]"
+              style={{ objectPosition: builder.objectPosition || 'center center' }}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#111827] via-transparent to-transparent opacity-60 pointer-events-none" />
             <div className="absolute bottom-3 left-4 right-4 flex justify-between items-end font-mono text-[10px] text-[#F5F0E6] font-bold tracking-widest uppercase">
