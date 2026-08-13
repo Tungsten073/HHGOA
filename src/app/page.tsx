@@ -102,7 +102,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] pb-16 relative overflow-hidden bg-technical-grid font-syne">
+    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] relative bg-technical-grid font-syne">
       {/* 🌅 5-Layer Continuous Goa Beach Environment Dissolve System */}
       <GoaEnvironment5Layers />
 
@@ -113,22 +113,25 @@ export default function Home() {
       <Header activeTab={activeTab} onTabChange={handleTabChange} />
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
-      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden">
+      <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
+        {/* Localized Left-Side Text Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/75 via-[#0B1020]/40 to-transparent pointer-events-none z-0" />
+
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left">
-            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#151B2B] uppercase font-bold">
+          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/30 backdrop-blur-sm border border-[#F5F1E8]/10 shadow-brutal">
+            <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
               <span>GOA, INDIA</span>
-              <span className="text-[#9F452D]">15.4909° N, 73.8278° E</span>
-              <span className="text-[#151B2B]/60">BATCH 247</span>
+              <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
+              <span className="text-[#F5F1E8]/70">BATCH 247</span>
             </div>
 
-            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#151B2B] leading-[0.9] tracking-tight drop-shadow-sm">
+            <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-md">
               HACKER HOUSE<br />
               <span className="text-[#9F452D]">GOA 2026</span>
             </h1>
 
-            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#151B2B] uppercase border-b-2 border-[#151B2B] pb-2">
+            <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
               THE ROAD TO 247
             </p>
 
@@ -136,7 +139,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => handleTabChange('build')}
-                className="inline-flex items-center gap-2 bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#9F452D] hover:border-[#9F452D] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+                className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
               >
                 <span>CREATE YOUR BUILDER MARK</span>
                 <ArrowRight className="w-4 h-4 text-[#D8A928]" />
@@ -144,8 +147,8 @@ export default function Home() {
             </div>
 
             {/* Stamp Seal Metadata */}
-            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#151B2B] tracking-widest uppercase font-bold">
-              <div className="border border-[#151B2B] px-3 py-1.5 rounded-full bg-[#F5F1E8] shadow-sm">
+            <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
+              <div className="border border-[#F5F1E8]/30 px-3 py-1.5 rounded-full bg-[#151B2B]/70 shadow-sm">
                 INDIA · 28—31 OCTOBER 2026
               </div>
             </div>
