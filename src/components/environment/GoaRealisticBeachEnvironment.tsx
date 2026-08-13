@@ -10,7 +10,6 @@ function smoothstep(min: number, max: number, value: number): number {
 
 export const GoaRealisticBeachEnvironment: React.FC = () => {
   const layer1Ref = useRef<HTMLDivElement>(null);
-  const layer2Ref = useRef<HTMLDivElement>(null);
   const layer3Ref = useRef<HTMLDivElement>(null);
   const layer4Ref = useRef<HTMLDivElement>(null);
   const layer5Ref = useRef<HTMLDivElement>(null);
@@ -42,21 +41,18 @@ export const GoaRealisticBeachEnvironment: React.FC = () => {
       currentProgressRef.current += diff * 0.08;
       const progress = currentProgressRef.current;
 
-      // 5-Photo Continuous Eased Cross-Dissolve Timeline:
-      // Image 1 (Sunrise): 0.00 -> 0.25 (1 -> 0)
-      // Image 2 (Daytime): 0.15 -> 0.50 (0 -> 1 -> 0)
-      // Image 3 (Golden Hour): 0.35 -> 0.70 (0 -> 1 -> 0)
-      // Image 4 (Sunset): 0.55 -> 0.88 (0 -> 1 -> 0)
-      // Image 5 (Blue Hour / Dusk): 0.75 -> 1.00 (0 -> 1)
+      // 4-Photo Continuous Extended Cross-Dissolve Timeline (2nd Daytime image removed):
+      // Layer 1 (Sunrise): 0.00 -> 0.25 (Hero section top)
+      // Layer 3 (Golden Hour): 0.12 -> 0.58 (Shifted UP to cover Builder Generator)
+      // Layer 4 (Sunset): 0.45 -> 0.82 (Shifted UP to cover Social Edition Gallery)
+      // Layer 5 (Blue Hour / Dusk Campfire): 0.72 -> 1.00 (Shifted UP to cover Footer)
 
-      const op1 = 1 - smoothstep(0.10, 0.28, progress);
-      const op2 = smoothstep(0.10, 0.26, progress) * (1 - smoothstep(0.38, 0.54, progress));
-      const op3 = smoothstep(0.38, 0.52, progress) * (1 - smoothstep(0.62, 0.76, progress));
-      const op4 = smoothstep(0.62, 0.74, progress) * (1 - smoothstep(0.82, 0.94, progress));
-      const op5 = smoothstep(0.82, 0.94, progress);
+      const op1 = 1 - smoothstep(0.10, 0.25, progress);
+      const op3 = smoothstep(0.12, 0.26, progress) * (1 - smoothstep(0.48, 0.60, progress));
+      const op4 = smoothstep(0.46, 0.58, progress) * (1 - smoothstep(0.76, 0.88, progress));
+      const op5 = smoothstep(0.76, 0.88, progress);
 
       if (layer1Ref.current) layer1Ref.current.style.opacity = `${op1}`;
-      if (layer2Ref.current) layer2Ref.current.style.opacity = `${op2}`;
       if (layer3Ref.current) layer3Ref.current.style.opacity = `${op3}`;
       if (layer4Ref.current) layer4Ref.current.style.opacity = `${op4}`;
       if (layer5Ref.current) layer5Ref.current.style.opacity = `${op5}`;
@@ -86,37 +82,30 @@ export const GoaRealisticBeachEnvironment: React.FC = () => {
 
   return (
     <div className="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
-      {/* ── 5 REALISTIC GOA BEACH PHOTOGRAPH LAYERS WITH LERP INERTIA ── */}
+      {/* ── REALISTIC GOA BEACH PHOTOGRAPH LAYERS WITH LERP INERTIA (2ND IMAGE REMOVED & EXTENDED UP) ── */}
       <div ref={bgParallaxRef} className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out">
-        {/* Layer 1 — Sunrise (Hero) */}
+        {/* Layer 1 — Sunrise (Hero Top Section) */}
         <div
           ref={layer1Ref}
           className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full transition-opacity duration-700 ease-out"
           style={{ backgroundImage: "url('/goa-scene-1-sunrise.jpg')", opacity: 1 }}
         />
 
-        {/* Layer 2 — Bright Daytime (Builder Generator) */}
-        <div
-          ref={layer2Ref}
-          className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full transition-opacity duration-700 ease-out"
-          style={{ backgroundImage: "url('/goa-scene-2-daytime.jpg')", opacity: 0 }}
-        />
-
-        {/* Layer 3 — Golden Hour (Result Reveal) */}
+        {/* Layer 3 — Golden Hour (Extended Upward to Builder Generator Workspace) */}
         <div
           ref={layer3Ref}
           className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full transition-opacity duration-700 ease-out"
           style={{ backgroundImage: "url('/goa-scene-3-goldenhour.jpg')", opacity: 0 }}
         />
 
-        {/* Layer 4 — Sunset (Social Edition Gallery) */}
+        {/* Layer 4 — Sunset (Extended Upward to Social Edition Gallery) */}
         <div
           ref={layer4Ref}
           className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full transition-opacity duration-700 ease-out"
           style={{ backgroundImage: "url('/goa-scene-4-sunset.jpg')", opacity: 0 }}
         />
 
-        {/* Layer 5 — Blue Hour / Campfire (Footer & Night) */}
+        {/* Layer 5 — Blue Hour / Campfire (Extended Upward to Dusk Footer) */}
         <div
           ref={layer5Ref}
           className="absolute inset-0 bg-no-repeat bg-cover bg-center md:bg-top w-full h-full transition-opacity duration-700 ease-out"
