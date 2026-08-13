@@ -13,6 +13,7 @@ import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
 import { GoaRealisticBeachEnvironment } from '@/components/environment/GoaRealisticBeachEnvironment';
 import { OhhMyDesignSectionReveal } from '@/components/transitions/OhhMyDesignSectionReveal';
+import { InfiniteMarqueeRibbon } from '@/components/transitions/InfiniteMarqueeRibbon';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -146,6 +147,11 @@ export default function Home() {
           </div>
         </section>
       </OhhMyDesignSectionReveal>
+
+      {/* 🏃 Infinite Editorial Marquee Ribbon */}
+      <div className="relative z-20 my-4">
+        <InfiniteMarqueeRibbon />
+      </div>
 
       {/* ── SECTION 2: GENERATOR WORKSPACE — BRIGHT GOA DAYLIGHT (Middle) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>

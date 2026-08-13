@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/transitions/SmoothScrollProvider";
 import { CustomCursorFollower } from "@/components/transitions/CustomCursorFollower";
+import { ScrollProgressBar } from "@/components/transitions/ScrollProgressBar";
 
 export const metadata: Metadata = {
   title: "Hacker House Goa 2026 — HHG.26 Builder Mark & ID Generator",
@@ -29,6 +30,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col bg-[#FDF9F0] text-[#151B2B] selection:bg-[#9F452D] selection:text-[#F5F1E8]">
         <SmoothScrollProvider>
+          <ScrollProgressBar />
           <CustomCursorFollower />
           {children}
         </SmoothScrollProvider>
