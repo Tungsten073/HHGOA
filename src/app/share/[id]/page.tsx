@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowLeft, Sparkles, Share2 } from 'lucide-react';
+import { ShareCardImage } from '@/components/share/ShareCardImage';
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -81,14 +82,8 @@ export default async function SharePage({ params }: Props) {
           </p>
         </div>
 
-        {/* Image Display */}
-        <div className="w-full max-w-xl bg-[#151B2B] p-2 border-2 border-[#151B2B] shadow-brutal-lg">
-          <img
-            src={imageUrl}
-            alt="Hacker House Goa 2026 Graphic"
-            className="w-full h-auto object-contain"
-          />
-        </div>
+        {/* Resilient Client Image Component */}
+        <ShareCardImage shareId={id} initialImageUrl={imageUrl} />
 
         {/* Action Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md pt-2">

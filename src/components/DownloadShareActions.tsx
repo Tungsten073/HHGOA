@@ -56,6 +56,12 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
 
       const data = await res.json();
       if (data.success && data.shareUrl) {
+        try {
+          localStorage.setItem(`hh-mark-${data.shareId}`, imageBase64);
+          localStorage.setItem('hh-latest-builder-mark', imageBase64);
+        } catch {
+          // LocalStorage save error fallback
+        }
         setShareUrl(data.shareUrl);
         setIsUploading(false);
         return data.shareUrl;

@@ -42,9 +42,9 @@ export async function POST(req: NextRequest) {
       });
       imageUrl = blob.url;
     } else {
-      // Local development fallback: store in memory map
+      // Local development / fallback storage in memory map
       localImageStore.set(shareId, imageBase64);
-      imageUrl = `/api/share/image/${shareId}`;
+      imageUrl = `/api/share?id=${shareId}`;
     }
 
     const origin = req.headers.get('origin') || req.headers.get('host') || 'https://frame-in-goa.vercel.app';
@@ -66,7 +66,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-// Handler to serve stored images during local fallback testing
+// Handler to serve stored images or fallback graphic
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const shareId = url.searchParams.get('id');
@@ -86,5 +86,21 @@ export async function GET(req: NextRequest) {
     }
   }
 
-  return NextResponse.json({ error: 'Image not found' }, { status: 404 });
+  // Elegant SVG fallback card so broken image icon is NEVER rendered
+  const fallbackSvg = `
+<svg width="1080" height="1350" viewBox="0 0 1080 1350" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1080" height="1350" fill="#111827"/>
+  <rect x="40" y="40" width="1000" height="1270" fill="none" stroke="#E2B93B" stroke-width="4"/>
+  <text x="540" y="520" font-family="sans-serif" font-size="64" font-weight="900" fill="#F5F1E8" text-anchor="middle">HACKER HOUSE GOA 2026</text>
+  <text x="540" y="620" font-family="sans-serif" font-size="44" font-weight="700" fill="#E2B93B" text-anchor="middle">BUILDER MARK ARTIFACT</text>
+  <text x="540" y="720" font-family="monospace" font-size="30" fill="#F5F1E8" opacity="0.85" text-anchor="middle">THE ROAD TO 247 · #FRAMEINGOA</text>
+  <text x="540" y="860" font-family="monospace" font-size="28" font-weight="bold" fill="#A9482E" text-anchor="middle">GOA, INDIA · 28—31 OCTOBER 2026</text>
+</svg>`;
+
+  return new NextResponse(fallbackSvg, {
+    headers: {
+      'Content-Type': 'image/svg+xml',
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+    },
+  });
 }
