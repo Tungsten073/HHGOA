@@ -38,7 +38,7 @@ export default function Home() {
   const [canvasImageUrl, setCanvasImageUrl] = useState<string>('');
 
   const [builderData, setBuilderData] = useState<BuilderData>({
-    name: 'Aaditya Dolas',
+    name: '',
     stack: 'Infra / Security',
     title: getRandomTitle('Infra / Security'),
   });

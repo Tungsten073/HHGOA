@@ -141,7 +141,7 @@ export function drawPfpFrame(
   ctx.stroke();
 
   // Builder Name
-  const nameText = builderName.trim() ? builderName.toUpperCase() : 'BUILDING IN GOA';
+  const nameText = builderName.trim() ? builderName.toUpperCase() : 'YOUR NAME';
   ctx.fillStyle = themeConfig.accentColor;
   ctx.font = '900 28px "Outfit", system-ui, sans-serif';
   ctx.textAlign = 'center';

@@ -97,9 +97,9 @@ export const BuilderForm: React.FC<Props> = ({
                 type="text"
                 value={builderData.name}
                 onChange={(e) => onDataChange({ name: e.target.value })}
-                placeholder="Enter builder handle…"
+                placeholder="Type name…"
                 maxLength={28}
-                className="w-full terminal-input text-sm font-mono font-bold text-[#151B2B] placeholder-[#151B2B]/30 py-2"
+                className="w-full terminal-input text-sm font-mono font-bold text-[#151B2B] placeholder-[#151B2B]/50 py-2"
               />
             </div>
 

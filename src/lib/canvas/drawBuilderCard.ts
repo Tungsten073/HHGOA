@@ -140,7 +140,7 @@ export function drawBuilderCard(
 
   // Builder Name
   const nameY = infoY + 85;
-  const builderName = builderData.name.trim() ? builderData.name : 'Anonymous Builder';
+  const builderName = builderData.name.trim() ? builderData.name : 'YOUR NAME';
 
   ctx.save();
   ctx.fillStyle = themeConfig.textColor;
