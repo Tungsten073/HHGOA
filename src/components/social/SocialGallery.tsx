@@ -108,24 +108,24 @@ export const SocialGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Horizontal Snap Carousel Track & Controls ── */}
-      <div className="relative w-full">
-        {/* Navigation Arrow Controls */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="font-mono text-xs font-bold text-[#111827] uppercase tracking-widest">
+      {/* ── Full Screen Edge-to-Edge Horizontal Snap Carousel Track & Controls ── */}
+      <div className="w-screen relative left-1/2 -translate-x-1/2 px-4 sm:px-8 md:px-16">
+        {/* Navigation Arrow Controls & Meter */}
+        <div className="max-w-7xl mx-auto flex items-center justify-between mb-4">
+          <div className="font-mono text-xs font-bold text-[#F5F0E6] uppercase tracking-widest bg-[#111827]/85 px-3 py-1 border border-[#F5F0E6]/20">
             COLLECTIBLE ARCHIVE (01 / 06)
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={scrollLeft}
-              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
+              className="p-2.5 bg-[#111827] text-[#F5F0E6] border-2 border-[#F5F0E6]/30 shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
               aria-label="Scroll left"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={scrollRight}
-              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
+              className="p-2.5 bg-[#111827] text-[#F5F0E6] border-2 border-[#F5F0E6]/30 shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
               aria-label="Scroll right"
             >
               <ChevronRight className="w-4 h-4" />
@@ -133,10 +133,10 @@ export const SocialGallery: React.FC = () => {
           </div>
         </div>
 
-        {/* Scrollable Track with Snap-to-Card behavior */}
+        {/* Scrollable Track - Edge to Edge across full screen */}
         <div
           ref={carouselRef}
-          className="flex items-center gap-6 overflow-x-auto pb-6 pt-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[#111827] scrollbar-track-[#F5F0E6]"
+          className="w-full flex items-center gap-6 overflow-x-auto pb-8 pt-4 px-4 sm:px-8 md:px-16 snap-x snap-mandatory scrollbar-none"
         >
           {UPLOADED_ICON_CARDS.map((card, idx) => (
             <div key={card.id} className="snap-center shrink-0">
