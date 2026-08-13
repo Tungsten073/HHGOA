@@ -12,16 +12,16 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-16 bg-[#FDF9F0] border-b-2 border-[#151B2B] font-mono text-xs tracking-widest uppercase text-[#151B2B] shadow-sm">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-16 bg-[#111827]/90 backdrop-blur-md border-b-2 border-[#F5F1E8]/20 font-mono text-xs tracking-widest uppercase text-[#F5F1E8] shadow-md">
       {/* Left Brand Logo & Sub-label */}
       <div className="flex items-center gap-4">
         <button
           onClick={() => onTabChange('event')}
-          className="font-syne text-2xl font-extrabold tracking-tighter text-[#151B2B] hover:text-[#9F452D] transition-colors cursor-pointer"
+          className="font-syne text-2xl font-extrabold tracking-tighter text-[#F5F1E8] hover:text-[#E2B93B] transition-colors cursor-pointer"
         >
           HHG.26
         </button>
-        <span className="hidden lg:inline-block font-mono text-[10px] text-[#151B2B]/60 tracking-widest uppercase border-l-2 border-[#151B2B]/20 pl-4">
+        <span className="hidden lg:inline-block font-mono text-[10px] text-[#F5F1E8]/70 tracking-widest uppercase border-l-2 border-[#F5F1E8]/20 pl-4">
           THE ROAD TO 247 // HH GOA
         </span>
       </div>
@@ -33,8 +33,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange('event')}
           className={`pb-1 transition-colors cursor-pointer uppercase ${
             activeTab === 'event'
-              ? 'text-[#9F452D] font-bold border-b-2 border-[#9F452D]'
-              : 'text-[#45464c] hover:text-[#151B2B]'
+              ? 'text-[#E2B93B] font-bold border-b-2 border-[#E2B93B]'
+              : 'text-[#F5F1E8]/70 hover:text-[#F5F1E8]'
           }`}
         >
           EVENT
@@ -44,8 +44,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange('build')}
           className={`pb-1 transition-colors cursor-pointer uppercase ${
             activeTab === 'build'
-              ? 'text-[#9F452D] font-bold border-b-2 border-[#9F452D]'
-              : 'text-[#45464c] hover:text-[#151B2B]'
+              ? 'text-[#E2B93B] font-bold border-b-2 border-[#E2B93B]'
+              : 'text-[#F5F1E8]/70 hover:text-[#F5F1E8]'
           }`}
         >
           BUILD
@@ -55,8 +55,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange('social')}
           className={`pb-1 transition-colors cursor-pointer uppercase ${
             activeTab === 'social'
-              ? 'text-[#9F452D] font-bold border-b-2 border-[#9F452D]'
-              : 'text-[#45464c] hover:text-[#151B2B]'
+              ? 'text-[#E2B93B] font-bold border-b-2 border-[#E2B93B]'
+              : 'text-[#F5F1E8]/70 hover:text-[#F5F1E8]'
           }`}
         >
           SOCIAL
@@ -66,8 +66,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
           onClick={() => onTabChange('about')}
           className={`pb-1 transition-colors cursor-pointer uppercase ${
             activeTab === 'about'
-              ? 'text-[#9F452D] font-bold border-b-2 border-[#9F452D]'
-              : 'text-[#45464c] hover:text-[#151B2B]'
+              ? 'text-[#E2B93B] font-bold border-b-2 border-[#E2B93B]'
+              : 'text-[#F5F1E8]/70 hover:text-[#F5F1E8]'
           }`}
         >
           ABOUT
@@ -76,14 +76,14 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
 
       {/* Right Action Button & Location */}
       <div className="flex items-center gap-4">
-        <div className="hidden xl:flex items-center gap-1.5 text-[10px] font-mono text-[#151B2B]/70 uppercase">
-          <MapPin className="w-3.5 h-3.5 text-[#9F452D]" />
+        <div className="hidden xl:flex items-center gap-1.5 text-[10px] font-mono text-[#F5F1E8]/80 uppercase">
+          <MapPin className="w-3.5 h-3.5 text-[#E2B93B]" />
           <span>15.4909° N, 73.8278° E</span>
         </div>
         <button
           type="button"
           onClick={() => onTabChange('build')}
-          className="bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-4 py-1.5 hover:bg-[#9F452D] hover:border-[#9F452D] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+          className="bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/30 px-4 py-1.5 hover:bg-[#E2B93B] hover:text-[#111827] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
         >
           GET MARK
         </button>

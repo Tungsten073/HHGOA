@@ -110,16 +110,16 @@ export default function Home() {
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
             {/* Left Column: Hero Title & CTA */}
-            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
+            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/45 backdrop-blur-md border-2 border-[#F5F1E8]/30 shadow-brutal-lg">
               <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
-                <span>GOA, INDIA</span>
-                <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
-                <span className="text-[#F5F1E8]/70">BATCH 247</span>
+                <span className="text-[#F5F1E8]">GOA, INDIA</span>
+                <span className="text-[#E2B93B]">15.4909° N, 73.8278° E</span>
+                <span className="text-[#F5F1E8]/90">BATCH 247</span>
               </div>
 
-              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-md">
+              <h1 className="text-5xl sm:text-7xl lg:text-8xl font-black uppercase text-[#F5F1E8] leading-[0.9] tracking-tight drop-shadow-lg">
                 HACKER HOUSE<br />
-                <span className="text-[#9F452D]">GOA 2026</span>
+                <span className="text-[#E2B93B]">GOA 2026</span>
               </h1>
 
               <p className="font-mono text-sm sm:text-base font-bold tracking-widest text-[#F5F1E8] uppercase border-b-2 border-[#F5F1E8]/30 pb-2">
@@ -130,16 +130,16 @@ export default function Home() {
                 <button
                   type="button"
                   onClick={() => handleTabChange('build')}
-                  className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-6 py-3.5 hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
+                  className="inline-flex items-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/30 px-6 py-3.5 hover:bg-[#E2B93B] hover:text-[#111827] transition-colors font-mono font-bold shadow-brutal active:scale-95 text-xs tracking-widest uppercase cursor-pointer"
                 >
                   <span>CREATE YOUR BUILDER MARK</span>
-                  <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+                  <ArrowRight className="w-4 h-4 text-[#E2B93B]" />
                 </button>
               </div>
 
               {/* Stamp Seal Metadata */}
               <div className="pt-4 flex items-center gap-4 font-mono text-[11px] text-[#F5F1E8] tracking-widest uppercase font-bold">
-                <div className="border border-[#F5F1E8]/30 px-3 py-1.5 rounded-full bg-[#151B2B]/70 shadow-sm">
+                <div className="border border-[#F5F1E8]/40 px-3 py-1.5 rounded-full bg-[#111827]/85 shadow-sm text-[#F5F1E8]">
                   INDIA · 28—31 OCTOBER 2026
                 </div>
               </div>
@@ -158,12 +158,12 @@ export default function Home() {
         <section ref={generatorRef} id="generator" className="w-full py-16 px-4 sm:px-6 relative z-10 scroll-mt-24">
           <div className="max-w-6xl mx-auto">
             {/* Section Header with Localized Readability Zone */}
-            <div className="mb-8 border-b-2 border-[#151B2B] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-              <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-[#FDF9F0]/95 via-[#FDF9F0]/80 to-transparent w-full max-w-xl border-l-4 border-[#9F452D] shadow-sm">
-                <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
+            <div className="mb-8 border-b-2 border-[#111827] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+              <div className="p-4 sm:p-6 rounded-lg bg-[#111827]/85 backdrop-blur-md w-full max-w-xl border-l-4 border-[#E2B93B] shadow-brutal text-[#F5F1E8]">
+                <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F5F1E8] tracking-tight">
                   BUILD YOUR MARK.
                 </h2>
-                <p className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase mt-1">
+                <p className="font-mono text-xs font-bold text-[#E2B93B] tracking-widest uppercase mt-1">
                   01 PHOTO → 02 STACK → 03 TITLE → 04 ARTIFACT
                 </p>
               </div>
@@ -400,57 +400,55 @@ export default function Home() {
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>
-        <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-14 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-gradient-to-b from-[#0B1020]/40 via-[#0B1020]/60 to-[#0B1020]/80 backdrop-blur-md text-[#F5F1E8] shadow-2xl">
-          {/* Central Localized Readability Glass Card */}
-          <div className="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6 relative z-10 mb-12 p-8 sm:p-12 rounded-2xl bg-[#0B1020]/65 backdrop-blur-lg border-2 border-[#F5F1E8]/20 shadow-brutal-lg">
-            <div className="font-mono text-xs font-bold text-[#E2B93B] tracking-widest uppercase flex items-center gap-2 bg-[#111827]/80 px-3 py-1 border border-[#F5F1E8]/20 rounded-full">
-              <span>GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247</span>
+        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-[#0B1020]/25 backdrop-blur-xl text-[#F5F1E8] shadow-2xl">
+          <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
+            <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
+              GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
             </div>
-            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#F5F1E8] leading-[0.95] drop-shadow-lg">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#F5F1E8] max-w-3xl leading-tight">
               THE DAY ENDS.<br />
-              <span className="text-[#E2B93B] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">THE BUILDING DOESN'T.</span>
+              <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
             </h2>
             <button
               type="button"
               onClick={() => handleTabChange('build')}
-              className="inline-flex items-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/40 px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#F5F0E6] hover:text-[#111827] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
             >
               <span>CREATE YOUR BUILDER MARK</span>
-              <ArrowRight className="w-4 h-4 text-[#E2B93B]" />
+              <ArrowRight className="w-4 h-4 text-[#D8A928]" />
             </button>
           </div>
 
-          {/* Bottom Footer Metadata Bar */}
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 p-6 rounded-xl bg-[#0B1020]/75 backdrop-blur-md border border-[#F5F1E8]/20 text-[#F5F1E8] shadow-md">
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
             {/* Left Footer Branding */}
             <div className="flex flex-col space-y-1 text-center md:text-left">
-              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8] tracking-tight">
+              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
                 HACKER HOUSE GOA 2026
               </div>
-              <div className="text-[#E2B93B] font-bold tracking-widest uppercase text-[11px]">
+              <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
                 THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
               </div>
             </div>
 
             {/* Center Stamp */}
-            <div className="text-center text-[11px] font-bold text-[#F5F1E8] tracking-widest uppercase px-3 py-1 bg-[#111827]/80 border border-[#F5F1E8]/20 rounded-md">
+            <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
               28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
             </div>
 
             {/* Right Links */}
             <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
-              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#E2B93B] transition-colors cursor-pointer">
+              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
                 MANIFESTO
               </button>
               <a
                 href="https://github.com/Tungsten073/HHGOA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#E2B93B] transition-colors"
+                className="hover:text-[#9F452D] transition-colors"
               >
                 REPOSITORY
               </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#E2B93B] transition-colors">
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
                 X.COM
               </a>
             </div>
