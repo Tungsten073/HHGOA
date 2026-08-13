@@ -11,7 +11,7 @@ import { AdjustmentControls } from '@/components/AdjustmentControls';
 import { FrameCanvas } from '@/components/FrameCanvas';
 import { DownloadShareActions } from '@/components/DownloadShareActions';
 import { SocialEdition } from '@/components/social/SocialEdition';
-import { GoaProceduralMasterEnvironment } from '@/components/environment/GoaProceduralMasterEnvironment';
+import { GoaRealisticBeachEnvironment } from '@/components/environment/GoaRealisticBeachEnvironment';
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
@@ -103,8 +103,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] relative bg-technical-grid font-syne">
-      {/* 🌅 Procedural Continuous Time-of-Day Goa Beach Master Environment */}
-      <GoaProceduralMasterEnvironment />
+      {/* 🌅 Realistic Goa Beach Environment Background Sequence (Sunrise -> Day -> Golden Hour -> Sunset -> Blue Hour) */}
+      <GoaRealisticBeachEnvironment />
 
       {/* Background Topographic Overlay */}
       <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
