@@ -400,63 +400,62 @@ export default function Home() {
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>
-        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 relative z-10 overflow-hidden liquid-glass-panel text-[#F5F1E8]">
-          {/* Animated Liquid Specular Light Shimmer */}
-          <div className="absolute -top-24 -left-24 w-[140%] h-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-0 animate-liquid-shimmer" />
+        <footer ref={footerRef} id="about-footer" className="w-full py-16 px-4 sm:px-8 relative z-10 overflow-hidden">
+          <div className="max-w-7xl mx-auto rounded-2xl bg-gradient-to-b from-[#111827]/55 via-[#111827]/35 to-[#0B1020]/60 backdrop-blur-2xl border-2 border-[#F5F1E8]/30 p-8 sm:p-12 md:p-16 shadow-[0_20px_60px_rgba(0,0,0,0.45)] relative z-10 overflow-hidden text-[#F5F1E8]">
+            {/* Top Glass Light Reflection Surface */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-white/5 pointer-events-none" />
 
-          {/* Liquid Glass Ambient Refraction Glows */}
-          <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-[#A9482E]/20 blur-3xl pointer-events-none z-0" />
-          <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-[#E2B93B]/15 blur-3xl pointer-events-none z-0" />
-          <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
-            <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
-              GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
-            </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#F5F1E8] max-w-3xl leading-tight">
-              THE DAY ENDS.<br />
-              <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
-            </h2>
-            <button
-              type="button"
-              onClick={() => handleTabChange('build')}
-              className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
-            >
-              <span>CREATE YOUR BUILDER MARK</span>
-              <ArrowRight className="w-4 h-4 text-[#D8A928]" />
-            </button>
-          </div>
-
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
-            {/* Left Footer Branding */}
-            <div className="flex flex-col space-y-1 text-center md:text-left">
-              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
-                HACKER HOUSE GOA 2026
+            <div className="flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
+              <div className="font-mono text-xs font-bold text-[#E2B93B] tracking-widest uppercase">
+                GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
               </div>
-              <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
-                THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
-              </div>
-            </div>
-
-            {/* Center Stamp */}
-            <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
-              28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
-            </div>
-
-            {/* Right Links */}
-            <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
-              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
-                MANIFESTO
-              </button>
-              <a
-                href="https://github.com/Tungsten073/HHGOA"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#9F452D] transition-colors"
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-black uppercase tracking-tight text-[#F5F1E8] max-w-3xl leading-tight drop-shadow-md">
+                THE DAY ENDS.<br />
+                <span className="text-[#E2B93B]">THE BUILDING DOESN'T.</span>
+              </h2>
+              <button
+                type="button"
+                onClick={() => handleTabChange('build')}
+                className="inline-flex items-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/30 px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#E2B93B] hover:text-[#111827] transition-colors cursor-pointer"
               >
-                REPOSITORY
-              </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
-                X.COM
-              </a>
+                <span>CREATE YOUR BUILDER MARK</span>
+                <ArrowRight className="w-4 h-4 text-[#E2B93B]" />
+              </button>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
+              {/* Left Footer Branding */}
+              <div className="flex flex-col space-y-1 text-center md:text-left">
+                <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
+                  HACKER HOUSE GOA 2026
+                </div>
+                <div className="text-[#E2B93B] font-bold tracking-widest uppercase text-[11px]">
+                  THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
+                </div>
+              </div>
+
+              {/* Center Stamp */}
+              <div className="text-center text-[11px] font-bold text-[#F5F1E8]/90 tracking-widest uppercase">
+                28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
+              </div>
+
+              {/* Right Links */}
+              <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
+                <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#E2B93B] transition-colors cursor-pointer">
+                  MANIFESTO
+                </button>
+                <a
+                  href="https://github.com/Tungsten073/HHGOA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-[#E2B93B] transition-colors"
+                >
+                  REPOSITORY
+                </a>
+                <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#E2B93B] transition-colors">
+                  X.COM
+                </a>
+              </div>
             </div>
           </div>
         </footer>
