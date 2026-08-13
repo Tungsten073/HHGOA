@@ -400,55 +400,57 @@ export default function Home() {
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>
-        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-[#0B1020]/25 backdrop-blur-xl text-[#F5F1E8] shadow-2xl">
-          <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
-            <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
-              GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
+        <footer ref={footerRef} id="about-footer" className="w-full pt-16 pb-14 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-gradient-to-b from-[#0B1020]/40 via-[#0B1020]/60 to-[#0B1020]/80 backdrop-blur-md text-[#F5F1E8] shadow-2xl">
+          {/* Central Localized Readability Glass Card */}
+          <div className="max-w-4xl mx-auto flex flex-col items-center text-center space-y-6 relative z-10 mb-12 p-8 sm:p-12 rounded-2xl bg-[#0B1020]/65 backdrop-blur-lg border-2 border-[#F5F1E8]/20 shadow-brutal-lg">
+            <div className="font-mono text-xs font-bold text-[#E2B93B] tracking-widest uppercase flex items-center gap-2 bg-[#111827]/80 px-3 py-1 border border-[#F5F1E8]/20 rounded-full">
+              <span>GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247</span>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#F5F1E8] max-w-3xl leading-tight">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-black uppercase tracking-tight text-[#F5F1E8] leading-[0.95] drop-shadow-lg">
               THE DAY ENDS.<br />
-              <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
+              <span className="text-[#E2B93B] drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)]">THE BUILDING DOESN'T.</span>
             </h2>
             <button
               type="button"
               onClick={() => handleTabChange('build')}
-              className="inline-flex items-center gap-2 bg-[#9F452D] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#FDF9F0] hover:text-[#151B2B] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 bg-[#A9482E] text-[#F5F1E8] border-2 border-[#F5F1E8]/40 px-8 py-4 font-mono font-bold text-xs tracking-widest uppercase shadow-brutal hover:bg-[#F5F0E6] hover:text-[#111827] transition-colors cursor-pointer"
             >
               <span>CREATE YOUR BUILDER MARK</span>
-              <ArrowRight className="w-4 h-4 text-[#D8A928]" />
+              <ArrowRight className="w-4 h-4 text-[#E2B93B]" />
             </button>
           </div>
 
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 pt-8 border-t border-[#F5F1E8]/20 text-[#F5F1E8]">
+          {/* Bottom Footer Metadata Bar */}
+          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 font-mono text-xs relative z-10 p-6 rounded-xl bg-[#0B1020]/75 backdrop-blur-md border border-[#F5F1E8]/20 text-[#F5F1E8] shadow-md">
             {/* Left Footer Branding */}
             <div className="flex flex-col space-y-1 text-center md:text-left">
-              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8]">
+              <div className="font-syne text-xl font-black uppercase text-[#F5F1E8] tracking-tight">
                 HACKER HOUSE GOA 2026
               </div>
-              <div className="text-[#9F452D] font-bold tracking-widest uppercase text-[11px]">
+              <div className="text-[#E2B93B] font-bold tracking-widest uppercase text-[11px]">
                 THE ROAD TO 247 &nbsp;·&nbsp; #FrameInGoa
               </div>
             </div>
 
             {/* Center Stamp */}
-            <div className="text-center text-[11px] font-bold text-[#F5F1E8]/80 tracking-widest uppercase">
+            <div className="text-center text-[11px] font-bold text-[#F5F1E8] tracking-widest uppercase px-3 py-1 bg-[#111827]/80 border border-[#F5F1E8]/20 rounded-md">
               28 — 31 OCTOBER 2026 &nbsp;|&nbsp; HHG.26 BATCH 247
             </div>
 
             {/* Right Links */}
             <div className="flex items-center gap-6 font-bold tracking-widest text-[#F5F1E8] uppercase text-xs">
-              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#9F452D] transition-colors cursor-pointer">
+              <button type="button" onClick={() => handleTabChange('event')} className="hover:text-[#E2B93B] transition-colors cursor-pointer">
                 MANIFESTO
               </button>
               <a
                 href="https://github.com/Tungsten073/HHGOA"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#9F452D] transition-colors"
+                className="hover:text-[#E2B93B] transition-colors"
               >
                 REPOSITORY
               </a>
-              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#9F452D] transition-colors">
+              <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#E2B93B] transition-colors">
                 X.COM
               </a>
             </div>
