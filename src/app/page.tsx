@@ -15,18 +15,6 @@ import { GoaRealisticBeachEnvironment } from '@/components/environment/GoaRealis
 import { Sparkles, Box, Image as ImageIcon, ArrowRight, Download, Share2, RefreshCw } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-const HHGoaHero3D = dynamic(
-  () => import('@/components/three/HHGoaHero3D').then((mod) => mod.HHGoaHero3D),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="h-[320px] sm:h-[420px] w-full max-w-sm mx-auto my-2 rounded-none bg-[#F5F1E8]/60 border-2 border-[#151B2B] shadow-brutal animate-pulse flex items-center justify-center text-xs font-mono text-[#151B2B]/60">
-        LOADING 3D ARTIFACT…
-      </div>
-    ),
-  }
-);
-
 const BuilderCard3D = dynamic(
   () => import('@/components/three/BuilderCard3D').then((mod) => mod.BuilderCard3D),
   {
@@ -114,9 +102,12 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
       <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
+        {/* Localized Left-Side Text Contrast Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
+
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-2 sm:p-4">
+          <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
             <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
               <span>GOA, INDIA</span>
               <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
@@ -148,13 +139,6 @@ export default function Home() {
               <div className="border border-[#F5F1E8]/30 px-3 py-1.5 rounded-full bg-[#151B2B]/70 shadow-sm">
                 INDIA · 28—31 OCTOBER 2026
               </div>
-            </div>
-          </div>
-
-          {/* Right Column: Floating 3D Hero Builder Mark Pass */}
-          <div className="lg:col-span-5 flex items-center justify-center">
-            <div className="w-full max-w-md relative">
-              <HHGoaHero3D />
             </div>
           </div>
         </div>
