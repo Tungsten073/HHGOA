@@ -405,7 +405,7 @@ export default function Home() {
             <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
               GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247
             </div>
-            <h2 className="text-4xl sm:text-6xl lg:text-7xl font-black uppercase tracking-tight text-[#F5F1E8]">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold uppercase tracking-tight text-[#F5F1E8] max-w-3xl leading-tight">
               THE DAY ENDS.<br />
               <span className="text-[#9F452D]">THE BUILDING DOESN'T.</span>
             </h2>
