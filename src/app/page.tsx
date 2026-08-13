@@ -102,12 +102,12 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-[#FDF9F0] text-[#151B2B] relative bg-technical-grid font-syne">
+    <main className="min-h-screen bg-transparent text-[#151B2B] relative font-syne">
       {/* 🌅 Realistic Goa Beach Environment Background Sequence (Sunrise -> Day -> Golden Hour -> Sunset -> Blue Hour) */}
       <GoaRealisticBeachEnvironment />
 
       {/* Background Topographic Overlay */}
-      <div className="absolute inset-0 bg-topographic z-0 opacity-40 mix-blend-multiply pointer-events-none" />
+      <div className="absolute inset-0 bg-topographic z-0 opacity-15 pointer-events-none" />
 
       {/* Fixed Navigation Bar */}
       <Header activeTab={activeTab} onTabChange={handleTabChange} />
@@ -115,11 +115,11 @@ export default function Home() {
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
       <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
         {/* Localized Left-Side Text Contrast Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/75 via-[#0B1020]/40 to-transparent pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/30 backdrop-blur-sm border border-[#F5F1E8]/10 shadow-brutal">
+          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
             <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
               <span>GOA, INDIA</span>
               <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>

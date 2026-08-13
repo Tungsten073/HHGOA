@@ -124,8 +124,8 @@ export const GoaRealisticBeachEnvironment: React.FC = () => {
         />
       </div>
 
-      {/* Subtle Atmospheric Color-Grade Tint Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0B1020]/15 via-transparent to-[#0B1020]/25 pointer-events-none z-5" />
+      {/* Subtle Light Atmospheric Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/10 pointer-events-none z-5" />
 
       {/* Swaying Tropical Palm Fronds Foreground Layer */}
       <div ref={fgParallaxRef} className="absolute inset-0 pointer-events-none z-10 transition-transform duration-700 ease-out">
