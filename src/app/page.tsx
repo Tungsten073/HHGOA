@@ -166,9 +166,9 @@ export default function Home() {
       {/* ── SECTION 2: GENERATOR WORKSPACE — BRIGHT GOA DAYLIGHT (Middle) ── */}
       <section ref={generatorRef} id="generator" className="w-full py-16 px-4 sm:px-6 relative z-10 scroll-mt-24">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
+          {/* Section Header with Localized Readability Zone */}
           <div className="mb-8 border-b-2 border-[#151B2B] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-            <div>
+            <div className="p-4 sm:p-6 rounded-lg bg-gradient-to-r from-[#FDF9F0]/95 via-[#FDF9F0]/80 to-transparent w-full max-w-xl border-l-4 border-[#9F452D] shadow-sm">
               <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#151B2B] tracking-tight">
                 BUILD YOUR MARK.
               </h2>

@@ -46,14 +46,14 @@ export const SocialEdition: React.FC<Props> = ({ onNavigateToGenerator }) => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-            <div className="lg:col-span-8">
+            <div className="lg:col-span-8 p-4 sm:p-6 rounded-lg bg-gradient-to-r from-[#F8F1E2]/95 via-[#F8F1E2]/75 to-transparent border-l-4 border-[#151B2B]">
               {/* Large Heading */}
               <h2 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-tight text-[#151B2B] leading-[0.95]">
                 THE BUILDERS<br />
                 <span className="text-[#9F452D]">OF GOA.</span>
               </h2>
               {/* Supporting Text */}
-              <p className="font-mono text-xs sm:text-sm font-bold text-[#151B2B]/75 uppercase tracking-widest mt-4">
+              <p className="font-mono text-xs sm:text-sm font-bold text-[#151B2B] uppercase tracking-widest mt-4">
                 BUILDER MARKS CREATED FOR THE ROAD TO 247.
               </p>
             </div>
