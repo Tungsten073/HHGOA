@@ -76,6 +76,9 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
   const handleShareToX = async () => {
     triggerConfetti();
 
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const url = await uploadAndGetShareUrl();
     const fallbackUrl = typeof window !== 'undefined' ? window.location.origin : 'https://frame-in-goa.vercel.app';
     const finalUrl = url || fallbackUrl;
@@ -88,6 +91,25 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
       ? `I just generated my Builder PFP Frame for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}Building in Goa this October! #FrameInGoa #HackerHouseGoa`
       : `I just generated my Builder Pass for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}${titleLine}${stackLine}\nSee you in Goa! #FrameInGoa #HackerHouseGoa`;
 
+    // Try Web Share API with actual PNG image file
+    try {
+      const blob = await new Promise<Blob | null>((resolve) => canvas.toBlob(resolve, 'image/png'));
+      if (blob) {
+        const file = new File([blob], 'HH_Goa_Builder_Pass.png', { type: 'image/png' });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            title: 'Hacker House Goa 2026 Builder Mark',
+            text: `${captionText}\n${finalUrl}`,
+            files: [file],
+          });
+          return;
+        }
+      }
+    } catch (e) {
+      console.log('Native file share skipped or cancelled:', e);
+    }
+
+    // Fallback: Twitter Intent API with Open Graph card preview link
     const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(captionText)}&url=${encodeURIComponent(finalUrl)}`;
     window.open(intentUrl, '_blank', 'noopener,noreferrer');
   };
