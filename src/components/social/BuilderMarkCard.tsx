@@ -31,21 +31,21 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
 
-    const rotateX = ((y - centerY) / centerY) * -4.5;
-    const rotateY = ((x - centerX) / centerX) * 4.5;
+    const rotateX = ((y - centerY) / centerY) * -3;
+    const rotateY = ((x - centerX) / centerX) * 3;
 
-    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(${isFeatured ? 1.05 : 1.02})`;
+    cardRef.current.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
 
     if (imageRef.current) {
-      const moveX = ((x - centerX) / centerX) * 4;
-      const moveY = ((y - centerY) / centerY) * 4;
-      imageRef.current.style.transform = `scale(1.05) translate3d(${moveX}px, ${moveY}px, 0)`;
+      const moveX = ((x - centerX) / centerX) * 3;
+      const moveY = ((y - centerY) / centerY) * 3;
+      imageRef.current.style.transform = `scale(1.04) translate3d(${moveX}px, ${moveY}px, 0)`;
     }
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
-    cardRef.current.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px) scale(${isFeatured ? 1.04 : 1})`;
+    cardRef.current.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
     if (imageRef.current) {
       imageRef.current.style.transform = 'scale(1) translate3d(0, 0, 0)';
     }
@@ -61,26 +61,24 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
       role="button"
       aria-label={`View ${builder.name} editorial concept artifact`}
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
-      className={`group relative ${
-        isFeatured ? 'w-[280px] sm:w-[360px] scale-[1.02] sm:scale-[1.04] z-20' : 'w-[260px] sm:w-[320px] z-10'
-      } h-[430px] sm:h-[460px] bg-[#111827] border-2 border-[#111827] p-3.5 sm:p-4 shadow-brutal hover:shadow-brutal-lg transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer flex flex-col justify-between overflow-hidden select-none snap-center text-[#F5F0E6]`}
+      className="group relative w-[270px] sm:w-[310px] h-[410px] sm:h-[450px] bg-[#111827] border-2 border-[#111827] p-3.5 sm:p-4 shadow-brutal hover:shadow-brutal-lg transition-all duration-300 ease-out cursor-pointer flex flex-col justify-between overflow-hidden select-none text-[#F5F0E6] shrink-0"
     >
       {/* Background Topographic Texture */}
       <div className="absolute inset-0 bg-topographic opacity-25 pointer-events-none" />
 
       {/* Top Header Row */}
-      <div className="relative z-10 flex items-center justify-between font-mono text-[11px] font-bold tracking-widest text-[#F5F0E6] uppercase mb-3">
+      <div className="relative z-10 flex items-center justify-between font-mono text-[10px] sm:text-[11px] font-bold tracking-widest text-[#F5F0E6] uppercase mb-2">
         <span className="flex items-center gap-1 text-[#E2B93B]">
-          <Sparkles className="w-3.5 h-3.5" />
+          <Sparkles className="w-3.5 h-3.5 text-[#E2B93B]" />
           <span>{builder.category}</span>
         </span>
-        <span className="px-2 py-0.5 border border-[#F5F0E6]/30 bg-[#0C3027] text-[#E2B93B]">
-          #{builder.id}
+        <span className="px-2 py-0.5 border border-[#F5F0E6]/30 bg-[#0C3027] text-[#E2B93B] font-mono">
+          ARCHIVE // {builder.id}
         </span>
       </div>
 
       {/* Uploaded Photograph Main Viewport */}
-      <div className="relative z-10 w-full h-[240px] border-2 border-[#F5F0E6]/30 overflow-hidden bg-black shadow-inner my-1">
+      <div className="relative z-10 w-full h-[220px] sm:h-[240px] border-2 border-[#F5F0E6]/30 overflow-hidden bg-black shadow-inner my-1">
         <img
           ref={imageRef}
           src={builder.imagePath}
@@ -93,7 +91,7 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
       </div>
 
       {/* Mandatory Disclaimer Badge */}
-      <div className="relative z-10 my-2 px-2 py-1 bg-[#A9482E]/20 border border-[#A9482E]/50 font-mono text-[9px] font-bold text-[#E2B93B] tracking-widest uppercase flex items-center gap-1">
+      <div className="relative z-10 my-1.5 px-2 py-0.5 bg-[#A9482E]/20 border border-[#A9482E]/50 font-mono text-[9px] font-bold text-[#E2B93B] tracking-widest uppercase flex items-center gap-1">
         <ShieldAlert className="w-3 h-3 text-[#A9482E] shrink-0" />
         <span className="truncate">{builder.disclaimer}</span>
       </div>
@@ -101,7 +99,7 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
       {/* Bottom Metadata */}
       <div className="relative z-10 pt-2 border-t border-[#F5F0E6]/20 flex items-end justify-between text-[#F5F0E6]">
         <div>
-          <div className="font-syne text-base font-black uppercase group-hover:text-[#E2B93B] transition-colors leading-tight">
+          <div className="font-syne text-base sm:text-lg font-black uppercase group-hover:text-[#E2B93B] transition-colors leading-tight">
             {builder.name}
           </div>
           <div className="font-mono text-[10px] font-bold tracking-widest uppercase mt-0.5 text-[#E2B93B]">
@@ -111,7 +109,7 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
 
         {/* Hover Action Badge */}
         <div className="font-mono text-[10px] font-bold text-[#E2B93B] group-hover:text-[#F5F0E6] flex items-center gap-1 uppercase tracking-wider transition-colors">
-          <span>VIEW</span>
+          <span>HHG.26 // 247</span>
           <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
         </div>
       </div>

@@ -77,6 +77,20 @@ body {
   animation-play-state: paused;
 }
 
+@keyframes marqueeContinuous {
+  0% {
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-marquee-continuous {
+  animation: marqueeContinuous 40s linear infinite;
+  will-change: transform;
+}
+
 .shadow-brutal-orange {
   box-shadow: 4px 4px 0px 0px #9F452D;
 }

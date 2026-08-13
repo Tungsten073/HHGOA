@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { BuilderMarkCard } from './BuilderMarkCard';
 import { GalleryArtifactModal, IconCardData } from './GalleryArtifactModal';
-import { ChevronLeft, ChevronRight, Award, ShieldAlert } from 'lucide-react';
+import { Award, ShieldAlert } from 'lucide-react';
 
 export const UPLOADED_ICON_CARDS: IconCardData[] = [
   {
@@ -76,26 +76,21 @@ export const UPLOADED_ICON_CARDS: IconCardData[] = [
   },
 ];
 
+// 4x Duplicated Array for 100% Mathematically Seamless Continuous Infinite Marquee Loop
+export const QUAD_ICON_CARDS: (IconCardData & { uniqueKey: string })[] = [
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set1-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set2-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set3-${card.id}-${i}` })),
+  ...UPLOADED_ICON_CARDS.map((card, i) => ({ ...card, uniqueKey: `set4-${card.id}-${i}` })),
+];
+
 export const SocialGallery: React.FC = () => {
   const [selectedBuilder, setSelectedBuilder] = useState<IconCardData | null>(null);
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -340, behavior: 'smooth' });
-    }
-  };
-
-  const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 340, behavior: 'smooth' });
-    }
-  };
 
   return (
     <>
       {/* ── Editorial Archive Header Notice ── */}
-      <div className="mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-[#F5F0E6] border-2 border-[#111827] shadow-brutal font-mono text-xs text-[#111827]">
+      <div className="mb-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 bg-[#F5F0E6] border-2 border-[#111827] shadow-brutal font-mono text-xs text-[#111827]">
         <div className="flex items-center gap-2">
           <Award className="w-4 h-4 text-[#A9482E]" />
           <span className="font-extrabold uppercase tracking-widest text-[#111827]">
@@ -108,44 +103,20 @@ export const SocialGallery: React.FC = () => {
         </div>
       </div>
 
-      {/* ── Horizontal Snap Carousel Track & Controls ── */}
-      <div className="relative w-full">
-        {/* Navigation Arrow Controls */}
-        <div className="flex items-center justify-between mb-4">
-          <div className="font-mono text-xs font-bold text-[#111827] uppercase tracking-widest">
-            COLLECTIBLE ARCHIVE (01 / 06)
-          </div>
-          <div className="flex items-center gap-2">
-            <button
-              onClick={scrollLeft}
-              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={scrollRight}
-              className="p-2 bg-[#111827] text-[#F5F0E6] border-2 border-[#111827] shadow-brutal hover:bg-[#A9482E] transition-colors cursor-pointer"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
-        </div>
+      {/* ── FULL-WIDTH CONTINUOUS INFINITE HORIZONTAL MARQUEE ── */}
+      <div className="relative w-screen left-1/2 -translate-x-1/2 overflow-hidden py-4 select-none">
+        {/* Subtle Edge Mask Overlays */}
+        <div className="absolute top-0 left-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-[#0B1020]/90 via-[#0B1020]/40 to-transparent pointer-events-none z-20" />
+        <div className="absolute top-0 right-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-[#0B1020]/90 via-[#0B1020]/40 to-transparent pointer-events-none z-20" />
 
-        {/* Scrollable Track with Snap-to-Card behavior */}
-        <div
-          ref={carouselRef}
-          className="flex items-center gap-6 overflow-x-auto pb-6 pt-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-[#111827] scrollbar-track-[#F5F0E6]"
-        >
-          {UPLOADED_ICON_CARDS.map((card, idx) => (
-            <div key={card.id} className="snap-center shrink-0">
-              <BuilderMarkCard
-                builder={card}
-                isFeatured={idx === 2} // Center card featured elevation
-                onClick={() => setSelectedBuilder(card)}
-              />
-            </div>
+        {/* Continuous Linear GPU Marquee Track */}
+        <div className="flex items-center gap-6 sm:gap-8 w-max animate-marquee-continuous">
+          {QUAD_ICON_CARDS.map((card) => (
+            <BuilderMarkCard
+              key={card.uniqueKey}
+              builder={card}
+              onClick={() => setSelectedBuilder(card)}
+            />
           ))}
         </div>
       </div>
