@@ -68,41 +68,6 @@ export const SocialEdition: React.FC<Props> = ({ onNavigateToGenerator }) => {
 
         {/* ── Gallery Grid ── */}
         <SocialGallery />
-
-        {/* ── End of Gallery Finish CTA ── */}
-        <div className="mt-20 pt-12 border-t-2 border-[#151B2B] bg-[#F5F1E8] border-2 shadow-brutal-lg p-8 sm:p-12 text-center relative overflow-hidden">
-          <div className="absolute inset-0 bg-topographic opacity-20 pointer-events-none" />
-
-          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 bg-[#9F452D] text-[#F5F1E8] font-mono text-[11px] font-bold tracking-widest uppercase shadow-brutal">
-              <Sparkles className="w-3.5 h-3.5 text-[#D8A928]" />
-              <span>BECOME A PART OF BATCH 247</span>
-            </div>
-
-            <h3 className="text-3xl sm:text-5xl font-black uppercase tracking-tight text-[#151B2B]">
-              READY TO BUILD YOUR MARK?
-            </h3>
-
-            <p className="font-mono text-xs sm:text-sm font-bold text-[#151B2B]/75 uppercase tracking-widest">
-              JOIN THE ROAD TO 247. GENERATE YOUR OFFICIAL HACKER HOUSE GOA BUILDER MARK.
-            </p>
-
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={handleCtaClick}
-                className="inline-flex items-center justify-center gap-3 bg-[#151B2B] text-[#F5F1E8] border-2 border-[#151B2B] px-8 py-4 font-mono text-sm font-bold uppercase tracking-wider shadow-brutal hover:bg-[#9F452D] hover:border-[#9F452D] active:scale-[0.98] transition-all cursor-pointer"
-              >
-                <span>[ CREATE YOUR BUILDER MARK ]</span>
-                <ArrowUp className="w-4 h-4 text-[#D8A928]" />
-              </button>
-            </div>
-
-            <div className="font-mono text-[11px] text-[#151B2B]/60 tracking-widest uppercase pt-4">
-              HH GOA / 247 &nbsp;·&nbsp; GOA, INDIA &nbsp;·&nbsp; #FrameInGoa
-            </div>
-          </div>
-        </div>
       </div>
     </section>
   );

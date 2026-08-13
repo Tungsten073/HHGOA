@@ -17,10 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: 'Hacker House Goa 2026 — Builder Pass & Mark',
-    description: 'Check out my official Hacker House Goa 2026 Builder Mark & Pass! #FrameInGoa',
+    description: 'Check out my Hacker House Goa 2026 Builder Mark & Pass! #FrameInGoa',
     openGraph: {
       title: 'Hacker House Goa 2026 Builder Mark 🌴⚡',
-      description: 'Official Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
+      description: 'Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
       images: [
         {
           url: imageUrl,
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       card: 'summary_large_image',
       title: 'Hacker House Goa 2026 Builder Mark 🌴⚡',
-      description: 'Official Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
+      description: 'Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
       images: [imageUrl],
     },
   };
@@ -71,13 +71,13 @@ export default async function SharePage({ params }: Props) {
         <div className="text-center space-y-2">
           <div className="inline-flex items-center space-x-2 px-3 py-1 bg-[#F5F1E8] border-2 border-[#151B2B] text-[#9F452D] text-xs font-mono font-bold uppercase tracking-widest shadow-brutal">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>HHG.26 // ID VERIFIED</span>
+            <span>HHG.26 // ARTIFACT READY</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-[#151B2B]">
             BUILDER MARK READY
           </h1>
           <p className="text-xs font-mono tracking-widest uppercase text-[#151B2B]/70 max-w-md mx-auto">
-            OFFICIAL GRAPHIC FOR HACKER HOUSE GOA 2026 #FrameInGoa
+            GENERATED ARTIFACT FOR HACKER HOUSE GOA 2026 #FrameInGoa
           </p>
         </div>
 

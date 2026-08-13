@@ -104,7 +104,7 @@ function createHeroBackTexture(): THREE.CanvasTexture {
 
   ctx.fillStyle = 'rgba(245, 241, 232, 0.5)';
   ctx.font = '600 18px "JetBrains Mono", monospace';
-  ctx.fillText('OFFICIAL EVENT PASS', 300, 680);
+  ctx.fillText('BUILDER MARK PASS', 300, 680);
 
   const texture = new THREE.CanvasTexture(canvas);
   texture.needsUpdate = true;

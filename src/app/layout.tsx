@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Hacker House Goa 2026 — HHG.26 Builder Mark & ID Generator",
-  description: "Official Decentralized Builder Mark and ID Pass Generator for Hacker House Goa 2026 #FrameInGoa",
+  description: "Decentralized Builder Mark and ID Pass Generator for Hacker House Goa 2026 #FrameInGoa",
 };
 
 export default function RootLayout({
