@@ -63,7 +63,7 @@ export const BuilderMarkCard: React.FC<Props> = ({ builder, isFeatured = false, 
       onKeyDown={(e) => e.key === 'Enter' && onClick()}
       className={`group relative ${
         isFeatured ? 'w-[320px] sm:w-[360px] scale-[1.04] z-20' : 'w-[290px] sm:w-[320px] z-10'
-      } h-[460px] liquid-glass-card animate-liquid-shimmer p-4 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer flex flex-col justify-between overflow-hidden select-none snap-center text-[#F5F0E6]`}
+      } h-[460px] bg-[#111827] border-2 border-[#111827] p-4 shadow-brutal hover:shadow-brutal-lg transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] cursor-pointer flex flex-col justify-between overflow-hidden select-none snap-center text-[#F5F0E6]`}
     >
       {/* Background Topographic Texture */}
       <div className="absolute inset-0 bg-topographic opacity-25 pointer-events-none" />

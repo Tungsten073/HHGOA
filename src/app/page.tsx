@@ -110,7 +110,7 @@ export default function Home() {
 
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
             {/* Left Column: Hero Title & CTA */}
-            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-xl liquid-glass animate-liquid-shimmer">
+            <div className="lg:col-span-8 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/45 backdrop-blur-md border-2 border-[#F5F1E8]/30 shadow-brutal-lg">
               <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
                 <span className="text-[#F5F1E8]">GOA, INDIA</span>
                 <span className="text-[#E2B93B]">15.4909° N, 73.8278° E</span>
@@ -159,7 +159,7 @@ export default function Home() {
           <div className="max-w-6xl mx-auto">
             {/* Section Header with Localized Readability Zone */}
             <div className="mb-8 border-b-2 border-[#111827] pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
-              <div className="p-4 sm:p-6 rounded-xl liquid-glass animate-liquid-shimmer w-full max-w-xl border-l-4 border-[#E2B93B] text-[#F5F1E8]">
+              <div className="p-4 sm:p-6 rounded-lg bg-[#111827]/85 backdrop-blur-md w-full max-w-xl border-l-4 border-[#E2B93B] shadow-brutal text-[#F5F1E8]">
                 <h2 className="text-3xl sm:text-5xl font-black uppercase text-[#F5F1E8] tracking-tight">
                   BUILD YOUR MARK.
                 </h2>
@@ -400,7 +400,13 @@ export default function Home() {
 
       {/* ── SECTION 5: FOOTER — EVENING / DUSK BEACH (Bottom) ── */}
       <OhhMyDesignSectionReveal delayMs={100}>
-        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 border-t-2 border-[#F5F1E8]/20 relative z-10 overflow-hidden bg-[#0B1020]/25 backdrop-blur-xl text-[#F5F1E8] shadow-2xl">
+        <footer ref={footerRef} id="about-footer" className="w-full pt-20 pb-16 px-6 md:px-16 relative z-10 overflow-hidden liquid-glass-panel text-[#F5F1E8]">
+          {/* Animated Liquid Specular Light Shimmer */}
+          <div className="absolute -top-24 -left-24 w-[140%] h-[200%] bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-0 animate-liquid-shimmer" />
+
+          {/* Liquid Glass Ambient Refraction Glows */}
+          <div className="absolute -top-20 -left-20 w-96 h-96 rounded-full bg-[#A9482E]/20 blur-3xl pointer-events-none z-0" />
+          <div className="absolute -bottom-20 -right-20 w-96 h-96 rounded-full bg-[#E2B93B]/15 blur-3xl pointer-events-none z-0" />
           <div className="max-w-7xl mx-auto flex flex-col items-center text-center space-y-8 relative z-10 mb-12">
             <div className="font-mono text-xs font-bold text-[#9F452D] tracking-widest uppercase">
               GOA, INDIA &nbsp;·&nbsp; 15.4909° N, 73.8278° E &nbsp;·&nbsp; BATCH 247

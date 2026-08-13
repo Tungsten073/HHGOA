@@ -12,7 +12,7 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ activeTab, onTabChange }) => {
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-16 liquid-glass animate-liquid-shimmer font-mono text-xs tracking-widest uppercase text-[#F5F1E8]">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-6 md:px-12 h-16 bg-[#111827]/90 backdrop-blur-md border-b-2 border-[#F5F1E8]/20 font-mono text-xs tracking-widest uppercase text-[#F5F1E8] shadow-md">
       {/* Left Brand Logo & Sub-label */}
       <div className="flex items-center gap-4">
         <button
