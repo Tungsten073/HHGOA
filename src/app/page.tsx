@@ -114,12 +114,9 @@ export default function Home() {
 
       {/* ── SECTION 1: HERO — GOA SUNRISE (Top of Page) ── */}
       <section ref={heroRef} id="hero-sunrise" className="w-full pt-28 pb-20 px-6 md:px-16 relative z-10 overflow-hidden min-h-[90vh] flex items-center">
-        {/* Localized Left-Side Text Contrast Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1020]/40 via-[#0B1020]/15 to-transparent pointer-events-none z-0" />
-
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-center min-h-[560px] relative z-10">
           {/* Left Column: Hero Title & CTA */}
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-6 sm:p-8 rounded-lg bg-[#0B1020]/15 backdrop-blur-[2px] border border-[#F5F1E8]/20 shadow-brutal">
+          <div className="lg:col-span-7 flex flex-col items-start space-y-6 text-left p-2 sm:p-4">
             <div className="flex flex-wrap items-center gap-3 font-mono text-xs tracking-widest text-[#F5F1E8] uppercase font-bold">
               <span>GOA, INDIA</span>
               <span className="text-[#D8A928]">15.4909° N, 73.8278° E</span>
