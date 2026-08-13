@@ -7,7 +7,7 @@ const localImageStore = new Map<string, string>();
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { imageBase64 } = body;
+    const { imageBase64, builderData } = body;
 
     if (!imageBase64 || typeof imageBase64 !== 'string') {
       return NextResponse.json(
@@ -49,7 +49,16 @@ export async function POST(req: NextRequest) {
 
     const origin = req.headers.get('origin') || req.headers.get('host') || 'https://frame-in-goa.vercel.app';
     const baseUrl = origin.startsWith('http') ? origin : `https://${origin}`;
-    const shareUrl = `${baseUrl}/share/${shareId}`;
+    
+    let queryParams = '';
+    if (builderData) {
+      const qName = builderData.name ? encodeURIComponent(builderData.name) : '';
+      const qTitle = builderData.title ? encodeURIComponent(builderData.title) : '';
+      const qStack = builderData.stack ? encodeURIComponent(builderData.stack) : '';
+      queryParams = `?name=${qName}&title=${qTitle}&stack=${qStack}`;
+    }
+
+    const shareUrl = `${baseUrl}/share/${shareId}${queryParams}`;
 
     return NextResponse.json({
       success: true,

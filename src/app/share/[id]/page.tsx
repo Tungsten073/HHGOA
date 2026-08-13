@@ -5,53 +5,77 @@ import { ShareCardImage } from '@/components/share/ShareCardImage';
 
 interface Props {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<{ name?: string; title?: string; stack?: string }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({ params, searchParams }: Props): Promise<Metadata> {
   const { id } = await params;
+  const sParams = searchParams ? await searchParams : {};
+  
+  const name = sParams.name ? decodeURIComponent(sParams.name) : 'Builder';
+  const title = sParams.title ? decodeURIComponent(sParams.title) : 'Hacker House Goa 2026';
+  const stack = sParams.stack ? decodeURIComponent(sParams.stack) : '';
 
   const domain = process.env.NEXT_PUBLIC_APP_URL || 'https://frame-in-goa.vercel.app';
-
   const imageUrl = process.env.BLOB_READ_WRITE_TOKEN
     ? `https://public.blob.vercel-storage.com/hh-goa-2026/${id}.png`
     : `${domain}/api/share?id=${id}`;
 
+  const pageTitle = `${name} — ${title} | Hacker House Goa 2026`;
+  const pageDesc = stack
+    ? `Check out ${name}'s Official Builder Pass for Hacker House Goa 2026! Stack: ${stack} · #FrameInGoa`
+    : `Check out ${name}'s Official Builder Pass for Hacker House Goa 2026! #FrameInGoa`;
+
   return {
-    title: 'Hacker House Goa 2026 — Builder Pass & Mark',
-    description: 'Check out my Hacker House Goa 2026 Builder Mark & Pass! #FrameInGoa',
+    title: pageTitle,
+    description: pageDesc,
     openGraph: {
-      title: 'Hacker House Goa 2026 Builder Mark 🌴⚡',
-      description: 'Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
+      title: pageTitle,
+      description: pageDesc,
       images: [
         {
           url: imageUrl,
           width: 1080,
           height: 1350,
-          alt: 'Hacker House Goa 2026 Builder Mark',
+          alt: `Hacker House Goa 2026 Builder Mark for ${name}`,
         },
       ],
       type: 'website',
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Hacker House Goa 2026 Builder Mark 🌴⚡',
-      description: 'Decentralized Builder Mark for Hacker House Goa 2026 #FrameInGoa',
+      title: pageTitle,
+      description: pageDesc,
       images: [imageUrl],
     },
   };
 }
 
-export default async function SharePage({ params }: Props) {
+export default async function SharePage({ params, searchParams }: Props) {
   const { id } = await params;
+  const sParams = searchParams ? await searchParams : {};
+  const name = sParams.name ? decodeURIComponent(sParams.name) : '';
+  const title = sParams.title ? decodeURIComponent(sParams.title) : '';
+  const stack = sParams.stack ? decodeURIComponent(sParams.stack) : '';
+
   const domain = process.env.NEXT_PUBLIC_APP_URL || 'https://frame-in-goa.vercel.app';
   const imageUrl = process.env.BLOB_READ_WRITE_TOKEN
     ? `https://public.blob.vercel-storage.com/hh-goa-2026/${id}.png`
     : `/api/share?id=${id}`;
 
+  let shareQuery = '';
+  if (name || title || stack) {
+    shareQuery = `?name=${encodeURIComponent(name)}&title=${encodeURIComponent(title)}&stack=${encodeURIComponent(stack)}`;
+  }
+
+  const nameLine = name ? `👤 Name: ${name}\n` : '';
+  const titleLine = title ? `⚡ Title: ${title}\n` : '';
+  const stackLine = stack ? `🛠️ Stack: ${stack}\n` : '';
+
   const shareText = encodeURIComponent(
-    'I just generated my Builder Mark for Hacker House Goa 2026! 🚀🌴\n\nBuilding in Goa this October! #FrameInGoa'
+    `I just generated my Builder Mark for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}${titleLine}${stackLine}Building in Goa this October! #FrameInGoa #HackerHouseGoa`
   );
-  const sharePageUrl = encodeURIComponent(`${domain}/share/${id}`);
+  const sharePageUrl = encodeURIComponent(`${domain}/share/${id}${shareQuery}`);
   const twitterIntentUrl = `https://twitter.com/intent/tweet?text=${shareText}&url=${sharePageUrl}`;
 
   return (
@@ -75,14 +99,14 @@ export default async function SharePage({ params }: Props) {
             <span>HHG.26 // ARTIFACT READY</span>
           </div>
           <h1 className="text-3xl sm:text-5xl font-extrabold uppercase tracking-tight text-[#151B2B]">
-            BUILDER MARK READY
+            {name ? `${name.toUpperCase()}'S BUILDER MARK` : 'BUILDER MARK READY'}
           </h1>
           <p className="text-xs font-mono tracking-widest uppercase text-[#151B2B]/70 max-w-md mx-auto">
-            GENERATED ARTIFACT FOR HACKER HOUSE GOA 2026 #FrameInGoa
+            {title ? `${title} · ${stack || 'HHG.26'}` : 'GENERATED ARTIFACT FOR HACKER HOUSE GOA 2026 #FrameInGoa'}
           </p>
         </div>
 
-        {/* Resilient Client Image Component */}
+        {/* Resilient Client Image Component displaying ID Photo */}
         <ShareCardImage shareId={id} initialImageUrl={imageUrl} />
 
         {/* Action Buttons */}

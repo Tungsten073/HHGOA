@@ -51,7 +51,7 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
       const res = await fetch('/api/share', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imageBase64 }),
+        body: JSON.stringify({ imageBase64, builderData }),
       });
 
       const data = await res.json();
@@ -80,9 +80,13 @@ export const DownloadShareActions: React.FC<Props> = ({ canvasRef, format, build
     const fallbackUrl = typeof window !== 'undefined' ? window.location.origin : 'https://frame-in-goa.vercel.app';
     const finalUrl = url || fallbackUrl;
 
+    const nameLine = builderData.name ? `👤 Name: ${builderData.name}\n` : '';
+    const titleLine = builderData.title ? `⚡ Title: ${builderData.title}\n` : '';
+    const stackLine = builderData.stack ? `🛠️ Stack: ${builderData.stack}\n` : '';
+
     const captionText = format === 'frame'
-      ? `I just generated my PFP Frame for Hacker House Goa 2026! 🚀🌴\n\nBuilding in Goa this October! #FrameInGoa`
-      : `I just generated my Builder Pass for Hacker House Goa 2026! 🚀🌴\n\nStack: ${builderData.stack}\nTitle: ${builderData.title}\n\nSee you in Goa! #FrameInGoa`;
+      ? `I just generated my Builder PFP Frame for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}Building in Goa this October! #FrameInGoa #HackerHouseGoa`
+      : `I just generated my Builder Pass for Hacker House Goa 2026! 🚀🌴\n\n${nameLine}${titleLine}${stackLine}\nSee you in Goa! #FrameInGoa #HackerHouseGoa`;
 
     const intentUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(captionText)}&url=${encodeURIComponent(finalUrl)}`;
     window.open(intentUrl, '_blank', 'noopener,noreferrer');
