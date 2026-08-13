@@ -87,7 +87,7 @@ export const GoaRealisticBeachEnvironment: React.FC = () => {
   return (
     <div className="fixed inset-0 pointer-events-none select-none z-0 overflow-hidden" aria-hidden="true">
       {/* ── 5 REALISTIC GOA BEACH PHOTOGRAPH LAYERS WITH LERP INERTIA ── */}
-      <div ref={bgParallaxRef} className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out opacity-45">
+      <div ref={bgParallaxRef} className="absolute inset-0 w-full h-full transition-transform duration-700 ease-out">
         {/* Layer 1 — Sunrise (Hero) */}
         <div
           ref={layer1Ref}
